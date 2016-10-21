@@ -28,3 +28,22 @@ li a:hover {
 .active {
     background-color: #d14836;
 }
+#heading {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    right: 100px;
+    text-align: center;
+}
+.light-gray-color {
+    color: #333;
+}
+.big-intro-para {
+    font-size: 22px;
+}
+.big-intro-heading {
+    font-size: 40px;
+}
+a {
+    text-decoration: none;
+}
