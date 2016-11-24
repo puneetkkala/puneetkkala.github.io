@@ -1,48 +1,63 @@
+html,body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #888;
     position: fixed;
-    top: 0;
+    top: 0px;
+    padding-top: 10px;
+    font-family: monospace;
+    font-size: 18px;
+    background-color: white;
+    z-index: 1;
+    width: 100%;
+    display: block;
+}
+section {
+    padding-top: 30px;
+    height: 100vh;
     width: 100%;
 }
-
 li {
     float: left;
-    border-right: 1px solid #bbb;
 }
 
 li a {
-    display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li a:hover {
-    background-color: #333;
+    color: #333;
 }
 .active {
-    background-color: #d14836;
+    color: #d14836;
 }
-#heading {
-    position: absolute;
+.heading {
+    display: block;
     top: 50px;
-    left: 100px;
-    right: 100px;
-    text-align: center;
+    left: 0px;
 }
 .light-gray-color {
     color: #333;
 }
 .big-intro-para {
     font-size: 22px;
+    text-align: center;
+    font-family: monospace;
 }
 .big-intro-heading {
     font-size: 40px;
+    text-align: center;
+    font-family: monospace;
 }
 a {
     text-decoration: none;
