@@ -12,7 +12,7 @@ ul {
     position: fixed;
     top: 0px;
     padding-top: 10px;
-    font-family: monospace;
+    font-family: 'Roboto Mono', monospace;
     font-size: 18px;
     background-color: white;
     z-index: 1;
@@ -45,6 +45,8 @@ li a:hover {
     display: block;
     top: 50px;
     left: 0px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .light-gray-color {
     color: #333;
@@ -52,12 +54,12 @@ li a:hover {
 .big-intro-para {
     font-size: 22px;
     text-align: center;
-    font-family: monospace;
+    font-family: 'Roboto Mono', monospace;
 }
 .big-intro-heading {
     font-size: 40px;
     text-align: center;
-    font-family: monospace;
+    font-family: 'Roboto Mono', monospace;
 }
 a {
     text-decoration: none;
