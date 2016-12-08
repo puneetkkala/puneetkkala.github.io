@@ -3,6 +3,15 @@ html,body {
 	width: 100%;
 	margin: 0;
 	padding: 0;
+	background-color: white;
+}
+
+a {
+    color: #515151;
+}
+
+a:hover {
+	color: #EDEDED;
 }
 
 p {
@@ -12,6 +21,9 @@ p {
 
 li {
 	font-family: 'Roboto Mono', monospace;
+	color: #515151;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 hr {
@@ -23,21 +35,25 @@ hr {
 
 .heading {
 	display: block;
-	margin-top: 50px;
-	left: 0px;
-	margin-left: 10%;
-	margin-right: 10%;
 }
 .light-gray-color {
-	color: #333;
+	color: #515151;
 }
 .big-intro-para {
 	font-size: 22px;
 	text-align: justify;
 	font-family: 'Roboto Mono', monospace;
+	color: #515151;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 .big-intro-heading {
 	font-size: 40px;
 	text-align: justify;
 	font-family: 'Roboto Mono', monospace;
+	color: white;
+	background-color: #6AB344;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }

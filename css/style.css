@@ -3,7 +3,9 @@ html,body {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: white;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -12,9 +14,10 @@ ul {
     position: fixed;
     top: 0px;
     padding-top: 10px;
+    padding-bottom: 10px;
     font-family: 'Roboto Mono', monospace;
     font-size: 18px;
-    background-color: white;
+    background-color: #6AB344;
     z-index: 1;
     width: 100%;
     display: block;
@@ -29,14 +32,14 @@ li {
 }
 
 li a {
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li a:hover {
-    color: #333;
+    color: #EDEDED;
 }
 .active {
     color: #d14836;
@@ -49,7 +52,7 @@ li a:hover {
     margin-right: 10%;
 }
 .light-gray-color {
-    color: #333;
+    color: #515151;
 }
 .big-intro-para {
     font-size: 22px;
@@ -63,4 +66,5 @@ li a:hover {
 }
 a {
     text-decoration: none;
+    color: #039BE5;
 }
