@@ -53,12 +53,12 @@ li a:hover {
 }
 .big-intro-para {
     font-size: 22px;
-    text-align: center;
+    text-align: justify;
     font-family: 'Roboto Mono', monospace;
 }
 .big-intro-heading {
     font-size: 40px;
-    text-align: center;
+    text-align: justify;
     font-family: 'Roboto Mono', monospace;
 }
 a {
