@@ -3,11 +3,11 @@ html,body {
 	width: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: white;
+	background-color: #212121;
 }
 
 a {
-    color: #515151;
+    color: #A2A2A2;
 }
 
 a:hover {
@@ -21,7 +21,7 @@ p {
 
 li {
 	font-family: 'Roboto Mono', monospace;
-	color: #515151;
+	color: #A2A2A2;
 	margin-left: 10%;
 	margin-right: 10%;
 }
@@ -37,13 +37,13 @@ hr {
 	display: block;
 }
 .light-gray-color {
-	color: #515151;
+	color: #A2A2A2;
 }
 .big-intro-para {
 	font-size: 22px;
 	text-align: justify;
 	font-family: 'Roboto Mono', monospace;
-	color: #515151;
+	color: #A2A2A2;
 	margin-left: 10%;
 	margin-right: 10%;
 }
@@ -51,7 +51,7 @@ hr {
 	font-size: 18px;
 	text-align: justify;
 	font-family: 'Roboto Mono', monospace;
-	color: #515151;
+	color: #A2A2A2;
 	margin-left: 10%;
 	margin-right: 10%;
 	width: 80%;
