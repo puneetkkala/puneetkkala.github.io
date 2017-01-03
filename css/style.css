@@ -31,6 +31,39 @@ html,body {
     font-size: 16px;
 }
 
+.card-wp {
+    margin-top: 100px;
+    left: 0;
+    margin-left: 5%;
+    width: 500px;
+    height: 128px;
+    box-shadow: 8px 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card-wp:hover {
+    box-shadow: 16px 8px 16px 8px rgba(0,0,0,0.2);
+}
+
+.card-wp-name {
+    font-size: 18px;
+}
+
+.card-wp-description {
+    font-size: 14px;
+}
+
+.container-wp {
+    height: 128px;
+    vertical-align: top;
+    padding: 2px 16px;
+}
+.card-skill-head {
+    background-color: white;
+    text-align: center;
+    height: 128px;
+    width: 128px;
+}
 p {
     color: #A2A2A2;
     font-family: 'Roboto Mono', monospace;
@@ -93,4 +126,30 @@ li a:hover {
 a {
     text-decoration: none;
     color: #039BE5;
+}
+.black-overlay {
+  display: none;
+  top: 0%;
+  left: 0%;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.6;
+  opacity: .60;
+  filter: alpha(opacity=60);
+}
+.white-content {
+  display: none;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 16px solid #6AB344;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto;
 }
