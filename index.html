@@ -4,128 +4,164 @@
 <meta name="google-site-verification" content="qzvesbMJ2LB_klasvMenA1nRpw3xafB0kteoq5PJC3k" />
 <meta charset="utf-8" name="title" content="Puneet Kala - Android Developer, Bangalore">
 	<title>Puneet Kala - Android Developer, Bangalore</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="shortcut icon" type="text/css" href="./images/kalapuneet-logo.png">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-	<script type="text/javascript">
-		function hideDocsApp() {
-			document.getElementById("docsapp-data").style.display = "none";
-			document.getElementById("docsapp-fade").style.display = "none";
-		}
-		function displayDocsApp() {
-			document.getElementById("docsapp-data").style.display = "block";
-			document.getElementById("docsapp-fade").style.display = "block";
-			hideAccenture();
-		}
-		function hideAccenture() {
-			document.getElementById("accenture-data").style.display = "none";
-			document.getElementById("accenture-fade").style.display = "none";
-		}
-		function displayAccenture() {
-			document.getElementById("accenture-data").style.display = "block";
-			document.getElementById("accenture-fade").style.display = "block";
-			hideDocsApp();
-		}
-	</script>
 </head>
 <body>
-<div>
-<ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#profile">Profile</a></li>
-  <li><a href="#apps">Apps</a></li>
-  <li><a href="./blog.html" target="_blank">Blog</a></li>
-</ul>
-<section id="home">
-<div class="card" style="display:inline-block;">
-	<img src="./images/mumbai_bandstand.jpg" alt="At Mumbai Bandstand" width="400px" height="400px">
-	<div class="container">
-		<p class="card-name"><b>Puneet Kala</b></p>
-		<p class="card-description">Android Developer</p>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      		<ul class="nav navbar-nav">
+        		<li><a href="#home">Home <span class="sr-only">(current)</span></a></li>
+        		<li><a href="#profile">Profile</a></li>
+        		<li><a href="#skills">Skills</a></li>
+        		<li><a href="#apps">Apps</a></li>
+  				<li><a href="./blog.html" target="_blank">Blog</a></li>
+			</ul>
+		</div>
 	</div>
-</div>
-<div class="heading" style="width:30%;display:inline-block;">
-	<p class="light-gray-color big-intro-para">I am an Android Developer living in Bangalore, India<br/><br/>Apart from working on Android throughout the day, I spend my free time in writing <a href="./blog.html">blog</a>, reading books and blogs, and playing table tennis.<br/><br/>You can find me on <a href="https://twitter.com/kalapuneet" target="_blank">Twitter</a>, <a href="https://github.com/puneetkkala" target="_blank">Github</a> or you can connect with me on <a href="https://www.facebook.com/puneetkkala" target="_blank">Facebook</a>, <a href="#" target="_blank">LinkedIn</a> or you can drop me an <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=puneetkkala@gmail.com" target="_blank">email</a>.<br><br>You can find my resume <a href="./files/PuneetKumarKala.pdf" download>here</a>.</p>
-</div>
-</section>
-<section id="profile">
-<div>
-	<div id="docsapp-card" onclick="displayDocsApp()" class="card-wp" style="display:inline-block;">
-	<img src="./images/docsapp_logo.png" alt="DocsApp Logo" width="128px" height="128px" style="display:inline-block;background:transparent;">
-	<div class="container-wp" style="display:inline-block;">
-		<p class="card-wp-name"><b><a href="https://www.docsapp.in/" target="_blank">DocsApp</a></b></p>
-		<p class="card-wp-description">Android Developer</p>
+</nav>
+<section id="home" style="padding-top:70px;">
+<div style="margin-left:20px;" class="row">
+	<div class="col-md-5">
+		<div class="thumbnail">
+			<img src="./images/mumbai_bandstand.jpg" alt="At Mumbai Bandstand">
+			<div class="caption">
+				<h3>Puneet Kala</h3>
+				<p>Android Developer</p>
+			</div>
+		</div>
 	</div>
-</div>
-<div id="accenture-card" onclick="displayAccenture()" class="card-wp" style="display:inline-block;">
-	<img src="./images/accenture_logo.png" alt="Accenture Logo" width="128px" height="128px" style="display:inline-block;">
-	<div class="container-wp" style="display:inline-block;">
-		<p class="card-wp-name"><b><a href="https://www.accenture.com/" target="_blank">Accenture Services Pvt Ltd</a></b></p>
-		<p class="card-wp-description">Software Engineering Analyst</p>
-	</div>
-</div>
-	<div id="docsapp-data" class="white-content">
-		<p><b>Android Developer,</b> DocsApp<br/>
-		March 2016- Present<br/>
-		Domain: Medical</p>
-		<br/>
-		<p>PROJECTS<br/><br/>
-		<b>Doctor's Android App-</b> A messaging application for the doctors to give consultation to the patients. Playstore link <a href=" https://play.google.com/store/apps/details?id=com.docsapp.doctors">here</a><br/><br/>
-		<b>Patients's Android App-</b> A messaging application for the patients to take consultation from doctors, buy medicines, and book a lab test. Playstore link <a href=" https://play.google.com/store/apps/details?id=com.docsapp.patients">here</a><br/><br/>
-		Achievements:<br/>
-		- 30,000+ messages are sent using the app per day<br/>
-		- 50% RAM usage reduction in doctor's app<br/>
-		- 200% end-users increased in 8 months<br/>
-		</p>
-	</div>
-	<div id="docsapp-fade" class="black-overlay" onclick="hideDocsApp()"></div>
-	<div id="accenture-data" class="white-content">
-		<p><b>Software Engineering Analyst,</b> Accenture Services Pvt Ltd<br/>
-		May 2013- October 2015<br/>
-		Domain: Retail</p>
-		<br/>
-		<p>PROJECTS<br/><br/>
-		<b>Shipment Dashboard-</b> The shipment dashboard was for the client's operations team to manage and to track the shipments which are being done by them or the third party.<br/><br/>
-		<b>Batch Application-</b> The batch application is used to purge data from the server, change multiple status flags in the database.<br/><br/>
-		<b>Warehouse Management System-</b> The project was to support systems of 9 warehouses. The warehouses had the systems mainly for manging deliveries, for managing supplier orders, for managing customer orders, and for managing stock transfers.<br/><br/>
-		Achievements:<br/>
-		- 26 reusable assets created<br/>
-		- 6 client facing ideas given<br/>
-		- 98% deliverables delivered on time<br/>
-		</p>
-	</div>
-	<div id="accenture-fade" class="black-overlay" onclick="hideAccenture()"></div>
-	</div>
-	<div class="card-wp" style="display:inline-block;">
-	<div class="card-skill-head" style="display:inline-block;"><p>Technology<br/>Skills</p></div>
-	<div class="container-wp" style="display:inline-block;">
-		<p class="card-wp-name">Android, Java Standard Edition</b></p>
-		<p class="card-wp-description">HTML, Unix, Git</p>
-	</div>
-	</div>
-	<div class="card-wp" style="display:inline-block;">
-	<div class="card-skill-head" style="display:inline-block;"><p>Domain<br/>Skills</p></div>
-	<div class="container-wp" style="display:inline-block;">
-		<p class="card-wp-name">Medical</b></p>
-		<p class="card-wp-description">Retail, Education</p>
-	</div>
+	<div class="col-md-7">
+		<div class="jumbotron">
+			<div class="container">
+				<h1>I am an Android Developer living in Bangalore, India</h1>
+				<p>Apart from working on Android throughout the day, I spend my free time in writing <a href="./blog.html">blog</a>, reading books and blogs, and playing table tennis.<br/><br/>You can find me on <a href="https://twitter.com/kalapuneet" target="_blank">Twitter</a>, <a href="https://github.com/puneetkkala" target="_blank">Github</a> or you can connect with me on <a href="https://www.facebook.com/puneetkkala" target="_blank">Facebook</a>, <a href="https://www.linkedin.com/in/kalapuneet/" target="_blank">LinkedIn</a> or you can drop me an <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=puneetkkala@gmail.com" target="_blank">email</a>.<br><br>You can find my resume <a href="./files/PuneetKumarKala.pdf" target="_blank" download>here</a>.</p>
+			</div>
+		</div>
 	</div>
 </div>
 </section>
-<section id="apps">
-<div class="card-wp" style="display:inline-block;">
-<div class="container-wp" style="display:inline-block;">
-	<p class="card-wp-name"><b><a href="https://play.google.com/store/apps/details?id=com.docsapp.patients" target="_blank">Download App</a></b></p>
-	<p class="card-wp-description">DocsApp - Consult Doctor 24x7</p>
-</div>
-</div>
-<div class="card-wp" style="display:inline-block;">
-	<div class="container-wp" style="display:inline-block;">
-		<p class="card-wp-name"><b><a href="https://play.google.com/store/apps/details?id=com.docsapp.doctors" target="_blank">Download App</a></b></p>
-		<p class="card-wp-description">Doctor - Grow your practice</p>
+<section id="profile" style="padding-top:70px;">
+	<div class="row" style="margin-left:20px;">
+		<div class="panel panel-default">
+		<div class="media panel-body">
+			<div class="media-left media-middle">
+				<a href="https://www.docsapp.in/" target="_blank">
+					<img width="192px" height="192px" class="media-object" src="./images/docsapp_logo.png" alt="DocsApp Logo">
+				</a>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">Android Developer, DocsApp</h4>
+				<p>March 2016- Present<br/>
+				Domain: Medical</p>
+				<p>PROJECTS<br/>
+				<b>Doctor's Android App-</b> A messaging application for the doctors to give consultation to the patients. Playstore link <a href=" https://play.google.com/store/apps/details?id=com.docsapp.doctors">here</a><br/>
+				<b>Patients's Android App-</b> A messaging application for the patients to take consultation from doctors, buy medicines, and book a lab test. Playstore link <a href=" https://play.google.com/store/apps/details?id=com.docsapp.patients">here</a><br/>
+				Achievements:<br/>
+				- 50,000+ messages are sent using the app per day<br/>
+				- 70% RAM usage reduction in doctor's app<br/>
+				- 300% end-users increased in 8 months<br/>
+				</p>
+			</div>
+		</div>
 	</div>
-</div>
+	<div class="panel panel-default">
+		<div class="media panel-body">
+			<div class="media-left media-middle">
+				<a href="https://www.accenture.com/" target="_blank">
+					<img class="media-object" height="192px" width="192px" src="./images/accenture_logo.png" alt="Accenture Logo">
+				</a>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">Software Engineering Analyst, Accenture Services Pvt Ltd</h4>
+				<p>May 2013- October 2015<br/>
+				Domain: Retail</p>
+				<p>PROJECTS<br/>
+				<b>Shipment Dashboard-</b> The shipment dashboard was for the client's operations team to manage and to track the shipments which are being done by them or the third party.<br/>
+				<b>Batch Application-</b> The batch application is used to purge data from the server, change multiple status flags in the database.<br/>
+				<b>Warehouse Management System-</b> The project was to support systems of 9 warehouses. The warehouses had the systems mainly for manging deliveries, for managing supplier orders, for managing customer orders, and for managing stock transfers.<br/>
+				Achievements:<br/>
+				- 26 reusable assets created<br/>
+				- 6 client facing ideas given<br/>
+				- 98% deliverables delivered on time<br/>
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
 </section>
-</div>
+<section id="skills" style="padding-top:70px;">
+	<div class="row" style="margin-left:20px;">
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Technology Skills</h3>
+  			</div>
+  			<div class="panel-body">
+  				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%;">Android</div>
+				</div>
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:65%;">Java Standard Edition</div>
+				</div>
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:65%;">HTML</div>
+				</div>
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width:55%;">Unix</div>
+				</div>
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width:55%;">Git</div>
+				</div>
+  			</div>
+		</div>
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<h3 class="panel-title">Domain Skills</h3>
+  			</div>
+  			<div class="panel-body">
+  				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:75%;">Retail</div>
+				</div>
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:65%;">Medical</div>
+				</div>
+				<div class="progress">
+  					<div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width:55%;">Education</div>
+				</div>
+  			</div>
+		</div>
+	</div>
+</section>
+<section id="apps" style="padding-top:70px;">
+	<div class="list-group" style="margin-left:20px;">
+	  <a href="https://play.google.com/store/apps/details?id=com.docsapp.patients" class="list-group-item" target="_blank">
+	    <h4 class="list-group-item-heading">DocsApp - Consult Doctor 24x7</h4>
+	    <p class="list-group-item-text">https://play.google.com/store/apps/details?id=com.docsapp.patients</p>
+	  </a>
+	  <a href="https://play.google.com/store/apps/details?id=com.docsapp.patients" class="list-group-item" target="_blank">
+	    <h4 class="list-group-item-heading">Doctor - Grow your practice</h4>
+	    <p class="list-group-item-text">https://play.google.com/store/apps/details?id=com.docsapp.doctors</p>
+	  </a>
+	  <a href="https://play.google.com/store/apps/details?id=com.kalap.contacts" class="list-group-item" target="_blank">
+	    <h4 class="list-group-item-heading">Contacts</h4>
+	    <p class="list-group-item-text">https://play.google.com/store/apps/details?id=com.kalap.contacts</p>
+	  </a>
+	  <a href="https://play.google.com/store/apps/details?id=com.kalapuneet.mediaplayer" class="list-group-item" target="_blank">
+	    <h4 class="list-group-item-heading">Media Player</h4>
+	    <p class="list-group-item-text">https://play.google.com/store/apps/details?id=com.kalapuneet.mediaplayer</p>
+	  </a>
+	  <a href="https://play.google.com/store/apps/details?id=com.kalapuneet.kalalauncher" class="list-group-item" target="_blank">
+	    <h4 class="list-group-item-heading">Launcher</h4>
+	    <p class="list-group-item-text">https://play.google.com/store/apps/details?id=com.kalapuneet.kalalauncher</p>
+	  </a>
+	  <a href="https://play.google.com/store/apps/details?id=com.kings.retailapp" class="list-group-item" target="_blank">
+	    <h4 class="list-group-item-heading">Enguru: Spoken English App</h4>
+	    <p class="list-group-item-text">https://play.google.com/store/apps/details?id=com.kings.retailapp</p>
+	  </a>
+	</div>
+</section>
 </body>
 </html>
