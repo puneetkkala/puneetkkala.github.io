@@ -1,0 +1,10 @@
+CACHE MANIFEST
+
+# This is a comment
+
+CACHE:
+css/bootstrap.min.css
+images/accenture_logo.png
+images/docsapp_logo.png
+images/mumbai_bandstand.jpg
+js/bootstrap.min.js
