@@ -1,0 +1,17 @@
+.margin-class{
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.margin-class-2{
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.chip-margin{
+  margin-right: 10px;
+}
+a {
+  color: black;
+  text-decoration: underline;
+}
