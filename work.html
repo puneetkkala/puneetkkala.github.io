@@ -8,23 +8,30 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans">
     <link rel="stylesheet" href="assets/css/Article-Clean.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
-        <div class="container"><a class="navbar-brand logo" href="index.html">Puneet Kala</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarNav"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navbarNav">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="work.html">Experience</a></li>
-                </ul>
+    <div>
+        <nav class="navbar navbar-dark navbar-expand-md sticky-top navigation-clean" style="background-color: #cc4125;font-family: 'Work Sans', sans-serif;">
+            <div class="container-fluid"><a class="navbar-brand text-white" href="index.html">Puneet Kala</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" href="work.html">Experience</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="https://medium.com/@puneetkkala">Blog</a></li>
+                    </ul>
             </div>
-        </div>
+    </div>
     </nav>
-    <main class="page projets-page">
+    </div>
+    <main class="page projets-page" style="color: #000000;font-family: 'Work Sans', sans-serif;">
         <section class="portfolio-block project-no-images">
             <div class="container">
                 <div class="heading">
@@ -63,9 +70,40 @@
             </div>
         </section>
     </main>
+    <div class="text-center footer-clean" style="font-family: 'Work Sans', sans-serif;color: #000000;">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Professional</h3>
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/kalapuneet/">LinkedIn</a></li>
+                            <li><a href="https://github.com/puneetkkala">Github</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Social</h3>
+                        <ul>
+                            <li><a href="https://twitter.com/puneetkkala">Twitter</a></li>
+                            <li><a href="https://www.instagram.com/kalapuneet/">Instagram</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Other</h3>
+                        <ul>
+                            <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=puneetkkala@gmail.com">Email</a></li>
+                            <li><a href="http://kalapuneet.xyz/files/PuneetKumarKala.pdf">Resume</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center copyright">Puneet Kumar Kala © 2019</p>
+        </footer>
+    </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="https://platform.twitter.com/widgets.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
 
