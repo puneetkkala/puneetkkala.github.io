@@ -19,6 +19,7 @@ jobs:
           key: ${{ github.ref }}
           path: .cache
       - run: pip install mkdocs-material pillow cairosvg
-      - run: mkdocs gh-deploy --force
+      - name: Deploy Documentation
         env:
           GA_ID: ${{ secrets.GA_ID }}
+        run: mkdocs gh-deploy --force
