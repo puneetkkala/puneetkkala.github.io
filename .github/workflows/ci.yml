@@ -20,3 +20,5 @@ jobs:
           path: .cache
       - run: pip install mkdocs-material pillow cairosvg
       - run: mkdocs gh-deploy --force
+        env:
+          GA_ID: ${{ secrets.GA_ID }}
