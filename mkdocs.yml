@@ -38,13 +38,6 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
-    cookies:
-      analytics: Google Analytics
-      github: Github
-    actions:
-      - accept
-      - manage
-      - reject
   social:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/puneetkkala
