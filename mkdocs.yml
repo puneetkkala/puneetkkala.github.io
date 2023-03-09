@@ -5,11 +5,23 @@ repo_name: puneetkkala/puneetkkala.github.io
 
 theme:
   name: material
-  palette:
-    primary: deep orange
-    accent: deep purple
+  theme:
+  palette: 
+    - scheme: default
+      primary: deep orange
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   font:
     text: Roboto
+    code: Roboto Mono
   language: en
   logo: assets/logo.png
   favicon: assets/logo.png
@@ -30,7 +42,6 @@ theme:
   icon:
     repo: fontawesome/brands/github
 extra:
-  homepage: https://happyhub.in
   consent:
     title: Cookie consent
     description: >- 
@@ -55,7 +66,7 @@ extra:
       link: mailto:puneet@happyhub.in
   analytics:
     provider: google
-    property: !ENV GA_ID
+    property: "G-XXXXXXXX"
     feedback: 
       title: Was this page helpful?
       ratings:
