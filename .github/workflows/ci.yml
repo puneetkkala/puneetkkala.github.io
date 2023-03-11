@@ -18,8 +18,8 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - run: pip install mkdocs-material pillow cairosvg
+      - run: pip install mkdocs-material pillow cairosvg mkdocs-git-revision-date-localized-plugin
       - name: Deploy Documentation
         env:
-          GA_ID: ${{ secrets.GA_ID }}
+          GA_ID: ${{ env.GA_ID }}
         run: mkdocs gh-deploy --force

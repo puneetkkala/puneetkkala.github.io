@@ -3,6 +3,12 @@ site_url: https://happyhub.in
 repo_url: https://github.com/puneetkkala/puneetkkala.github.io
 repo_name: puneetkkala/puneetkkala.github.io
 
+nav:
+  - Home: index.md
+  - About: about/me.md
+  - Blog: blog/index.md
+  - Tags: tags.md
+
 theme:
   name: material
   theme:
@@ -89,3 +95,12 @@ plugins:
   - tags:
       tags_file: tags.md
   - offline
+  - git-revision-date-localized:
+      enabled_creation_date: true
+markdown_extensions:
+  - abbr
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - tables
