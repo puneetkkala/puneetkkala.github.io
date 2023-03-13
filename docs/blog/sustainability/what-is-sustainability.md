@@ -1,3 +1,9 @@
+---
+title: What is Sustainability?
+summary: Sustainability is meeting needs of the present without compromising the ability of future generations to meet their own needs.
+tags:
+    - sustainability
+---
 # What is Sustainability?
 There is no specific definition of sustainability. Over time, researchers have come with different definitions of sustainability. It is also seen that the definition of sustainability varies based on the context. Most of the researchers have mentioned three types of sustainability:
 
