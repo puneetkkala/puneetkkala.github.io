@@ -6,7 +6,9 @@ repo_name: puneetkkala/puneetkkala.github.io
 nav:
   - Home: index.md
   - About: about/me.md
-  - Blog: blog/index.md
+  - Blog:
+    - Sustainability:
+      - What is Sustainability: blog/sustainability/what-is-sustainability.md
   - Tags: tags.md
 
 theme:
