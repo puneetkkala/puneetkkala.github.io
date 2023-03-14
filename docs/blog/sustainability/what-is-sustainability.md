@@ -1,6 +1,6 @@
 ---
 title: What is Sustainability?
-summary: Sustainability is meeting needs of the present without compromising the ability of future generations to meet their own needs.
+description: Sustainability is meeting needs of the present without compromising the ability of future generations to meet their own needs.
 tags:
     - sustainability
 ---
