@@ -5,11 +5,11 @@ tags:
 ---
 
 # SOLID Design Principles
-S - Single Responsibility Principle
-O - Open / Closed Principle
-L - Liskov Substitution Principle
-I - Interface Segregation Principle
-D - Dependency Inversion Principle
+S - Single Responsibility Principle<br/>
+O - Open / Closed Principle<br/>
+L - Liskov Substitution Principle<br/>
+I - Interface Segregation Principle<br/>
+D - Dependency Inversion Principle<br/>
 ## Single Responsibility Principle (SRP)
 SRP states that a module should have one, and only one reason to change. Each module should have a single responsibility or job to do, so that changes to that responsibility do not affect other parts of the system.
 ### Violation
