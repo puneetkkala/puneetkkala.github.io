@@ -1,15 +1,19 @@
 ---
+title: SOLID Design Principles
+description: In software development, solid design principles refer to a set of best practices for creating software that is reliable, maintainable, and adaptable. The acronym "SOLID" stands for five principles.
 tags:
     - kotlin
     - design
 ---
 
 # SOLID Design Principles
-S - Single Responsibility Principle<br/>
-O - Open / Closed Principle<br/>
-L - Liskov Substitution Principle<br/>
-I - Interface Segregation Principle<br/>
-D - Dependency Inversion Principle<br/>
+In software development, solid design principles refer to a set of best practices for creating software that is reliable, maintainable, and adaptable. The acronym "SOLID" stands for five principles:
+
+1. S - Single Responsibility Principle
+2. O - Open / Closed Principle
+3. L - Liskov Substitution Principle
+4. I - Interface Segregation Principle
+5. D - Dependency Inversion Principle
 ## Single Responsibility Principle (SRP)
 SRP states that a module should have one, and only one reason to change. Each module should have a single responsibility or job to do, so that changes to that responsibility do not affect other parts of the system.
 ### Violation
