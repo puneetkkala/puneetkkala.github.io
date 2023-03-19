@@ -11,6 +11,8 @@ nav:
       - What is Sustainability: blog/sustainability/what-is-sustainability.md
     - Kotlin:
       - SOLID Design Principles: blog/kotlin/solid-design-principles.md
+    - Accessibility:
+      - What is Accessibility: blog/accessibility/what-is-accessibility.md
   - Tags: tags.md
 
 theme:
