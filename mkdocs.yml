@@ -13,6 +13,8 @@ nav:
       - SOLID Design Principles: blog/kotlin/solid-design-principles.md
     - Accessibility:
       - What is Accessibility: blog/accessibility/what-is-accessibility.md
+    - Machine Learning:
+      - What is Machine Learning: blog/ml/what-is-ml.md
   - Tags: tags.md
 
 theme:
