@@ -5,21 +5,15 @@ repo_name: puneetkkala/puneetkkala.github.io
 
 nav:
   - Home: index.md
-  - About: about/me.md
+  - About: about.md
   - Blog:
-    - Sustainability:
-      - What is Sustainability: blog/sustainability/what-is-sustainability.md
-    - Kotlin:
-      - SOLID Design Principles: blog/kotlin/solid-design-principles.md
-      - Design Patterns:
-        - Factory Pattern: blog/kotlin/factory-pattern.md
-    - Accessibility:
-      - What is Accessibility: blog/accessibility/what-is-accessibility.md
-    - Machine Learning:
-      - What is Machine Learning: blog/ml/what-is-ml.md
-    - Technology:
-      - Evolution of Password Policy: blog/technology/evolution-of-password-policy.md
-  - Tags: tags.md
+    - blog/index.md
+  - Legal:
+    - Disclaimer: legal/disclaimer.md
+    - Privacy Policy: legal/privacy.md
+    - License: legal/license.md
+    - Sources and Credits: legal/sources.md
+  - Contact: contact.md
 
 theme:
   name: material
@@ -65,23 +59,21 @@ extra:
     title: Cookie consent
     description: >- 
       We use cookies to recognize your repeated visits and preferences, as well
-      as to measure the effectiveness of our documentation and whether users
+      as to measure the effectiveness of our website and whether users
       find what they're searching for. With your consent, you're helping us to
-      make our documentation better.
+      make our website better.
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/puneetkkala
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@happy-hub-yt
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/puneetkkala
     - icon: fontawesome/brands/github
       link: https://github.com/puneetkkala
-    - icon: fontawesome/brands/facebook
-      link: https://www.facebook.com/puneetkkala/
     - icon: fontawesome/brands/medium
       link: https://medium.com/@puneetkkala
-    - icon: fontawesome/brands/instagram
-      link: https://www.instagram.com/kalapuneet/
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/kalapuneet/
-    - icon: fontawesome/solid/paper-plane
+    - icon: fontawesome/solid/envelope
       link: mailto:puneet@happyhub.in
   analytics:
     provider: google
@@ -100,20 +92,19 @@ extra:
           note: >- 
             Thanks for your feedback!
 copyright: >
-  Copyright &copy; 2022-2023 Puneet Kala -
+  Copyright &copy; 2024-2025 Puneet Kala -
   <a href="#__consent">Change cookie settings</a>
 plugins:
   - search
   - social
-  - tags:
-      tags_file: tags.md
+  - tags
   - offline
   - git-revision-date-localized:
-      enabled_creation_date: true
+      enable_creation_date: true
 markdown_extensions:
   - abbr
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - tables
