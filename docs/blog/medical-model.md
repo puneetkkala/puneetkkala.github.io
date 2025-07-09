@@ -18,7 +18,7 @@ tags:
   - Dharma
   - TechForGood
 ---
-# Article #1 The Medical Model of Disability: An Overview 🩺
+# The Medical Model of Disability: An Overview 🩺
 
 Today, let’s explore one of the fundamental frameworks for understanding disability: the Medical Model. This model offers a specific lens through which society has historically viewed and addressed disability.
 ## What is medical model? 🧑‍⚕️
@@ -60,5 +60,4 @@ Ultimately, the Medical Model of Disability cannot be universally classified as 
 - 🥉 **Social vs Medical Model** — [Disability Nottinghamshire](https://www.disabilitynottinghamshire.org.uk/index.php/about/social-model-vs-medical-model-of-disability/) _License: Educational Resource (assumed)_
 
 ## Hashtags
-
-#Accessibility #MedicalModel #DisabilityAwareness #Inclusion #TechForGood
+ #Accessibility #MedicalModel #DisabilityAwareness #Inclusion #TechForGood
