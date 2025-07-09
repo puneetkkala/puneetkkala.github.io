@@ -7,7 +7,8 @@ nav:
   - Home: index.md
   - About: about.md
   - Blog:
-    - blog/index.md
+    - Introduction: blog/index.md
+    - Medical Model: blog/medical-model.md
   - Legal:
     - Disclaimer: legal/disclaimer.md
     - Privacy Policy: legal/privacy.md
@@ -19,21 +20,20 @@ theme:
   name: material
   theme:
   palette: 
-    - scheme: default
-      primary: deep orange
-      accent: deep purple
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7 
         name: Switch to dark mode
-    - scheme: slate
-      primary: black
-      accent: deep orange
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  font:
-    text: Roboto
-    code: Roboto Mono
   language: en
   logo: assets/logo.png
   favicon: assets/logo.png
@@ -54,6 +54,8 @@ theme:
     - content.code.copy
   icon:
     repo: fontawesome/brands/github
+extra_css:
+  - stylesheets/extra.css
 extra:
   consent:
     title: Cookie consent
