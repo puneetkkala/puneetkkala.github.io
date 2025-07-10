@@ -1,0 +1,161 @@
+/* Custom Color Definitions */
+
+/* Light Mode */
+[data-md-color-scheme="default"] {
+  --md-default-fg-color: #252525; /* Black for default text */
+  --md-default-bg-color: #FAFAFA; /* White for default background */
+
+/* Primary color for headers, sidebars, active links */
+  --md-primary-fg-color: #882D17; /* Light mode primary: Reddish Brown */
+  --md-primary-bg-color: #FAFAFA; /* Background for primary elements, e.g., header bar */
+
+/* Accent color for highlights, focus states, etc. */
+  --md-accent-fg-color: #560591; /* Light mode accent: Purple */
+  --md-accent-bg-color: #FAFAFA; /* Background for accent elements */
+
+/* Specific navigation colors */
+  --md-typeset-color: #252525; /* Ensures general text is black */
+
+/* Navigation Bar - Header */
+  --md-header-fg-color: #FAFAFA; /* Text color in header (e.g., site title) */
+  --md-header-bg-color: #882D17; /* Background color of the top header bar */
+  --md-header-fg-color--light: #FAFAFA; /* Text in header when theme is light */
+
+/* Navigation - Sidebar/Table of Contents */
+  --md-nav-link-color: #252525; /* Color of inactive links in navigation */
+  --md-nav-link-color--active: #560591; /* Color of active link in navigation */
+  --md-nav-link-color--active-hover: #560591; /* Hover color for active link */
+  --md-nav-link-color--hover: #882D17; /* Hover color for inactive link */
+  --md-nav-color-accent: #560591; /* Highlight/active color in nav */
+  --md-nav-item-background-color--active: rgba(86, 5, 145, 0.1); /* Slight background for active nav item */
+}
+
+/* Dark Mode */
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color: #FAFAFA; /* White for default text in dark mode */
+  --md-default-bg-color: #252525; /* Black for default background in dark mode */
+
+/* Primary color for headers, sidebars, active links */
+  --md-primary-fg-color: #F7DB9C; /* Dark mode primary: Muted Yellow */
+  --md-primary-bg-color: #252525; /* Background for primary elements, e.g., header bar */
+
+/* Accent color for highlights, focus states, etc. */
+  --md-accent-fg-color: #D3D3FF; /* Dark mode accent: Light Purple */
+  --md-accent-bg-color: #252525; /* Background for accent elements */
+
+/* Specific navigation colors */
+  --md-typeset-color: #FAFAFA; /* Ensures general text is white */
+
+/* Navigation Bar - Header */
+  --md-header-fg-color: #252525; /* Text color in header (e.g., site title) */
+  --md-header-bg-color: #F7DB9C; /* Background color of the top header bar */
+  --md-header-fg-color--light: #252525; /* Text in header when theme is light */
+
+/* Navigation - Sidebar/Table of Contents */
+  --md-nav-link-color: #FAFAFA; /* Color of inactive links in navigation */
+  --md-nav-link-color--active: #D3D3FF; /* Color of active link in navigation */
+  --md-nav-link-color--active-hover: #D3D3FF; /* Hover color for active link */
+  --md-nav-link-color--hover: #F7DB9C; /* Hover color for inactive link */
+  --md-nav-color-accent: #D3D3FF; /* Highlight/active color in nav */
+  --md-nav-item-background-color--active: rgba(211, 211, 255, 0.1); /* Slight background for active nav item */
+}
+
+/* Custom Font Definitions */
+
+/* Define Montserrat for titles/subtitles */
+@font-face {
+font-family: 'Montserrat';
+src: url('fonts/Montserrat-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+font-display: swap; /* Improve perceived loading speed */
+}
+/* Add other weights/styles for Montserrat if needed (e.g., Montserrat-Bold.ttf) */
+
+/* Define Atkinson Hyperlegible for headings/subheadings */
+@font-face {
+font-family: 'Atkinson Hyperlegible';
+src: url('fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
+}
+/* Add other weights/styles for Atkinson Hyperlegible if needed */
+
+/* Define Lexend for normal text */
+@font-face {
+font-family: 'Lexend';
+src: url('fonts/Lexend-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+font-display: swap;
+}
+/* Add other weights/styles for Lexend if needed */
+
+/* Apply Fonts to Specific Elements */
+
+/* Site Title / Logo Text (usually in the header) - Montserrat */
+.md-header__title {
+font-family: 'Montserrat', sans-serif;
+font-size: 32px; /* Max font size for main titles */
+line-height: 1.2; /* Adjust as needed */
+color: var(--md-header-fg-color); /* Inherit header text color */
+}
+
+/* Page Title (the main H1 for the page content) - Montserrat */
+.md-content h1:first-of-type,
+.md-typeset h1 { /* mkdocs-material uses .md-typeset h1 for the main page title */
+font-family: 'Montserrat', sans-serif;
+font-size: 32px; /* Max font size for main page titles */
+line-height: 1.2;
+}
+
+/* Headings (Markdown headings H2-H6) - Atkinson Hyperlegible */
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+font-family: 'Atkinson Hyperlegible', sans-serif;
+color: var(--md-default-fg-color); /* Ensure heading colors match default text or your preference */
+}
+/* Adjust font sizes for headings, ensuring they are multiples of 4 and max 32px */
+.md-typeset h2 { font-size: 28px; }
+.md-typeset h3 { font-size: 24px; }
+.md-typeset h4 { font-size: 20px; }
+.md-typeset h5 { font-size: 16px; }
+.md-typeset h6 { font-size: 16px; }
+
+/* Normal Text - Lexend */
+body,
+.md-typeset p,
+.md-typeset li,
+.md-typeset a,
+.md-typeset span,
+.md-typeset div { /* General text elements */
+font-family: 'Lexend', sans-serif;
+font-size: 16px; /* Normal text font size */
+line-height: 1.6; /* Good for readability */
+}
+
+/* Captions / Sources - Lexend, 12px */
+.md-footnote,
+.md-copyright,
+.md-footer-meta__inner,
+.md-typeset .admonition-title, /* Admonition titles are often smaller */
+.md-typeset small { /* Small text elements */
+font-family: 'Lexend', sans-serif;
+font-size: 12px;
+line-height: 1.4;
+}
+
+/* Navigation Links (in sidebar) */
+.md-nav__link {
+font-family: 'Lexend', sans-serif; /* Use Lexend for navigation links */
+font-size: 16px; /* Normal text size for navigation */
+color: var(--md-nav-link-color); /* From color scheme */
+}
+
+.md-nav__link--active {
+color: var(--md-nav-link-color--active); /* From color scheme */
+}
