@@ -42,11 +42,11 @@ I emphasize **transparent sourcing**, **research-backed insights**, and a deep r
 
 - **Mailing List**: [Subscribe](https://groups.google.com/g/happy-hub-mailing-list)
 - **Contact Form**: [Reach Out](./contact.md)
-- **Social Links**:  
-  - Twitter  
-  - YouTube  
-  - Medium  
-  - LinkedIn  
+- **Social Links**:
+    - [Twitter](https://x.com/puneetkkala)
+    - [YouTube](https://www.youtube.com/@happy-hub-yt) 
+    - [Medium](https://medium.com/@puneetkkala)  
+    - [LinkedIn](https://www.linkedin.com/in/kalapuneet)
 
 ---
 
