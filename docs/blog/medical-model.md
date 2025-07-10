@@ -58,6 +58,3 @@ Ultimately, the Medical Model of Disability cannot be universally classified as 
 - 🥈 **The Social and Medical Model of Disability** — [Open Learn, The Open University](https://www.open.edu/openlearn/education-development/education-careers/accessibility-elearning/content-section-1.2.1) _License: CC BY-NC-ND 4.0_
 - 🥉 **Medical Model of Disability** — [Wikipedia](https://en.wikipedia.org/wiki/Medical_model_of_disability) _License: CC BY-SA 4.0_
 - 🥉 **Social vs Medical Model** — [Disability Nottinghamshire](https://www.disabilitynottinghamshire.org.uk/index.php/about/social-model-vs-medical-model-of-disability/) _License: Educational Resource (assumed)_
-
-## Hashtags
- #Accessibility #MedicalModel #DisabilityAwareness #Inclusion #TechForGood

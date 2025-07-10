@@ -26,8 +26,9 @@ Whether you're building, testing, or learning—this is your go-to platform for 
 ---
 
 ## 📰 Latest Articles & Videos
-
-Coming soon: In-depth explainers, walkthroughs, and expert commentary on digital accessibility—mobile and beyond.
+| Title | Topic | Link |
+|-------|-------|------|
+|*The Medical Model of Disability: An Overview* | Accessibility Theory | [Read here](./blog/medical-model.md) |
 
 ---
 
