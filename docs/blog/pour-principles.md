@@ -1,5 +1,5 @@
 ---
-title: The POUR Principles: Bedrock of Digital Accessibility
+title: The POUR Principles - Bedrock of Digital Accessibility
 description: Explore the foundational Perceivable, Operable, Understandable, and Robust (POUR) principles, introduced with WCAG 2.0. This article clarifies each principle with practical examples, highlighting their crucial role in building inclusive digital experiences.
 author: Puneet Kala
 date: 2025-07-13
@@ -14,6 +14,7 @@ tags:
   - Digital Inclusion
   - Software Engineering
 ---
+
 # The POUR Principles: Bedrock of Digital Accessibility 🧱
 
 **POUR** stands for **Perceivable, Operable, Understandable,** and **Robust**. These principles were formally introduced and established as the foundational pillars for all accessibility guidelines with the release of **WCAG 2.0 in December 2008**. This marked a significant milestone, solidifying WCAG 2.0 as a global standard that later became an **ISO standard (ISO/IEC 40500:2012)**. 🌍
