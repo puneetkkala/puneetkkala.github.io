@@ -9,6 +9,7 @@ nav:
   - Blog:
     - Introduction: blog/index.md
     - Medical Model: blog/medical-model.md
+    - POUR Principles: blog/pour-principles.md
   - Legal:
     - Disclaimer: legal/disclaimer.md
     - Privacy Policy: legal/privacy.md

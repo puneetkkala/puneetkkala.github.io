@@ -21,14 +21,15 @@ Whether you're building, testing, or learning—this is your go-to platform for 
 
 | Title | Type | Description | Link |
 |-------|------|-------------|------|
-| *GDG Berlin Android - September 2024 Meetup* | Talk | Android Accessibility: Complexity, Challenges, and Solutions | [Watch](https://youtu.be/av673I4GsLA?si=1jkYCuyEUowyFNnP) |
+| Android Accessibility: Complexity, Challenges, and Solutions | Talk | GDG Berlin Android - September 2024 Meetup | [Watch](https://youtu.be/av673I4GsLA?si=1jkYCuyEUowyFNnP) |
 
 ---
 
 ## 📰 Latest Articles & Videos
 | Title | Topic | Link |
 |-------|-------|------|
-|*The Medical Model of Disability: An Overview* | Accessibility Theory | [Read here](./blog/medical-model.md) |
+| The Medical Model of Disability: An Overview | Accessibility Theory | [Read here](./blog/medical-model.md) |
+| The POUR Principles: Bedrock of Digital Accessibility | WCAG Guidelines | [Read here](./blog/pour-principles.md) | 
 
 ---
 

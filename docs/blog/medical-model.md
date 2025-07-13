@@ -21,6 +21,7 @@ tags:
 # The Medical Model of Disability: An Overview 🩺
 
 Today, let’s explore one of the fundamental frameworks for understanding disability: the Medical Model. This model offers a specific lens through which society has historically viewed and addressed disability.
+
 ## What is medical model? 🧑‍⚕️
 
 **The Medical Model of Disability** posits that disability is primarily an individual problem. It views disability as a direct consequence of a ‘deviation’ from what is considered a ‘normal’ physical or mental state of the body. In this framework, the primary aim is to ‘correct’, ‘cure’, or ‘prevent’ this deviation, often through medical intervention.

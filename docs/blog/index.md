@@ -8,6 +8,9 @@ Welcome to the HappyHub Blog, your go-to resource for expert-backed insights int
 ### Article #1: The Medical Model of Disability - An Overview 🩺
 Dive into the foundational understanding of the Medical Model of Disability. This article explores its core tenets, how it views disability as an individual problem, its critiques regarding social and environmental barriers, and surprisingly, its potential benefits. A crucial read for anyone interested in accessibility and inclusive design. [Read More](./medical-model.md)
 
+### Article #2: The POUR Principles: Bedrock of Digital Accessibility 🧱
+Dive into the foundational POUR principles—Perceivable, Operable, Understandable, and Robust—introduced with WCAG 2.0. This article clarifies each principle with clear examples, explaining their crucial role in creating inclusive digital experiences. A must-read for anyone committed to building an accessible web or an accessible app!
+[Read More](./pour-principles.md)
 --- 
 
 More expert insights and articles on digital accessibility and inclusive practices are coming soon! Stay connected. ✨
