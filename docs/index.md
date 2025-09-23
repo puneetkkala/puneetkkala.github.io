@@ -30,7 +30,8 @@ Whether you're building, testing, or learning—this is your go-to platform for 
 | Title | Topic | Link |
 |-------|-------|------|
 | The Medical Model of Disability: An Overview | Accessibility Theory | [Read here](./blog/medical-model.md) |
-| The POUR Principles: Bedrock of Digital Accessibility | WCAG Guidelines | [Read here](./blog/pour-principles.md) | 
+| The POUR Principles: Bedrock of Digital Accessibility | WCAG Guidelines | [Read here](./blog/pour-principles.md) |
+| The Social Model of Disability: A Call for Inclusive Change | Accessibility Theory | [Read here](./blog/social-model.md) |
 
 ---
 

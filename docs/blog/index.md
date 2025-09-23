@@ -11,6 +11,10 @@ Dive into the foundational understanding of the Medical Model of Disability. Thi
 ### Article #2: The POUR Principles: Bedrock of Digital Accessibility 🧱
 Dive into the foundational POUR principles—Perceivable, Operable, Understandable, and Robust—introduced with WCAG 2.0. This article clarifies each principle with clear examples, explaining their crucial role in creating inclusive digital experiences. A must-read for anyone committed to building an accessible web or an accessible app!
 [Read More](./pour-principles.md)
+
+### Article #3: The Social Model of Disability - A Call for Inclusive Change 🟣
+This article offers a deep dive into the Social Model of Disability, exploring how it views disability as a product of societal barriers rather than individual impairment. It dissects the model's core tenets, powerful benefits, and key critiques. A must-read for anyone seeking to understand the philosophical foundation of modern accessibility.
+[Read More](./social-model.md)
 --- 
 
 More expert insights and articles on digital accessibility and inclusive practices are coming soon! Stay connected. ✨

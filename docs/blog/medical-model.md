@@ -14,7 +14,6 @@ tags:
   - DisabilityStudies
   - SocialModelOfDisability
   - PuneetKala
-  - KarmaSession
   - Dharma
   - TechForGood
 ---
