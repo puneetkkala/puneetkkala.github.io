@@ -5,8 +5,7 @@ keywords: Puneet accessibility, accessibility expert India Berlin, about Puneet,
 ---
 
 # About Puneet
-
-Hi, I’m **Puneet** — a Senior Software Engineer specialized in Android Accessibility and a passionate advocate for digital inclusion. I currently live in Berlin and have roots in India. Through **Happy Hub**, I aim to elevate accessibility awareness and empower professionals across the world.
+Hi, I’m **Puneet** — a CPACC Certified Senior Software Engineer specialized in Android Accessibility and a passionate advocate for digital inclusion. I currently live in Berlin and have roots in India. Through **Happy Hub**, I aim to elevate accessibility awareness and empower professionals across the world. My karma is creation, my gift is clarity, and I am committed to showing up every day to build a more accessible digital future.
 
 ---
 

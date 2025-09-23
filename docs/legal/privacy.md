@@ -64,7 +64,7 @@ You have the right to:
 - Request deletion of any contact form submission or mailing list entry  
 - Unsubscribe from the mailing list at any time  
 
-For any data-related requests, please [contact me](./contact.md).
+For any data-related requests, please [contact me](../contact.md).
 
 ---
 

@@ -22,6 +22,7 @@ Whether you're building, testing, or learning—this is your go-to platform for 
 | Title | Type | Description | Link |
 |-------|------|-------------|------|
 | Android Accessibility: Complexity, Challenges, and Solutions | Talk | GDG Berlin Android - September 2024 Meetup | [Watch](https://youtu.be/av673I4GsLA?si=1jkYCuyEUowyFNnP) |
+| AI for Accessibility: The Challenge and The Promise | Talk | GDG Berlin Android - August 2025 Meetup | [Watch](https://youtu.be/_4Flq6hnx8E?si=j-PE5htgtsRO0cw9) |
 
 ---
 
