@@ -104,6 +104,10 @@
     @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm text-slate-600 transition-colors hover:text-navy hover:bg-slate-100;
   }
 
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm border border-slate-300 text-slate-700 transition-colors hover:bg-slate-100 hover:border-slate-400;
+  }
+
   /* Cards */
   .card {
     @apply bg-white rounded-2xl shadow-sm border border-slate-200 transition-all duration-200;
