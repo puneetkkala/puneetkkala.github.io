@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Save, ArrowLeft, Eye, AlertCircle, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
-import { savePostAction } from '../actions'
+import { savePostAction } from './actions'
 
 interface Props {
     slug: string
@@ -73,8 +73,8 @@ export function BlogEditor({ slug, initialContent }: Props) {
                 {/* Status message */}
                 {status && (
                     <div className={`flex items-center gap-2 px-4 py-3 rounded-xl mb-4 text-sm font-medium ${status.type === 'success'
-                            ? 'bg-green-50 text-green-700 border border-green-200'
-                            : 'bg-red-50 text-red-700 border border-red-200'
+                        ? 'bg-green-50 text-green-700 border border-green-200'
+                        : 'bg-red-50 text-red-700 border border-red-200'
                         }`} role="alert">
                         {status.type === 'success'
                             ? <CheckCircle size={16} aria-hidden="true" />

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { BlogEditor } from '../BlogEditor'
+import { BlogEditor } from '../../BlogEditor'
 
 export const metadata: Metadata = { title: 'Edit Post' }
 export const dynamic = 'force-dynamic'
