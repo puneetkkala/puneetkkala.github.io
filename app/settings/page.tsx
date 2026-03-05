@@ -71,10 +71,23 @@ export default function SettingsPage() {
     async function handleDeleteAccount() {
         if (!user) return
         setDeleting(true)
-        // Delete user data — Supabase cascade deletes profile, comments, reactions
-        await supabase.auth.signOut()
-        // Note: Full account deletion requires a server-side API call with service role key
-        router.push('/login?message=Account deletion requested. Your data will be removed within 48 hours.')
+        try {
+            const res = await fetch('/api/delete-account', { method: 'DELETE' })
+            if (!res.ok) {
+                const body = await res.json()
+                setStatus({ type: 'error', msg: body.error ?? 'Failed to delete account. Please try again.' })
+                setDeleting(false)
+                setShowDeleteConfirm(false)
+                return
+            }
+            // Sign out locally then redirect — account is fully deleted on the server
+            await supabase.auth.signOut()
+            router.push('/?message=Your account has been permanently deleted.')
+        } catch {
+            setStatus({ type: 'error', msg: 'Network error. Please try again.' })
+            setDeleting(false)
+            setShowDeleteConfirm(false)
+        }
     }
 
     if (!user) return (
@@ -89,7 +102,7 @@ export default function SettingsPage() {
 
                 {status && (
                     <div className={`flex items-center gap-2 px-4 py-3 rounded-xl mb-6 text-sm font-medium ${status.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200'
-                            : 'bg-red-50 text-red-700 border border-red-200'
+                        : 'bg-red-50 text-red-700 border border-red-200'
                         }`} role="alert">
                         {status.type === 'success' ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
                         {status.msg}

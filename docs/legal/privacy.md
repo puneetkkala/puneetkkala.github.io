@@ -60,15 +60,17 @@ We use **Google Analytics cookies** only with your explicit consent. You can cha
 
 ## 🧍 Your Rights
 
-Under GDPR, CCPA, and DPDP, you have the right to:
+Under GDPR, CCPA, and India's DPDP Act, you have the following rights — all exercisable directly from your [Account Settings](/settings) page:
 
-- **Access** — request a copy of your personal data
-- **Correct** — update inaccurate information
-- **Delete** — request removal of your data
-- **Portability** — receive your data in a structured format
-- **Withdraw consent** — change analytics cookie preferences at any time via the Cookie settings footer link
+| Right | How to exercise |
+|---|---|
+| **Access** | Download all your data as JSON from Settings → Download my data |
+| **Correct** | Update your display name and bio from Settings → Profile |
+| **Delete** | Permanently delete your account and all data from Settings → Delete my account |
+| **Portability** | Download your data as a machine-readable JSON file from Settings → Download my data |
+| **Withdraw consent** | Change analytics cookie preferences from Settings → Cookie settings, or via the footer link |
 
-To exercise any of these rights, please use the [Contact page](/contact).
+For any request not covered by self-service, contact us at **puneet@happyhub.in** or use the [Contact page](/contact).
 
 ---
 
