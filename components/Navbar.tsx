@@ -66,6 +66,9 @@ export function Navbar() {
                     Admin
                 </Link>
             )}
+            <Link href="/settings" className="nav-link text-sm" aria-label="Account settings">
+                Settings
+            </Link>
             <button
                 onClick={handleSignOut}
                 className="btn-outline ml-1 flex items-center gap-1.5 text-sm"

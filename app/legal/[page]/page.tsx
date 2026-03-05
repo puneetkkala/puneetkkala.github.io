@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import remarkGfm from 'remark-gfm'
 
 const LEGAL_PAGES: Record<string, { title: string; file: string }> = {
     disclaimer: { title: 'Disclaimer', file: 'disclaimer.md' },
@@ -50,7 +51,10 @@ export default async function LegalPage({
             <div className="container-md">
                 <h1 className="text-3xl font-bold text-slate-900 mb-8">{data.title}</h1>
                 <article className="prose-happy">
-                    <MDXRemote source={data.content} />
+                    <MDXRemote
+                        source={data.content}
+                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                    />
                 </article>
             </div>
         </div>
