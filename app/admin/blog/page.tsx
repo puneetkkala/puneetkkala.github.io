@@ -49,6 +49,13 @@ export default async function AdminBlogPage() {
                                     </td>
                                     <td className="px-4 py-3 text-right flex justify-end gap-2">
                                         <Link
+                                            href={`/admin/blog/edit/${post.slug}`}
+                                            className="btn-ghost text-xs"
+                                            aria-label={`Edit ${post.title}`}
+                                        >
+                                            <Edit size={13} /> Edit
+                                        </Link>
+                                        <Link
                                             href={`/blog/${post.slug}`}
                                             className="btn-ghost text-xs"
                                             target="_blank"

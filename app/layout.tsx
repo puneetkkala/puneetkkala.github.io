@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { Analytics } from '@/components/Analytics'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://happyhub.in'),
@@ -44,6 +45,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   )

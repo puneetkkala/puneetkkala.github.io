@@ -77,6 +77,7 @@ export function Footer() {
                     <button
                         className="hover:text-white transition-colors"
                         aria-label="Change cookie settings"
+                        onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}
                     >
                         Cookie settings
                     </button>

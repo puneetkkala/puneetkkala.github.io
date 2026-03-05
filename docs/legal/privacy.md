@@ -1,85 +1,83 @@
 ---
-title: Privacy Policy | Happy Hub
-description: Learn how Happy Hub collects, stores, and protects your data in accordance with global privacy laws.
-keywords: 
-    - privacy policy
-    - data protection
-    - GDPR
-    - CCPA
-    - DPDP Act
-    - Google Analytics
-    - Google Forms privacy
-    - Google Groups privacy
-    - data collection
-    - data usage
-    - data storage
-    - user rights
-    - website privacy
-    - personal data
-    - cookies
+title: Privacy Policy
+description: How Happy Hub collects, uses, and protects your data.
 ---
 
 # 🔐 Privacy Policy
 
-_Last updated: June 2025_
+_Last updated: March 2025_
 
-This Privacy Policy explains how **Happy Hub** collects, uses, stores, and protects your personal data in compliance with global privacy laws.
-
----
-
-## 📊 Data Collection
-
-I collect minimal data through:
-
-1. **Google Analytics**: Tracks anonymized usage data (e.g., page views, country-level info).
-2. **Google Forms (Contact Page)**: Stores responses (name, email, message) in Google Sheets.
-3. **Google Groups (Mailing List)**: Stores your email address and messages shared in the group.
-4. **Server Logs (GitHub Pages)**: May collect IP and browser metadata as part of GitHub’s infrastructure.
+This Privacy Policy explains how **Happy Hub** collects, uses, stores, and protects your personal data in compliance with the GDPR (EU), CCPA (California), and India's DPDP Act.
 
 ---
 
-## 🧠 Data Usage
+## 📊 What We Collect
 
-- **Analytics**: To improve website structure and content.
-- **Form Submissions**: To respond to feedback, queries, or collaboration requests.
-- **Mailing List**: To send updates about new posts, videos, and accessibility resources.
+### 1. Google Analytics (optional, consent-based)
+If you accept cookies, we use **Google Analytics** (`G-W5DHN4VER0`) to collect anonymised usage data — page views, session duration, and country-level geography. Your IP address is anonymised before it leaves your browser. We do **not** collect names, emails, or any personally identifiable data via Analytics.
 
-**I do not sell or share your data** with any third-party vendors or advertisers.
+### 2. Contact Form
+If you use the contact form, we store your **name, email address, subject, and message** in our Supabase database. This data is only accessible to the site owner (Puneet Kala) and is used solely to respond to your enquiry.
+
+### 3. Account Registration (optional)
+If you create an account, we store your **email address and display name** via Supabase Auth. This enables you to post comments and reactions on articles. You can delete your account at any time by contacting us.
+
+### 4. Comments & Reactions
+Authenticated users can leave comments and reactions. These are stored in our Supabase database and are publicly visible. Your display name is shown alongside your comment.
+
+### 5. Hosting Infrastructure
+The site is hosted on **Vercel** (EU region) and uses **Supabase** (EU region) for the database and authentication. Both providers may collect standard server logs (IP address, browser metadata) as part of their infrastructure operation.
 
 ---
 
-## 🛡️ Data Storage & Retention
+## 🚫 What We Do Not Collect
 
-- Google Forms responses are securely stored in **Google Sheets**, accessible only by me.
-- Google Groups data is stored by Google and visible to members of the group.
-- Analytics data is retained for statistical analysis only.
-
----
-
-## 🧍 Your Rights
-
-You have the right to:
-
-- Access or correct your data  
-- Request deletion of any contact form submission or mailing list entry  
-- Unsubscribe from the mailing list at any time  
-
-For any data-related requests, please [contact me](../contact.md).
+- We do **not** run any mailing list or newsletter
+- We do **not** sell or share your data with advertisers or third parties
+- We do **not** use advertising cookies or tracking pixels
+- We do **not** use Google Forms or Google Sheets
 
 ---
 
 ## 🧩 Cookies
 
-Google Analytics may use cookies to collect non-personal data. You can disable cookies in your browser settings.
+We use **one strictly necessary cookie** (Supabase session cookie for authentication) which does not require consent under GDPR.
+
+We use **Google Analytics cookies** only with your explicit consent. You can change your cookie preference at any time using the **Cookie settings** link in the footer.
+
+---
+
+## 🛡️ Data Storage & Retention
+
+| Data | Where stored | Retention |
+|---|---|---|
+| Contact form submissions | Supabase (EU) | Until deleted by admin |
+| User accounts | Supabase Auth (EU) | Until account deletion is requested |
+| Comments & reactions | Supabase (EU) | Until deleted by user or admin |
+| Analytics data | Google (anonymised) | 14 months (GA default) |
+
+---
+
+## 🧍 Your Rights
+
+Under GDPR, CCPA, and DPDP, you have the right to:
+
+- **Access** — request a copy of your personal data
+- **Correct** — update inaccurate information
+- **Delete** — request removal of your data
+- **Portability** — receive your data in a structured format
+- **Withdraw consent** — change analytics cookie preferences at any time via the Cookie settings footer link
+
+To exercise any of these rights, please use the [Contact page](/contact).
 
 ---
 
 ## 🔄 Policy Updates
 
-This policy may change as services evolve. Major changes will be announced via the mailing list or site banner.
+This policy will be updated as our services evolve. The "Last updated" date at the top reflects the most recent revision. Significant changes will be noted on the site.
 
 ---
 
 ## 📬 Contact
 
-For privacy-related questions, please reach out via the [Contact Page](../contact.md).
+For privacy-related questions: [Contact page](/contact) or email **puneet@happyhub.in**
