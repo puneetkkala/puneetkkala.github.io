@@ -7,16 +7,17 @@ import type { Metadata } from 'next'
 import remarkGfm from 'remark-gfm'
 
 const LEGAL_PAGES: Record<string, { title: string; file: string }> = {
+    accessibility: { title: 'Accessibility Statement', file: 'accessibility.md' },
     disclaimer: { title: 'Disclaimer', file: 'disclaimer.md' },
     privacy: { title: 'Privacy Policy', file: 'privacy.md' },
+    terms: { title: 'Terms & Conditions', file: 'terms.md' },
     license: { title: 'License', file: 'license.md' },
-    sources: { title: 'Sources & Credits', file: 'sources.md' },
 }
 
 function getLegalContent(slug: string) {
     const meta = LEGAL_PAGES[slug]
     if (!meta) return null
-    const filePath = path.join(process.cwd(), 'docs', 'legal', meta.file)
+    const filePath = path.join(process.cwd(), 'content', 'legal', meta.file)
     if (!fs.existsSync(filePath)) return null
     const raw = fs.readFileSync(filePath, 'utf-8')
     const { content } = matter(raw)

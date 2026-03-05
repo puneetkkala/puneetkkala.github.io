@@ -93,6 +93,10 @@ export function CookieConsent({ onConsentChange }: { onConsentChange?: (v: Conse
                         No data is collected without your consent.{' '}
                         <a href="/legal/privacy" className="text-blue-400 hover:text-blue-300 underline">
                             Privacy Policy
+                        </a>{' '}
+                        and{' '}
+                        <a href="/legal/terms" className="text-blue-400 hover:text-blue-300 underline">
+                            Terms & Conditions
                         </a>
                     </p>
                 </div>

@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   },
   description:
     'Expert content on digital accessibility, WCAG, mobile accessibility, and AI-driven accessibility by Puneet Kala.',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   keywords: ['digital accessibility', 'WCAG', 'mobile accessibility', 'AI accessibility', 'a11y', 'Happy Hub', 'Puneet Kala'],
   authors: [{ name: 'Puneet Kala', url: 'https://happyhub.in/about' }],
   openGraph: {
@@ -35,7 +40,25 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                try {
+                  var saved = localStorage.getItem('happyhub_theme');
+                  var theme = (saved === 'dark' || saved === 'light')
+                    ? saved
+                    : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                  document.documentElement.setAttribute('data-theme', theme);
+                  document.documentElement.style.colorScheme = theme;
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body>
         <a href="#main-content" className="skip-link">
           Skip to main content

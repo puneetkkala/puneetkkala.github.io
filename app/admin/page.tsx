@@ -48,6 +48,7 @@ export default async function AdminDashboard() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {[
                         { href: '/admin/blog', label: 'Manage Blog Posts', desc: 'View and link to published articles' },
+                        { href: '/admin/talks', label: 'Manage Talks', desc: 'View published and draft talks' },
                         { href: '/admin/contacts', label: 'Contact Inbox', desc: 'Read incoming contact messages' },
                         { href: '/admin/users', label: 'Users', desc: 'View members, manage roles' },
                     ].map(({ href, label, desc }) => (

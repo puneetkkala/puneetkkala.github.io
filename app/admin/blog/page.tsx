@@ -2,7 +2,6 @@ import { getAllPosts } from '@/lib/mdx'
 import Link from 'next/link'
 import { PlusCircle, Edit, Eye } from 'lucide-react'
 import type { Metadata } from 'next'
-import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = { title: 'Manage Blog Posts' }
 
@@ -15,9 +14,15 @@ export default async function AdminBlogPage() {
             <div className="container-lg">
                 <div className="flex items-center justify-between mb-8">
                     <h1 className="text-2xl font-bold text-slate-900">Blog Posts</h1>
-                    <p className="text-sm text-slate-500">
-                        {posts.length} post{posts.length !== 1 ? 's' : ''} — add new ones to <code className="bg-slate-100 px-1 rounded text-xs">content/blog/</code>
-                    </p>
+                    <div className="flex items-center gap-3">
+                        <p className="text-sm text-slate-500">
+                            {posts.length} post{posts.length !== 1 ? 's' : ''}
+                        </p>
+                        <Link href="/admin/blog/new" className="btn-primary text-sm">
+                            <PlusCircle size={15} aria-hidden="true" />
+                            New Post
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="card overflow-hidden">

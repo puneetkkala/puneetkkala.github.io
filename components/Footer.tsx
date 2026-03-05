@@ -13,10 +13,11 @@ const SOCIAL = [
 ]
 
 const FOOTER_LINKS = [
+    { href: '/legal/accessibility', label: 'Accessibility Statement' },
     { href: '/legal/disclaimer', label: 'Disclaimer' },
     { href: '/legal/privacy', label: 'Privacy Policy' },
+    { href: '/legal/terms', label: 'Terms & Conditions' },
     { href: '/legal/license', label: 'License' },
-    { href: '/legal/sources', label: 'Sources & Credits' },
 ]
 
 export function Footer() {

@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }))
 
-    const legalPages = ['disclaimer', 'privacy', 'license', 'sources'].map((p) => ({
+    const legalPages = ['accessibility', 'disclaimer', 'privacy', 'terms', 'license'].map((p) => ({
         url: `${base}/legal/${p}`,
         lastModified: new Date(),
         changeFrequency: 'yearly' as const,

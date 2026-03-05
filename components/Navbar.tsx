@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Menu, X, LogOut, LayoutDashboard } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
+import { ThemeToggle } from './ThemeToggle'
 
 const NAV_LINKS = [
     { href: '/', label: 'Home' },
@@ -153,9 +154,8 @@ export function Navbar() {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2 font-bold text-lg"
+                    className="brand-link flex items-center gap-2 font-bold text-lg"
                     aria-label="Go to homepage"
-                    style={{ color: 'var(--color-navy)' }}
                 >
                     <Image src="/logo.png" alt="" width={32} height={32} className="rounded" aria-hidden="true" />
                     Happy Hub
@@ -173,6 +173,7 @@ export function Navbar() {
                             {label}
                         </Link>
                     ))}
+                    <ThemeToggle />
                     {authSection}
                 </div>
 
@@ -208,6 +209,7 @@ export function Navbar() {
                             {label}
                         </Link>
                     ))}
+                    <ThemeToggle compact />
                     {mobileAuthSection}
                 </div>
             )}
