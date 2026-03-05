@@ -55,6 +55,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                     role="listitem"
                     onClick={() => setSelectedTag(null)}
                     className={`tag-badge cursor-pointer transition-colors ${!selectedTag ? 'bg-blue-600 text-white border-blue-600' : ''}`}
+                    aria-pressed={!selectedTag}
                 >
                     All
                 </button>
@@ -64,6 +65,7 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
                         role="listitem"
                         onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
                         className={`tag-badge cursor-pointer transition-colors ${selectedTag === tag ? 'bg-blue-600 text-white border-blue-600' : ''}`}
+                        aria-pressed={selectedTag === tag}
                     >
                         {tag}
                     </button>
@@ -89,7 +91,12 @@ export function BlogList({ posts }: { posts: PostMeta[] }) {
             ) : (
                 <div className="grid sm:grid-cols-2 gap-6">
                     {filtered.map((post) => (
-                        <Link href={`/blog/${post.slug}`} key={post.slug} className="card p-6 block group">
+                        <Link
+                            href={`/blog/${post.slug}`}
+                            key={post.slug}
+                            className="card p-6 block group"
+                            aria-label={`Read article: ${post.title}`}
+                        >
                             <div className="flex flex-wrap gap-1.5 mb-3">
                                 {post.tags.slice(0, 3).map((t) => (
                                     <span key={t} className="tag-badge">{t}</span>

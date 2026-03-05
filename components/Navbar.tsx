@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X, LogOut, LayoutDashboard } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
@@ -22,6 +22,8 @@ export function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [user, setUser] = useState<User | null>(null)
     const [isAdmin, setIsAdmin] = useState(false)
+    const menuButtonRef = useRef<HTMLButtonElement>(null)
+    const mobileMenuRef = useRef<HTMLDivElement>(null)
     const supabase = createClient()
 
     useEffect(() => {
@@ -57,6 +59,43 @@ export function Navbar() {
         router.refresh()
         setMenuOpen(false)
     }
+
+    useEffect(() => {
+        if (!menuOpen) return
+        const menu = mobileMenuRef.current
+        if (!menu) return
+
+        const focusable = menu.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        first?.focus()
+        document.body.style.overflow = 'hidden'
+
+        function onKeyDown(event: KeyboardEvent) {
+            if (event.key === 'Escape') {
+                setMenuOpen(false)
+                menuButtonRef.current?.focus()
+                return
+            }
+            if (event.key !== 'Tab' || focusable.length === 0) return
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault()
+                last.focus()
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault()
+                first.focus()
+            }
+        }
+
+        document.addEventListener('keydown', onKeyDown)
+        return () => {
+            document.removeEventListener('keydown', onKeyDown)
+            document.body.style.overflow = ''
+        }
+    }, [menuOpen])
 
     const authSection = user ? (
         <div className="flex items-center gap-2">
@@ -112,7 +151,12 @@ export function Navbar() {
                 aria-label="Main navigation"
             >
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 font-bold text-lg" style={{ color: 'var(--color-navy)' }}>
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 font-bold text-lg"
+                    aria-label="Go to homepage"
+                    style={{ color: 'var(--color-navy)' }}
+                >
                     <Image src="/logo.png" alt="" width={32} height={32} className="rounded" aria-hidden="true" />
                     Happy Hub
                 </Link>
@@ -134,19 +178,25 @@ export function Navbar() {
 
                 {/* Mobile menu button */}
                 <button
-                    className="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100"
+                    ref={menuButtonRef}
+                    className="md:hidden inline-flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100"
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-expanded={menuOpen}
                     aria-controls="mobile-menu"
                     aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                 >
                     {menuOpen ? <X size={22} /> : <Menu size={22} />}
+                    <span className="text-sm font-medium">{menuOpen ? 'Close' : 'Menu'}</span>
                 </button>
             </nav>
 
             {/* Mobile menu */}
             {menuOpen && (
-                <div id="mobile-menu" className="md:hidden border-t border-slate-200 bg-white px-4 pb-4 pt-2">
+                <div
+                    id="mobile-menu"
+                    ref={mobileMenuRef}
+                    className="md:hidden border-t border-slate-200 bg-white px-4 pb-4 pt-2"
+                >
                     {NAV_LINKS.map(({ href, label }) => (
                         <Link
                             key={href}

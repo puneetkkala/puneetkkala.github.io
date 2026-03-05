@@ -25,6 +25,7 @@ export function Reactions({ postSlug }: { postSlug: string }) {
     const [counts, setCounts] = useState<ReactionCounts>({ heart: 0, insightful: 0, clap: 0 })
     const [myReactions, setMyReactions] = useState<Set<ReactionType>>(new Set())
     const [loading, setLoading] = useState(true)
+    const [statusMessage, setStatusMessage] = useState('')
 
     useEffect(() => {
         async function load() {
@@ -65,6 +66,7 @@ export function Reactions({ postSlug }: { postSlug: string }) {
             return next
         })
         setCounts((prev) => ({ ...prev, [type]: prev[type] + (isActive ? -1 : 1) }))
+        setStatusMessage(`${isActive ? 'Removed' : 'Added'} ${type} reaction.`)
 
         await fetch('/api/reactions', {
             method: isActive ? 'DELETE' : 'POST',
@@ -76,6 +78,9 @@ export function Reactions({ postSlug }: { postSlug: string }) {
     return (
         <div className="py-6">
             <p className="text-sm font-semibold text-slate-700 mb-3">React to this article</p>
+            <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+                {statusMessage}
+            </p>
             <div className="flex flex-wrap gap-3">
                 {REACTIONS.map(({ type, label, emoji }) => {
                     const active = myReactions.has(type)

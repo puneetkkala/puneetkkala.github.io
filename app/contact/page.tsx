@@ -60,7 +60,7 @@ export default function ContactPage() {
         <div className="section">
             <div className="container-md">
                 <header className="mb-8">
-                    <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">📞 Contact</h1>
+                    <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">Contact</h1>
                     <p className="text-slate-600 text-lg">
                         Have a question, suggestion, or want to collaborate? I&apos;d love to hear from you.
                     </p>
@@ -158,7 +158,7 @@ export default function ContactPage() {
 
                 <div className="mt-8 card p-5 text-center">
                     <p className="text-slate-600 text-sm">
-                        📨 You can also{' '}
+                        <span aria-hidden="true">📨</span> You can also{' '}
                         <a href="mailto:puneet@happyhub.in" className="text-blue-600 hover:underline">
                             email me directly
                         </a>

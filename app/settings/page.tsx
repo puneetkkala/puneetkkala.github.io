@@ -130,7 +130,14 @@ export default function SettingsPage() {
                             <label className="form-label" htmlFor="bio">Short bio (optional)</label>
                             <textarea id="bio" value={bio}
                                 onChange={(e) => setBio(e.target.value)}
-                                className="form-input min-h-[80px] resize-y" placeholder="Tell us a bit about yourself" />
+                                className="form-input min-h-[80px] resize-y"
+                                placeholder="Tell us a bit about yourself"
+                                maxLength={200}
+                                aria-describedby="bio-hint"
+                            />
+                            <p id="bio-hint" className="text-xs text-slate-500 mt-1">
+                                {bio.length}/200 characters
+                            </p>
                         </div>
                         <button onClick={handleSaveProfile} disabled={saving} className="btn-primary">
                             <Edit2 size={15} aria-hidden="true" />

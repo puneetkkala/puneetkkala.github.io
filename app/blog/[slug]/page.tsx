@@ -2,7 +2,7 @@ import { getPostBySlug, getAllPosts } from '@/lib/mdx'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Calendar, Clock, ArrowLeft, Tag } from 'lucide-react'
+import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Reactions } from '@/components/Reactions'
 import { Comments } from '@/components/Comments'
@@ -83,7 +83,7 @@ export default async function BlogPostPage({
                 <div className="container-md">
                     {/* Back link */}
                     <Link href="/blog" className="btn-ghost mb-6 -ml-2 inline-flex">
-                        <ArrowLeft size={16} /> Back to Blog
+                        <ArrowLeft size={16} aria-hidden="true" /> Back to Blog
                     </Link>
 
                     {/* Header */}
@@ -93,7 +93,7 @@ export default async function BlogPostPage({
                                 <span key={t} className="tag-badge">{t}</span>
                             ))}
                         </div>
-                        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
+                        <h1 id="post-title" className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
                             {post.title}
                         </h1>
                         {post.subtitle && (
@@ -113,7 +113,7 @@ export default async function BlogPostPage({
                     </header>
 
                     {/* Article body */}
-                    <article className="prose-happy mb-12">
+                    <article className="prose-happy mb-12" aria-labelledby="post-title">
                         <MDXRemote source={post.content} />
                     </article>
 
@@ -121,7 +121,7 @@ export default async function BlogPostPage({
                     <Reactions postSlug={slug} />
 
                     {/* Divider */}
-                    <hr className="border-slate-200 my-10" />
+                    <hr className="border-slate-200 my-10" aria-hidden="true" />
 
                     {/* Comments */}
                     <Comments postSlug={slug} />

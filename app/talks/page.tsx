@@ -50,6 +50,7 @@ export default function TalksPage() {
                                     src={talk.embed}
                                     title={talk.title}
                                     className="w-full h-full"
+                                    sandbox="allow-scripts allow-same-origin allow-presentation"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     loading="lazy"

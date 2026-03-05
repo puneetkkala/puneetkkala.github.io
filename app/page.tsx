@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/mdx'
-import { ArrowRight, Clock, Calendar, Tag } from 'lucide-react'
+import { ArrowRight, Clock, Calendar } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -40,12 +40,12 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section className="hero-gradient text-white py-24 px-4 sm:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-blue-200 font-semibold text-sm uppercase tracking-widest mb-4">
+          <p className="text-blue-200 font-semibold text-sm uppercase tracking-widest mb-4" aria-hidden="true">
             Happy Hub
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
             Accessible.<br />
-            <span className="text-blue-300">Credible.</span> Ethical.
+            <span className="text-blue-100">Credible.</span> Ethical.
           </h1>
           <p className="text-blue-100 text-lg sm:text-xl max-w-2xl mx-auto mb-10">
             A knowledge platform for digital accessibility professionals, engineers, and advocates — built by{' '}
@@ -86,7 +86,12 @@ export default function HomePage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post) => (
-              <Link href={`/blog/${post.slug}`} key={post.slug} className="card p-6 block group">
+              <Link
+                href={`/blog/${post.slug}`}
+                key={post.slug}
+                className="card p-6 block group"
+                aria-label={`Read article: ${post.title}`}
+              >
                 <div className="flex flex-wrap gap-1.5 mb-3">
                   {post.tags.slice(0, 2).map((t) => (
                     <span key={t} className="tag-badge">{t}</span>
@@ -134,6 +139,7 @@ export default function HomePage() {
                     src={talk.embed}
                     title={talk.title}
                     className="w-full h-full"
+                    sandbox="allow-scripts allow-same-origin allow-presentation"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     loading="lazy"

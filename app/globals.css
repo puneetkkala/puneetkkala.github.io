@@ -41,26 +41,36 @@
 
   /* Skip to main content link */
   .skip-link {
-    position: absolute;
-    top: -999px;
-    left: 0;
-    padding: 0.75rem 1.5rem;
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.5rem 0.9rem;
     background: var(--color-navy);
     color: #fff;
     font-weight: 600;
-    z-index: 9999;
-    border-radius: 0 0 0.5rem 0;
-    transition: top 0.1s;
+    z-index: 10000;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.25);
   }
 
   .skip-link:focus {
-    top: 0;
+    outline: 2px solid #fff;
+    outline-offset: 2px;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-blue);
-    outline-offset: 2px;
+    outline: 2px solid var(--color-blue);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px var(--color-blue);
     border-radius: 2px;
+  }
+
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid Highlight;
+      outline-offset: 2px;
+      box-shadow: none;
+    }
   }
 }
 
@@ -155,6 +165,7 @@
     @apply prose prose-slate max-w-none;
     @apply prose-headings:text-slate-900 prose-headings:font-bold;
     @apply prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline;
+    @apply prose-a:focus-visible:underline prose-a:focus-visible:outline-none prose-a:focus-visible:ring-2 prose-a:focus-visible:ring-blue-600 prose-a:focus-visible:ring-offset-2;
     @apply prose-code:bg-slate-100 prose-code:rounded prose-code:px-1;
     @apply prose-blockquote:border-blue-500 prose-blockquote:text-slate-600;
   }

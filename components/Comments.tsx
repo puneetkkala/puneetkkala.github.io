@@ -41,42 +41,41 @@ function CommentItem({
 }) {
     const authorName = comment.profiles?.display_name ?? 'Anonymous'
     return (
-        <div className={`${depth > 0 ? 'ml-6 border-l-2 border-slate-100 pl-4' : ''}`}>
-            <div className="py-3">
-                <div className="flex items-start gap-2 mb-1">
-                    <div className="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center shrink-0 mt-0.5">
-                        <User size={14} className="text-slate-500" aria-hidden="true" />
+        <li className={`py-3 ${depth > 0 ? 'ml-6 border-l-2 border-slate-100 pl-4' : ''}`}>
+            <div className="flex items-start gap-2 mb-1">
+                <div className="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center shrink-0 mt-0.5">
+                    <User size={14} className="text-slate-500" aria-hidden="true" />
+                </div>
+                <div className="flex-1">
+                    <div className="flex items-baseline gap-2">
+                        <span className="text-sm font-semibold text-slate-900">{authorName}</span>
+                        <span className="text-xs text-slate-400">{formatRelative(comment.created_at)}</span>
                     </div>
-                    <div className="flex-1">
-                        <div className="flex items-baseline gap-2">
-                            <span className="text-sm font-semibold text-slate-900">{authorName}</span>
-                            <span className="text-xs text-slate-400">{formatRelative(comment.created_at)}</span>
-                        </div>
-                        <p className="text-slate-700 text-sm mt-0.5 whitespace-pre-wrap">{comment.content}</p>
-                        <div className="flex items-center gap-3 mt-1.5">
-                            {currentUserId && (
-                                <button
-                                    onClick={() => onReply(comment.id, authorName)}
-                                    className="text-xs text-slate-400 hover:text-blue-600 flex items-center gap-1"
-                                >
-                                    <Reply size={12} /> Reply
-                                </button>
-                            )}
-                            {currentUserId === comment.author_id && (
-                                <button
-                                    onClick={() => onDelete(comment.id)}
-                                    className="text-xs text-slate-400 hover:text-red-500 flex items-center gap-1"
-                                    aria-label="Delete comment"
-                                >
-                                    <Trash2 size={12} /> Delete
-                                </button>
-                            )}
-                        </div>
+                    <p className="text-slate-700 text-sm mt-0.5 whitespace-pre-wrap">{comment.content}</p>
+                    <div className="flex items-center gap-3 mt-1.5">
+                        {currentUserId && (
+                            <button
+                                onClick={() => onReply(comment.id, authorName)}
+                                className="text-xs text-slate-400 hover:text-blue-600 flex items-center gap-1"
+                                aria-label={`Reply to ${authorName}`}
+                            >
+                                <Reply size={12} aria-hidden="true" /> Reply
+                            </button>
+                        )}
+                        {currentUserId === comment.author_id && (
+                            <button
+                                onClick={() => onDelete(comment.id)}
+                                className="text-xs text-slate-400 hover:text-red-500 flex items-center gap-1"
+                                aria-label={`Delete comment by ${authorName}`}
+                            >
+                                <Trash2 size={12} aria-hidden="true" /> Delete
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
             {children}
-        </div>
+        </li>
     )
 }
 
@@ -121,13 +120,15 @@ function RenderTree({
                     depth={depth}
                 >
                     {node.children.length > 0 && (
-                        <RenderTree
-                            nodes={node.children as (CommentRow & { children: CommentRow[] })[]}
-                            currentUserId={currentUserId}
-                            onDelete={onDelete}
-                            onReply={onReply}
-                            depth={depth + 1}
-                        />
+                        <ul>
+                            <RenderTree
+                                nodes={node.children as (CommentRow & { children: CommentRow[] })[]}
+                                currentUserId={currentUserId}
+                                onDelete={onDelete}
+                                onReply={onReply}
+                                depth={depth + 1}
+                            />
+                        </ul>
                     )}
                 </CommentItem>
             ))}
@@ -143,6 +144,7 @@ export function Comments({ postSlug }: { postSlug: string }) {
     const [replyTo, setReplyTo] = useState<{ id: string; name: string } | null>(null)
     const [submitting, setSubmitting] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [statusMessage, setStatusMessage] = useState('')
 
     async function load() {
         const { data: post } = await supabase.from('blog_posts').select('id').eq('slug', postSlug).single()
@@ -177,6 +179,7 @@ export function Comments({ postSlug }: { postSlug: string }) {
         setText('')
         setReplyTo(null)
         setSubmitting(false)
+        setStatusMessage('Comment posted.')
         await load()
     }
 
@@ -186,6 +189,7 @@ export function Comments({ postSlug }: { postSlug: string }) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ commentId: id }),
         })
+        setStatusMessage('Comment deleted.')
         await load()
     }
 
@@ -196,6 +200,9 @@ export function Comments({ postSlug }: { postSlug: string }) {
             <h2 id="comments-heading" className="text-xl font-bold text-slate-900 mb-6">
                 Comments ({comments.length})
             </h2>
+            <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+                {statusMessage}
+            </p>
 
             {/* Comment form */}
             {user ? (
@@ -233,14 +240,14 @@ export function Comments({ postSlug }: { postSlug: string }) {
             ) : comments.length === 0 ? (
                 <p className="text-slate-400 text-sm">Be the first to comment!</p>
             ) : (
-                <div className="divide-y divide-slate-100">
+                <ul className="divide-y divide-slate-100">
                     <RenderTree
                         nodes={tree}
                         currentUserId={user?.id}
                         onDelete={deleteComment}
                         onReply={(id, name) => setReplyTo({ id, name })}
                     />
-                </div>
+                </ul>
             )}
         </section>
     )
