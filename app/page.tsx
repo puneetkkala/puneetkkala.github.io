@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/mdx'
+import { getPublishedTalks } from '@/lib/talks'
 import { ArrowRight, Clock, Calendar } from 'lucide-react'
 import type { Metadata } from 'next'
 
@@ -9,21 +10,6 @@ export const metadata: Metadata = {
     'Expert content on digital accessibility, WCAG, mobile accessibility, and AI-driven accessibility by Puneet Kala.',
 }
 
-const TALKS = [
-  {
-    title: 'Android Accessibility: Complexity, Challenges, and Solutions',
-    event: 'GDG Berlin Android — September 2024',
-    embed: 'https://www.youtube.com/embed/av673I4GsLA',
-    url: 'https://youtu.be/av673I4GsLA?si=1jkYCuyEUowyFNnP',
-  },
-  {
-    title: 'AI for Accessibility: The Challenge and The Promise',
-    event: 'GDG Berlin Android — August 2025',
-    embed: 'https://www.youtube.com/embed/_4Flq6hnx8E',
-    url: 'https://youtu.be/_4Flq6hnx8E?si=j-PE5htgtsRO0cw9',
-  },
-]
-
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', {
     day: 'numeric',
@@ -32,8 +18,9 @@ function formatDate(iso: string) {
   })
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   const posts = getAllPosts().slice(0, 3)
+  const talks = await getPublishedTalks(3)
 
   return (
     <>
@@ -132,22 +119,27 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {TALKS.map((talk) => (
-              <div key={talk.embed} className="bg-slate-800 rounded-2xl overflow-hidden">
+            {talks.map((talk) => (
+              <div key={talk.id} className="bg-slate-800 rounded-2xl overflow-hidden">
                 <div className="aspect-video">
-                  <iframe
-                    src={talk.embed}
-                    title={talk.title}
-                    className="w-full h-full"
-                    sandbox="allow-scripts allow-same-origin allow-presentation"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  />
+                  {talk.video_embed_url ? (
+                    <iframe
+                      src={talk.video_embed_url}
+                      title={talk.title}
+                      className="w-full h-full"
+                      sandbox="allow-scripts allow-same-origin allow-presentation"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  ) : null}
                 </div>
                 <div className="p-5">
                   <h3 className="font-bold text-white mb-1">{talk.title}</h3>
-                  <p className="text-slate-400 text-sm">{talk.event}</p>
+                  <p className="text-slate-400 text-sm">
+                    {talk.event_name}
+                    {talk.event_date ? ` — ${formatDate(talk.event_date)}` : ''}
+                  </p>
                 </div>
               </div>
             ))}
