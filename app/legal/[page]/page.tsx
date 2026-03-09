@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import remarkGfm from 'remark-gfm'
+import { canonicalFor } from '@/lib/seo'
 
 const LEGAL_PAGES: Record<string, { title: string; file: string }> = {
     accessibility: { title: 'Accessibility Statement', file: 'accessibility.md' },
@@ -35,7 +36,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { page } = await params
     const data = getLegalContent(page)
-    return data ? { title: data.title } : {}
+    return data
+        ? {
+            title: data.title,
+            alternates: {
+                canonical: canonicalFor(`/legal/${page}`),
+            },
+        }
+        : {}
 }
 
 export default async function LegalPage({

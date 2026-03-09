@@ -1,12 +1,14 @@
 import { getAllPosts } from '@/lib/mdx'
 import { BlogList } from '@/components/BlogList'
 import type { Metadata } from 'next'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
     title: 'Blog',
     description:
         'In-depth articles on digital accessibility, WCAG, mobile accessibility, and AI-driven inclusion by Puneet Kala.',
-}
+    path: '/blog',
+})
 
 export default function BlogPage() {
     const posts = getAllPosts()

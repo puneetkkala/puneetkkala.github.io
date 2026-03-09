@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import { MapPin, ExternalLink } from 'lucide-react'
 import { getPublishedTalks } from '@/lib/talks'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
     title: 'Talks',
     description:
         'Conference talks, podcasts, and presentations by Puneet Kala on Android accessibility, AI for accessibility, and inclusive design.',
-}
+    path: '/talks',
+})
 
 function formatDate(value: string | null) {
     if (!value) return null

@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Twitter, Youtube, Linkedin, BookOpen, Mail, ExternalLink } from 'lucide-react'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
     title: 'About Puneet',
     description:
         'Learn more about Puneet Kala, CPACC Certified Senior Software Engineer specialised in Android Accessibility and digital inclusion.',
-}
+    path: '/about',
+})
 
 export default function AboutPage() {
     return (

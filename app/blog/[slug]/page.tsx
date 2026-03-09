@@ -6,6 +6,7 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Reactions } from '@/components/Reactions'
 import { Comments } from '@/components/Comments'
+import { canonicalFor } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
@@ -21,6 +22,9 @@ export async function generateMetadata({
     return {
         title: post.title,
         description: post.description,
+        alternates: {
+            canonical: canonicalFor(`/blog/${slug}`),
+        },
         openGraph: {
             title: post.title,
             description: post.description,

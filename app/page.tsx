@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/mdx'
 import { getPublishedTalks } from '@/lib/talks'
+import { createPageMetadata } from '@/lib/seo'
 import { ArrowRight, Clock, Calendar } from 'lucide-react'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Happy Hub — Accessible. Credible. Ethical.',
   description:
     'Expert content on digital accessibility, WCAG, mobile accessibility, and AI-driven accessibility by Puneet Kala.',
-}
+  path: '/',
+})
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', {
