@@ -7,6 +7,11 @@ import type { Metadata } from 'next'
 import { Reactions } from '@/components/Reactions'
 import { Comments } from '@/components/Comments'
 import { canonicalFor } from '@/lib/seo'
+import { CodeBlock } from '@/components/CodeBlock'
+
+const mdxComponents = {
+    pre: CodeBlock,
+}
 
 export const dynamic = 'force-dynamic'
 
@@ -118,7 +123,7 @@ export default async function BlogPostPage({
 
                     {/* Article body */}
                     <article className="prose-happy mb-12" aria-labelledby="post-title">
-                        <MDXRemote source={post.content} />
+                        <MDXRemote source={post.content} components={mdxComponents} />
                     </article>
 
                     {/* Reactions */}

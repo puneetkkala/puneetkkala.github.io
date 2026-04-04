@@ -312,9 +312,87 @@
     @apply prose-headings:text-slate-900 prose-headings:font-bold;
     @apply prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline;
     @apply prose-a:focus-visible:underline prose-a:focus-visible:outline-none prose-a:focus-visible:ring-2 prose-a:focus-visible:ring-blue-600 prose-a:focus-visible:ring-offset-2;
-    @apply prose-code:bg-slate-100 prose-code:rounded prose-code:px-1;
     @apply prose-blockquote:border-blue-500 prose-blockquote:text-slate-600;
   }
+
+  /* Light-mode inline code — subtle but readable */
+  .prose-happy :where(code):not(pre code) {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    border-radius: 0.25rem;
+    padding: 0.1em 0.35em;
+    font-size: 0.875em;
+    font-weight: 500;
+  }
+
+  /* Remove the auto-added backtick quotes that Tailwind typography adds */
+  .prose-happy :where(code)::before,
+  .prose-happy :where(code)::after {
+    content: none !important;
+  }
+
+  /* Fenced code block wrapper */
+  .code-block-wrapper {
+    position: relative;
+    margin: 1.5em 0;
+  }
+
+  .code-block-wrapper pre {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    font-size: 0.875em;
+    line-height: 1.7;
+    margin: 0;
+    border: 1px solid #334155;
+  }
+
+  .code-block-wrapper code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    border-radius: 0;
+  }
+
+  /* Copy button */
+  .code-copy-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 0.4rem;
+    background-color: #334155;
+    color: #cbd5e1;
+    border: 1px solid #475569;
+    font-size: 0.72rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+    line-height: 1;
+    font-family: var(--font-sans);
+  }
+
+  .code-copy-btn:hover {
+    background-color: #475569;
+    color: #f1f5f9;
+  }
+
+  .code-copy-btn:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+
+  .code-copy-label {
+    font-size: 0.72rem;
+  }
+
 
   html[data-theme='dark'] .card {
     background-color: #0f172a !important;
@@ -445,5 +523,31 @@
   html[data-theme='dark'] .prose-happy :where(blockquote) {
     color: #cbd5e1;
     border-color: #60a5fa;
+  }
+
+  /* Dark mode — inline code */
+  html[data-theme='dark'] .prose-happy :where(code):not(pre code) {
+    background-color: #1e293b;
+    color: #c7d7eb;
+    border: 1px solid #334155;
+  }
+
+  /* Dark mode — fenced code block */
+  html[data-theme='dark'] .code-block-wrapper pre {
+    background-color: #0d1b2e;
+    border-color: #1e293b;
+    color: #e2e8f0;
+  }
+
+  /* Dark mode — copy button */
+  html[data-theme='dark'] .code-copy-btn {
+    background-color: #1e293b;
+    color: #94a3b8;
+    border-color: #334155;
+  }
+
+  html[data-theme='dark'] .code-copy-btn:hover {
+    background-color: #334155;
+    color: #f1f5f9;
   }
 }

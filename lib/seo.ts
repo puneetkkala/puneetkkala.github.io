@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+const SITE_URL = 'https://happyhub.in'
+
 type PageMetadataInput = {
   title: string
   description: string
@@ -13,8 +15,9 @@ function normalizePath(path: string): string {
   return path
 }
 
+/** Returns the full canonical URL, e.g. https://happyhub.in/blog */
 export function canonicalFor(path: string): string {
-  return normalizePath(path)
+  return `${SITE_URL}${normalizePath(path)}`
 }
 
 export function createPageMetadata({

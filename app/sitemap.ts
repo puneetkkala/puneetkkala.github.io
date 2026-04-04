@@ -1,27 +1,33 @@
 import { MetadataRoute } from 'next'
-import { getAllSlugs } from '@/lib/mdx'
+import { getAllPosts } from '@/lib/mdx'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const base = 'https://happyhub.in'
-    const slugs = getAllSlugs()
+    const posts = getAllPosts()
 
-    const staticPages = ['', '/blog', '/talks', '/about', '/contact'].map((path) => ({
+    const staticPages = [
+        { path: '', priority: 1.0 },
+        { path: '/blog', priority: 0.9 },
+        { path: '/talks', priority: 0.8 },
+        { path: '/about', priority: 0.8 },
+        { path: '/contact', priority: 0.6 },
+    ].map(({ path, priority }) => ({
         url: `${base}${path}`,
-        lastModified: new Date(),
+        lastModified: new Date('2026-01-01'),
         changeFrequency: 'monthly' as const,
-        priority: path === '' ? 1 : 0.8,
+        priority,
     }))
 
-    const blogPages = slugs.map((slug) => ({
-        url: `${base}/blog/${slug}`,
-        lastModified: new Date(),
+    const blogPages = posts.map((post) => ({
+        url: `${base}/blog/${post.slug}`,
+        lastModified: new Date(post.date),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
     }))
 
     const legalPages = ['accessibility', 'disclaimer', 'privacy', 'terms', 'license'].map((p) => ({
         url: `${base}/legal/${p}`,
-        lastModified: new Date(),
+        lastModified: new Date('2025-01-01'),
         changeFrequency: 'yearly' as const,
         priority: 0.3,
     }))
