@@ -31,7 +31,7 @@ tags:
    - Accessibility Testing
 readTime: 11
 ---
-# Beyond Maya's Day: Teaching AI to See What's Missing in Non-Text Content
+# Beyond Maya's Day: Non-text Content with AI
 
 ## The Problem at Scale
 
