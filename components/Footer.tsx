@@ -74,7 +74,7 @@ export function Footer() {
                 <div className="border-t border-slate-800 mt-8 pt-6 text-sm text-center">
                     © {year} Puneet Kala — Happy Hub.{' '}
                     <Link href="/legal/license" className="hover:text-white transition-colors">
-                        CC BY-NC-ND 4.0
+                        CC BY 4.0
                     </Link>
                     {' · '}
                     <button
