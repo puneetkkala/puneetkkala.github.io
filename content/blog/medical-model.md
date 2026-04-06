@@ -17,9 +17,21 @@ tags:
   - Dharma
   - TechForGood
 ---
-# The Medical Model of Disability: An Overview 🩺
-
 Today, let’s explore one of the fundamental frameworks for understanding disability: the Medical Model. This model offers a specific lens through which society has historically viewed and addressed disability.
+
+> **Definition:** The Medical Model of Disability holds that disability is caused by an individual's impairment or difference, and that the solution lies in medical treatment, cure, or management of that condition. The person — not the environment — is seen as the problem to be fixed.
+
+### Medical Model vs Social Model at a Glance
+
+| Dimension | Medical Model | Social Model |
+|---|---|---|
+| **Where disability originates** | Within the individual (impairment) | In society and environmental barriers |
+| **Proposed solution** | Medical treatment, cure, or management | Remove barriers; redesign environments |
+| **Central authority** | Medical professional | The disabled person |
+| **Language** | Patient, condition, deviation from normal | Disabled person, barrier, inclusion |
+| **Example** | Ramesh has a hearing impairment — fit hearing aids | Ramesh cannot access a venue — add induction loops |
+| **Strength** | Effective when medical intervention measurably improves life | Drives systemic, societal change that benefits everyone |
+| **Critique** | Can stigmatise; overlooks environmental factors | May underweight personal medical needs |
 
 ## What is medical model? 🧑‍⚕️
 
@@ -50,6 +62,31 @@ Furthermore, medical research driven by this model can lead to significant break
 ## A Partial Picture 🖼️
 
 Ultimately, the Medical Model of Disability cannot be universally classified as ‘right’ or ‘wrong’. However, it is crucial to recognize that it presents only a partial view of the complex experience of disability. By focusing primarily on individual impairment, it often overlooks the profound influence of societal structures, attitudes, and physical environments. Therefore, while offering some benefits, it can lead to a biased understanding, limiting the scope of solutions to solely medical interventions rather than broader societal changes. As Lord Mahavir taught, “Truth is vast and has many aspects.” We must strive to see the full picture.
+
+## Key Takeaways
+
+- The Medical Model locates disability within the individual as a deviation from a "normal" biological state.
+- Its primary goal is medical correction, cure, or management of the impairment.
+- It has been criticised for stigmatising language and ignoring environmental and social barriers.
+- It retains value where effective medical interventions exist and demonstrably improve quality of life.
+- Neither the Medical nor Social Model alone provides a complete picture of disability — most accessibility and inclusion frameworks draw on both.
+
+## Frequently Asked Questions
+
+**What is the Medical Model of Disability in simple terms?**
+The Medical Model of Disability says that disability is caused by a person’s medical condition or impairment, and that the solution is to treat or cure that condition. It focuses on the individual, not the environment.
+
+**What is the main criticism of the Medical Model?**
+The Medical Model is criticised for placing the “problem” entirely within the disabled person, using stigmatising language like “deviation from normal,” and ignoring the role that inaccessible environments play in creating disability.
+
+**How does the Medical Model differ from the Social Model?**
+The Medical Model sees disability as an individual deficit requiring medical intervention. The Social Model sees disability as caused by societal and environmental barriers, and calls for those barriers to be removed rather than the person to be fixed.
+
+**Is the Medical Model wrong?**
+Not entirely. When a medical intervention — such as hearing aids, medication, or surgery — significantly improves a person’s daily life and they welcome it, that is not inherently problematic. The issue arises when the Medical Model is applied exclusively, ignoring the broader social and environmental context.
+
+**Which model underpins WCAG and digital accessibility?**
+The Social Model. WCAG locates accessibility failures in the design of websites and digital products — not in the users who encounter barriers. See: [The Social Model of Disability](https://www.happyhub.in/blog/social-model).
 
 ## References 📖
 

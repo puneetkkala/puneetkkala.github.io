@@ -1,7 +1,7 @@
 ---
 title: "A Day in the Life of Maya: Understanding Non-text Content"
 subtitle: "Understanding WCAG 2.2 Success Criterion 1.1.1 — Non-text Content Through Everyday Experience"
-description: "Follow Maya, a blind librarian, through a single day where every frustration, workaround, and small victory maps directly onto a real accessibility requirement. From a news app that says nothing but \"Image,\" to a CAPTCHA that shuts the door in her face, this story brings WCAG 2.2 Success Criterion 1.1.1 to life for beginners and general readers — no technical background needed. You'll come away understanding what non-text content is, why text alternatives matter, when exceptions apply, and what genuine failure looks like in the real world."
+description: "Explore WCAG 1.1.1 (Non-text Content) through the experience of a blind user. Understand alt text, exceptions, and why text is a universal format."
 date: "2026-03-29"
 author: "Puneet Kala"
 tags: 
@@ -28,9 +28,7 @@ tags:
   - Low Vision
 readTime: 10
 ---
-# A Day in the Life of Maya: Understanding Non-text Content
 
-This story covers WCAG 2.2 Success Criterion 1.1.1: Non-text Content (Level A), including its definitions, criteria, intent, benefits, sufficient techniques, exceptions, and common failure conditions.
 
 ## 🌅 Morning — The Alarm and the App
 
@@ -164,6 +162,19 @@ The answer was straightforward: the same language as the rest of the content. If
 
 And they should be genuine alternatives. Not look-alikes. Maya had once encountered a website where someone had written words using characters from other Unicode alphabets — characters that *looked* like the Latin letters for "cook" but were actually Greek and Cyrillic. Her screen reader had read them as the gibberish they technically were. It looked right to a sighted user. It was meaningless to her. The lesson: using visually similar characters from other writing systems as a substitute for real text is a failure. Appearance is not meaning. Representation in code is what matters.
 
+## WCAG 1.1.1 Exceptions Quick Reference
+
+Not all non-text content needs a full description. The guidelines outline specific exceptions where a descriptive label or different handling is required:
+
+| Exception | Applies when... | Alt text requirement |
+|---|---|---|
+| **Controls / Input** | The image is a button or form element (like a search icon) | Name the **purpose** or action (e.g., "Search"), not the image appearance |
+| **Time-Based Media** | The non-text content is audio or video | Provide a brief descriptive label (e.g., "Audio: Lecture on Cataloguing") |
+| **Test** | Describing the item would give away the answer to the test | Provide a brief descriptive label (e.g., "Audio identification exercise") |
+| **Sensory** | The content primarily creates a specific sensory experience (like art or a symphony) | Provide a brief descriptive label (e.g., "Painting: Water Lilies by Monet") |
+| **CAPTCHA** | The image is used to distinguish humans from computers | Describe the purpose (e.g., "Security check") **and** provide an alternative modality (e.g., audio CAPTCHA) |
+| **Decoration / Formatting** | The image serves no informational purpose and is purely aesthetic | Implement silently so assistive technology ignores it (e.g., empty `alt=""`) |
+
 ## 🤝 What We Carry Forward
 
 WCAG Success Criterion 1.1.1 is, at its core, a statement about inclusion. It asks: if your content cannot be seen, or heard, or perceived in the way you've presented it — is there another way in?
@@ -177,6 +188,31 @@ None of this is technically complicated. Most of it takes seconds to implement w
 What it requires is simply the decision to think about who else might be arriving at your page, and what they will need when they get there.
 
 Maya made that decision every day.
+
+## Key Takeaways
+
+- **Purpose over appearance:** Alt text should describe what the image *does* or the information it *conveys*, not what it visually looks like.
+- **Context matters:** The same image might need different alt text depending on how it's used on the page.
+- **Exceptions exist:** Controls, media, tests, sensory experiences, and CAPTCHAs have specific rules. Purely decorative images must be actively hidden from screen readers.
+- **Format parity:** Non-text content must have a text alternative that serves the equivalent purpose in the same human language.
+- **Never rely on filenames:** Placeholder text or filenames (like "image001.jpg") are active failures that create noise for users.
+
+## Frequently Asked Questions
+
+**What does "Non-text Content" mean in WCAG?**
+It refers to anything on a web page that isn't a sequence of characters. This includes photographs, illustrations, charts, graphs, audio, video, CAPTCHAs, and ASCII art.
+
+**Why is text considered the ultimate universal format?**
+Text is highly flexible. It can be visually enlarged, read aloud by a screen reader, or translated into braille by a refreshable braille display, making it accessible to users with diverse sensory needs.
+
+**Do all images need alt text?**
+No. Images that are purely decorative or used only for visual formatting must be implemented so that assistive technologies ignore them (typically using an empty alt attribute: `alt=""`).
+
+**How do you handle complex charts or graphs?**
+A short alt text label should identify the chart (e.g., "Q3 Revenue Graph"), accompanied by a longer description — often a data table or long-form text on the same page — containing the actual data.
+
+**Are CAPTCHAs accessible?**
+Traditional visual CAPTCHAs exclude blind users. Under WCAG 1.1.1, if a CAPTCHA is used, you must describe its purpose in text and provide an alternative form of the CAPTCHA using a different sensory modality (like an audio CAPTCHA).
 
 ## References 📖
 

@@ -1,5 +1,6 @@
 ---
 title: The POUR Principles - Bedrock of Digital Accessibility
+subtitle: Understanding the four foundational pillars of digital accessibility
 description: Explore the foundational Perceivable, Operable, Understandable, and Robust (POUR) principles, introduced with WCAG 2.0. This article clarifies each principle with practical examples, highlighting their crucial role in building inclusive digital experiences.
 author: Puneet Kala
 date: 2025-07-13
@@ -15,11 +16,16 @@ tags:
   - Software Engineering
 ---
 
-# The POUR Principles: Bedrock of Digital Accessibility 🧱
-
 **POUR** stands for **Perceivable, Operable, Understandable,** and **Robust**. These principles were formally introduced and established as the foundational pillars for all accessibility guidelines with the release of **WCAG 2.0 in December 2008**. This marked a significant milestone, solidifying WCAG 2.0 as a global standard that later became an **ISO standard (ISO/IEC 40500:2012)**. 🌍
 
 POUR serves as a high-level, technology-agnostic lens through which all accessibility guidelines are viewed, ensuring that content remains accessible regardless of the evolving digital landscape. 💡
+
+| Principle | Definition | Example failure | Example fix |
+|---|---|---|---|
+| **Perceivable** | Information must be presentable in ways users can perceive with their senses | Image with no alt text — invisible to a screen reader | Add descriptive alt text or empty alt for decorative images |
+| **Operable** | UI components and navigation must be operable by all users | A critical feature that only works with mouse drag | Provide an equivalent keyboard-accessible alternative |
+| **Understandable** | Information and operation of the UI must be understandable | A form error shown only in red with no text label | Add a text description of the error alongside the colour indicator |
+| **Robust** | Content must be robust enough to be reliably interpreted by assistive technologies | A custom widget with no ARIA roles or properties | Use semantic HTML or add appropriate ARIA markup |
 
 ### 👁️ Perceivable
 
@@ -55,7 +61,33 @@ The term "user agents" broadly refers to browsers, operating systems, and assist
 
 For example, if an older operating system did not originally include a screen magnifier, when a new version introduces this feature, the web content should be robust enough to be effectively magnified without breaking its layout or functionality. This forward-thinking approach ensures long-term accessibility as technology advances. 🔄
 
+## Key Takeaways
+
+- **POUR** stands for Perceivable, Operable, Understandable, and Robust — the four foundational principles of WCAG 2.0 (and all subsequent versions).
+- WCAG 2.0 was published in December 2008 and became ISO standard ISO/IEC 40500:2012.
+- The four principles are technology-agnostic — they apply to any digital content, now and in the future.
+- Each principle contains guidelines, and each guideline contains testable Success Criteria at Levels A, AA, and AAA.
+- Perceivable focuses on senses (sight, hearing, touch). Operable focuses on interaction methods. Understandable focuses on clarity and consistency. Robust focuses on compatibility with assistive technologies.
+
+## Frequently Asked Questions
+
+**What does POUR stand for in accessibility?**
+POUR stands for Perceivable, Operable, Understandable, and Robust — the four principles introduced in WCAG 2.0 that organise all Web Content Accessibility Guidelines.
+
+**When were the POUR principles introduced?**
+The POUR principles were formally introduced with WCAG 2.0, published by the W3C in December 2008. WCAG 2.0 later became an ISO standard (ISO/IEC 40500:2012).
+
+**What is the difference between WCAG principles, guidelines, and success criteria?**
+Principles (POUR) are the top-level framework. Each principle contains guidelines — broader goals. Each guideline contains Success Criteria — specific, testable requirements with Levels A, AA, or AAA.
+
+**Which POUR principle covers alt text?**
+Perceivable. Alt text ensures that images — which are visual — can also be perceived by users who cannot see, via a screen reader or braille display.
+
+**Which POUR principle covers keyboard navigation?**
+Operable. Keyboard operability is covered under WCAG Guideline 2.1: Keyboard Accessible.
+
 ## References 📖
 
 * 🥇 Introduction to Understanding WCAG 2.1 - [W3C](https://www.w3.org/WAI/WCAG21/Understanding/intro) *License: CC BY 4.0*
+* 🥇 **WCAG 2.2 — Understanding the Four Principles** — [W3C WAI](https://www.w3.org/WAI/WCAG22/Understanding/intro) *License: W3C Document License*
 * 🥉 Sense - [Wikipedia](https://en.wikipedia.org/wiki/Sense) _License: CC BY-SA 4.0_

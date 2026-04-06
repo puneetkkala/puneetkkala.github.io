@@ -1,5 +1,6 @@
 import { getPostBySlug, getAllPosts, getAllSlugs } from '@/lib/mdx'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, Clock, ArrowLeft } from 'lucide-react'
@@ -8,6 +9,7 @@ import { Reactions } from '@/components/Reactions'
 import { Comments } from '@/components/Comments'
 import { canonicalFor } from '@/lib/seo'
 import { CodeBlock } from '@/components/CodeBlock'
+import { AuthorBio } from '@/components/AuthorBio'
 
 const mdxComponents = {
     pre: CodeBlock,
@@ -118,11 +120,25 @@ export default async function BlogPostPage({
         license: 'https://creativecommons.org/licenses/by/4.0/',
     }
 
+    const breadcrumbLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://happyhub.in' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://happyhub.in/blog' },
+            { '@type': 'ListItem', position: 3, name: post.title },
+        ],
+    }
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
 
             <div className="section">
@@ -160,8 +176,19 @@ export default async function BlogPostPage({
 
                     {/* Article body */}
                     <article className="prose-happy mb-12" aria-labelledby="post-title">
-                        <MDXRemote source={post.content} components={mdxComponents} />
+                        <MDXRemote 
+                            source={post.content} 
+                            components={mdxComponents} 
+                            options={{
+                                mdxOptions: {
+                                    remarkPlugins: [remarkGfm],
+                                }
+                            }}
+                        />
                     </article>
+
+                    {/* Author bio */}
+                    <AuthorBio />
 
                     {/* Reactions */}
                     <Reactions postSlug={slug} />

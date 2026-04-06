@@ -1,7 +1,7 @@
 ---
 title: "Beyond Maya's Day: Non-text Content with AI"
 subtitle: "Using AI Skills to Detect, Generate, and Audit WCAG 2.2 Success Criterion 1.1.1 at Scale"
-description: "Maya's screen reader said \"Image.\" and moved on. That moment — one blind librarian, one missing alt text, one ordinary morning — is a problem that repeats itself millions of times a day across digital products of every kind. This article picks up where Maya's story ends, and asks: what if AI could catch these failures before they reach the user? Written for accessibility specialists who want to leverage AI without losing human oversight, this piece introduces six model-agnostic AI skills — covering alt text generation, alt text evaluation, decorative vs. informative classification, CAPTCHA accessibility, long description assessment, and bulk-scale auditing — each with a full instruction set ready to use with Claude, Gemini, GPT, or any other large language model. No platform lock-in. No magic. Just structured, reviewable AI that turns a month-long audit into a morning's work."
+description: "Automate WCAG 1.1.1 (Non-text Content) audits at scale. Learn 6 model-agnostic AI skills to generate, evaluate, and classify alt text efficiently."
 date: "2026-04-04"
 author: "Puneet Kala"
 tags:
@@ -31,8 +31,6 @@ tags:
    - Accessibility Testing
 readTime: 11
 ---
-# Beyond Maya's Day: Non-text Content with AI
-
 ## The Problem at Scale
 
 Maya's screen reader said one word: *"Image."*
@@ -46,6 +44,19 @@ The reason is scale. An organisation publishing hundreds of content pieces a wee
 This is where artificial intelligence, applied thoughtfully and with human oversight, changes the equation.
 
 This article is about that application. Not about how to write alt text — if you need that foundation, [A Day in the Life of Maya: Understanding Non-text Content](https://www.happyhub.in/blog/non-text-content) covers it through the lived experience of someone who depends on it every day. This article is about how to build and deploy AI skills that detect WCAG 1.1.1 issues, generate meaningful text alternatives, distinguish decorative content from informative content, evaluate CAPTCHA accessibility, and audit non-text content at a scale no human team can match alone.
+
+> **Quick Reference:** This article details six model-agnostic AI skills designed to automate WCAG 2.2 Success Criterion 1.1.1 (Non-text Content) tasks. These skills cover: Alt Text Generation, Alt Text Evaluation, Decorative Image Classification, CAPTCHA Assessment, Long Description Assessment, and Bulk-Scale Auditing.
+
+### AI Skills Summary
+
+| Skill | Purpose | When to use |
+|---|---|---|
+| **Alt Text Generator** | Creates WCAG-compliant text alternatives based on context | When a functional or informative image lacks description |
+| **Alt Text Evaluator** | Audits existing alt text for accuracy, completeness, and value | During QA or content review of existing pages |
+| **Decorative Classifier** | Determines if an image is informative, functional, or decorative | Before deciding if alt text is actually required |
+| **CAPTCHA Evaluator** | Assesses compliance and modalities of anti-spam puzzles | When auditing form submissions or user registration flows |
+| **Long Description Assessor** | Generates or reviews data-heavy text alternatives | For charts, graphs, maps, and complex infographics |
+| **Bulk Content Auditor** | Scans batches of files for non-text content compliance | During large-scale audits to prioritise human remediation |
 
 Every skill described here is model-agnostic. Whether you work with Claude, Gemini, GPT, Mistral, or any other large language or vision model, the structure applies. The AI is the engine. You are the one who decides where it drives — and when to take the wheel yourself.
 
@@ -469,6 +480,28 @@ That is always where you come in.
 ---
 
 *This article is a companion to [A Day in the Life of Maya: Understanding Non-text Content](https://www.happyhub.in/blog/non-text-content). Together they cover WCAG 2.2 Success Criterion 1.1.1: Non-text Content (Level A) — first through lived experience, then through AI-assisted practice. All skills described are model-agnostic and intended for use by accessibility specialists as part of a human-reviewed workflow.*
+
+## Key Takeaways
+
+- **Scale requires automation:** Manual auditing cannot keep pace with dynamic content creation. AI skills allow accessibility specialists to audit non-text content across hundreds of pages in minutes.
+- **Context is required:** Language models cannot write accurate alt text or classify an image correctly without understanding its surrounding context on the page.
+- **Model agnostic:** The skills provided are structural. They work with Claude, Gemini, GPT, or any advanced multimodal model.
+- **Uncertainty is a feature:** Good AI accessibility skills are designed to flag "Needs Review" when confidence is low or content is ambiguous.
+- **Human authority remains:** AI is a first-pass auditor and a tireless generator. The accessibility specialist remains the authority who reviews, refines, and approves the output.
+
+## Frequently Asked Questions
+
+**Can AI write all my alt text automatically?**
+AI can generate excellent initial drafts at scale, provided it is given both the image and the surrounding page context. However, a human should always review the output to ensure brand alignment, accuracy, and appropriate detail level before publishing.
+
+**Which AI model is best for accessibility auditing?**
+The skills described are model-agnostic and work with any advanced, multimodal Large Language Model (like GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 Pro). The structure and clarity of the prompt matter more than the specific model chosen.
+
+**Can AI replace manual WCAG audits?**
+No. AI is an amplifier, not a replacement. It can rapidly flag missing alt text, evaluate placeholder descriptions, and verify CAPTCHA text labels en masse. But judging whether a long description perfectly captures a nuanced chart, or authorising a complex interactive widget, still requires human expertise.
+
+**What happens if the AI isn't sure if an image is decorative?**
+The provided *Decorative vs. Informative Classifier* skill is explicitly instructed to output "Ambiguous" and flag the image for human review, rather than silently guessing. Silently defaulting to decorative is a dangerous error.
 
 ## References 📖
 

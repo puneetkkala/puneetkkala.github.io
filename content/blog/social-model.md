@@ -17,8 +17,9 @@ tags:
 - Dharma
 - TechForGood
 ---
-# The Social Model of Disability: A Call for Inclusive Change 🟣
 Today, let’s explore another fundamental framework for understanding disability: the Social Model. This model offers a powerful lens through which society can view and address disability by focusing on systemic change rather than individual deficits.
+
+> **Definition:** The Social Model of Disability asserts that people are disabled by barriers in society (such as inaccessible buildings, technology that doesn't support screen readers, or prejudiced attitudes) rather than by their impairment or difference. The model calls for societal and environmental redesign instead of medical correction.
 
 ## What is the social model? 🧑‍🤝‍🧑
 The Social Model of Disability posits that disability is not an individual’s problem but a disadvantage created by societal or environmental barriers. It sees impairment and disability as two separate concepts. In this framework, the primary aim is to remove these barriers to include people with disabilities in the mainstream society.
@@ -42,8 +43,37 @@ While facing criticism, the Social Model offers immense benefits. For example, f
 
 This model challenges stereotypes on the capabilities of people with disabilities by focusing on the environment. It empowers individuals and recognizes their lived experiences. As Leonardo da Vinci said, "Learning never exhausts the mind." 🌱 This quest for knowledge can pave the way for a more inclusive society.
 
+## The Social Model and Digital Accessibility 🌐
+
+The Social Model is not just academic theory — it is the philosophical foundation of modern digital accessibility.
+
+When the World Wide Web Consortium (W3C) writes the Web Content Accessibility Guidelines (WCAG), they are operating firmly within the Social Model. WCAG locates the "disability" not in the user who is blind, but in the website that failed to provide `alt` text for its images or screen-reader accessible keyboard navigation.
+
+In the digital world, the environment is made of code. Because code is infinitely mutable, we have an unprecedented ability to remove environmental barriers entirely. A developer implementing WCAG is not fixing the user; they are redesigning the digital environment so the impairment no longer results in a disability.
+
 ## A Partial Picture 🖼️
 Ultimately, the Social Model of Disability cannot be universally classified as ‘right’ or ‘wrong’. However, it is crucial to recognize that it presents only a partial view of the complex experience of disability. By focusing primarily on societal barriers, it can sometimes overlook the influence of individual impairment and the potential benefits of medical interventions. Therefore, while offering powerful benefits, it can lead to a biased understanding, limiting the scope of solutions to solely societal changes. This model is part of our collective Dharma—our righteous duty—to create a just and accessible society. We must strive to see the full picture, combining various models for a complete understanding.
+
+## Key Takeaways
+
+- The Social Model distinguishes between impairment (the biological reality) and disability (the societal barrier).
+- It places the responsibility of inclusion on society — demanding that environments, policies, and technologies be redesigned to remove barriers.
+- It is the foundation of digital accessibility and WCAG, asserting that inaccessible websites, not individual impairments, are the cause of digital exclusion.
+- The model is praised for empowering disabled individuals and driving systemic change (like the Curb-Cut Effect), but sometimes criticised for minimising the reality of medical realities.
+
+## Frequently Asked Questions
+
+**What is the Social Model of Disability?**
+The Social Model is a framework that states people are disabled by the barriers in society — such as inaccessible buildings or prejudiced attitudes — not by their impairments or differences. It calls for changing the environment, not fixing the individual.
+
+**What is the difference between impairment and disability in the Social Model?**
+In this model, "impairment" refers to a person’s physical, sensory, or cognitive difference. "Disability" refers to the restriction caused by a society that fails to accommodate that impairment.
+
+**How does the Social Model apply to web accessibility?**
+The Social Model is the foundation of digital accessibility. If a deaf user cannot watch a video, the Social Model says the video is disabled because it lacks captions. The solution is to fix the digital environment (add captions), not the user.
+
+**What is the Curb-Cut effect?**
+The Curb-Cut effect is the phenomenon where accommodations designed specifically for people with disabilities end up benefiting everyone. For example, sidewalk curb cuts were made for wheelchairs but also help people with strollers, luggage, and bicycles.
 
 ## References 📖
 - 🥇 **Scoping Models and Theories of Disability** — [NCBI Bookshelf](https://www.ncbi.nlm.nih.gov/books/NBK378951/) _License: Public Domain (U.S. Government Work)_
