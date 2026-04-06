@@ -475,7 +475,7 @@ That is always where you come in.
 - 🥇 **WCAG 2.2 Success Criterion 1.1.1: Non-text Content** — [W3C](https://www.w3.org/TR/WCAG22/#non-text-content) _License: W3C Document License_
 - 🥇 **Understanding SC 1.1.1: Non-text Content** — [W3C WAI](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content) _License: W3C Document License_
 - 🥇 **Techniques for SC 1.1.1** — [W3C WAI](https://www.w3.org/WAI/WCAG22/quickref/#non-text-content) _License: W3C Document License_
-- 🥈 **A Day in the Life of Maya: Understanding Non-text Content** — [Happy Hub](https://www.happyhub.in/blog/non-text-content) _(companion article covering SC 1.1.1 through lived experience)_
+- 🥉 **A Day in the Life of Maya: Understanding Non-text Content** — [Happy Hub](https://www.happyhub.in/blog/non-text-content) _(companion article covering SC 1.1.1 through lived experience)_
 - 🥇 **Images Tutorial** — [W3C WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/images/) _License: W3C Document License_
 - 🥇 **Accessibility of AI-Generated Content** — [W3C WAI](https://www.w3.org/WAI/research-topics/) _License: W3C Document License_
 - 🥉 **International Association of Accessibility Professionals (IAAP)** — [accessibilityassociation.org](https://www.accessibilityassociation.org/) _(professional body for CPACC certification)_
