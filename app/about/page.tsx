@@ -139,7 +139,7 @@ export default function AboutPage() {
                                 key={href}
                                 href={href}
                                 target={href.startsWith('mailto') ? undefined : '_blank'}
-                                rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                                rel={href.startsWith('mailto') ? undefined : 'me noopener noreferrer'}
                                 className="flex items-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 hover:underline"
                             >
                                 <Icon size={16} aria-hidden="true" />
