@@ -5,29 +5,29 @@ description: "Maya's screen reader said \"Image.\" and moved on. That moment —
 date: "2026-04-04"
 author: "Puneet Kala"
 tags:
-   - WCAG 
-   - WCAG 2.2 
-   - Accessibility 
-   - Digital Accessibility 
-   - Success Criterion 1.1.1 Non-text Content 
-   - Alt Text 
-   - Alt Text Generation 
-   - AI Accessibility 
+   - WCAG
+   - WCAG 2.2
+   - Accessibility
+   - Digital Accessibility
+   - Success Criterion 1.1.1 Non-text Content
+   - Alt Text
+   - Alt Text Generation
+   - AI Accessibility
    - Artificial Intelligence
-   - A11y 
-   - AI Skills 
-   - LLM 
-   - Prompt Engineering 
-   - Accessibility Automation 
-   - CAPTCHA Accessibility 
-   - Screen Reader 
-   - Assistive Technology 
-   - Inclusive Design 
-   - Digital Inclusion 
-   - Accessibility Audit 
-   - Long Description 
-   - Image Classification 
-   - Multimodal AI 
+   - A11y
+   - AI Skills
+   - LLM
+   - Prompt Engineering
+   - Accessibility Automation
+   - CAPTCHA Accessibility
+   - Screen Reader
+   - Assistive Technology
+   - Inclusive Design
+   - Digital Inclusion
+   - Accessibility Audit
+   - Long Description
+   - Image Classification
+   - Multimodal AI
    - Accessibility Testing
 readTime: 11
 ---

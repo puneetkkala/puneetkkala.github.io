@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts } from '@/lib/mdx'
+import { getPostBySlug, getAllPosts, getAllSlugs } from '@/lib/mdx'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -13,7 +13,15 @@ const mdxComponents = {
     pre: CodeBlock,
 }
 
-export const dynamic = 'force-dynamic'
+// Pre-render every blog post as static HTML at build time.
+// This is critical for SEO — Googlebot reads static HTML directly
+// without needing to execute JavaScript.
+export async function generateStaticParams() {
+    return getAllSlugs().map((slug) => ({ slug }))
+}
+
+// Allow dynamic rendering for slugs not known at build time (new posts).
+export const dynamicParams = true
 
 export async function generateMetadata({
     params,
