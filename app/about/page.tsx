@@ -11,7 +11,57 @@ export const metadata: Metadata = createPageMetadata({
 })
 
 export default function AboutPage() {
+    const personJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Puneet Kala',
+        url: 'https://happyhub.in/about',
+        image: 'https://happyhub.in/logo.png',
+        description:
+            'CPACC Certified Senior Software Engineer specialising in Android Accessibility, WCAG, and AI-driven digital inclusion. Founder of Happy Hub.',
+        jobTitle: 'Senior Software Engineer',
+        worksFor: {
+            '@type': 'Organization',
+            name: 'Happy Hub',
+            url: 'https://happyhub.in',
+        },
+        knowsAbout: [
+            'Digital Accessibility',
+            'WCAG 2.2',
+            'Android Accessibility',
+            'Screen Readers',
+            'Assistive Technology',
+            'Inclusive Design',
+            'AI Accessibility',
+            'Mobile Accessibility',
+            'POUR Principles',
+        ],
+        hasCredential: {
+            '@type': 'EducationalOccupationalCredential',
+            credentialCategory: 'certification',
+            name: 'Certified Professional in Accessibility Core Competencies (CPACC)',
+            recognizedBy: {
+                '@type': 'Organization',
+                name: 'International Association of Accessibility Professionals (IAAP)',
+                url: 'https://www.accessibilityassociation.org/',
+            },
+        },
+        sameAs: [
+            'https://x.com/puneetkkala',
+            'https://www.youtube.com/@happy-hub-yt',
+            'https://www.linkedin.com/in/kalapuneet/',
+            'https://medium.com/@puneetkkala',
+            'https://github.com/puneetkkala',
+        ],
+    }
+
     return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+            />
+
         <div className="section">
             <div className="container-md">
                 {/* Hero */}
@@ -121,5 +171,6 @@ export default function AboutPage() {
                 </section>
             </div>
         </div>
+        </>
     )
 }

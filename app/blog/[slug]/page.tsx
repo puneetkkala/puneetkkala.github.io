@@ -76,17 +76,46 @@ export default async function BlogPostPage({
         '@type': 'Article',
         headline: post.title,
         description: post.description,
+        url: `https://happyhub.in/blog/${slug}`,
         datePublished: post.date,
+        // dateModified: update this in frontmatter when you revise an article
+        dateModified: post.date,
+        inLanguage: 'en',
+        keywords: post.tags.join(', '),
         author: {
             '@type': 'Person',
             name: 'Puneet Kala',
             url: 'https://happyhub.in/about',
+            jobTitle: 'Senior Software Engineer',
+            hasCredential: {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: 'certification',
+                name: 'Certified Professional in Accessibility Core Competencies (CPACC)',
+                recognizedBy: {
+                    '@type': 'Organization',
+                    name: 'International Association of Accessibility Professionals (IAAP)',
+                    url: 'https://www.accessibilityassociation.org/',
+                },
+            },
+            sameAs: [
+                'https://x.com/puneetkkala',
+                'https://www.youtube.com/@happy-hub-yt',
+                'https://www.linkedin.com/in/kalapuneet/',
+                'https://medium.com/@puneetkkala',
+                'https://github.com/puneetkkala',
+            ],
         },
         publisher: {
             '@type': 'Organization',
             name: 'Happy Hub',
             url: 'https://happyhub.in',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://happyhub.in/logo.png',
+            },
         },
+        isAccessibleForFree: true,
+        license: 'https://creativecommons.org/licenses/by/4.0/',
     }
 
     return (
