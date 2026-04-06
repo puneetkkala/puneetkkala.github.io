@@ -177,3 +177,13 @@ None of this is technically complicated. Most of it takes seconds to implement w
 What it requires is simply the decision to think about who else might be arriving at your page, and what they will need when they get there.
 
 Maya made that decision every day.
+
+## References 📖
+
+- 🥇 **WCAG 2.2 Success Criterion 1.1.1: Non-text Content** — [W3C](https://www.w3.org/TR/WCAG22/#non-text-content) _License: W3C Document License_
+- 🥇 **Understanding SC 1.1.1: Non-text Content** — [W3C WAI](https://www.w3.org/WAI/WCAG22/Understanding/non-text-content) _License: W3C Document License_
+- 🥇 **How to Meet SC 1.1.1 (Quick Reference)** — [W3C WAI](https://www.w3.org/WAI/WCAG22/quickref/#non-text-content) _License: W3C Document License_
+- 🥈 **Alternative Text** — [WebAIM](https://webaim.org/techniques/alttext/) _License: Educational Resource_
+- 🥇 **Images Tutorial** — [W3C WAI Web Accessibility Tutorials](https://www.w3.org/WAI/tutorials/images/) _License: W3C Document License_
+- 🥇 **Images Decision Tree** — [W3C WAI](https://www.w3.org/WAI/tutorials/images/decision-tree/) _License: W3C Document License_
+- 🥉 **Beyond Maya's Day: Non-text Content with AI** — [Happy Hub](https://www.happyhub.in/blog/non-text-context-with-ai) _(companion article covering AI-assisted auditing of SC 1.1.1)_
