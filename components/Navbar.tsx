@@ -4,17 +4,35 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
-import { Menu, X, LogOut, LayoutDashboard } from 'lucide-react'
+import { Menu, X, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import type { User } from '@supabase/supabase-js'
 import { ThemeToggle } from './ThemeToggle'
 
-const NAV_LINKS = [
+type NavLink = {
+    label: string
+    href?: string
+    children?: { label: string; href: string; description: string }[]
+}
+
+const NAV_LINKS: NavLink[] = [
     { href: '/', label: 'Home' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/talks', label: 'Talks' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
+    {
+        label: 'Learn',
+        children: [
+            { href: '/blog', label: 'Blog', description: 'Articles and deep dives on accessibility' },
+            { href: '/glossary', label: 'Glossary', description: 'Dictionary of accessibility and technical terms' },
+            { href: '/resources', label: 'Resources', description: 'Curated technical guidelines and tools' },
+        ]
+    },
+    {
+        label: 'Connect',
+        children: [
+            { href: '/about', label: 'About', description: 'Puneet Kala and Happy Hub' },
+            { href: '/talks', label: 'Talks', description: 'Conference talks and presentations' },
+            { href: '/contact', label: 'Contact', description: 'Get in touch for speaking or consulting' },
+        ]
+    }
 ]
 
 export function Navbar() {
@@ -163,16 +181,42 @@ export function Navbar() {
 
                 {/* Desktop nav */}
                 <div className="hidden md:flex items-center gap-1">
-                    {NAV_LINKS.map(({ href, label }) => (
-                        <Link
-                            key={href}
-                            href={href}
-                            className={`nav-link ${pathname === href ? 'nav-link-active' : ''}`}
-                            aria-current={pathname === href ? 'page' : undefined}
-                        >
-                            {label}
-                        </Link>
-                    ))}
+                    {NAV_LINKS.map((link) => {
+                        if (link.children) {
+                            return (
+                                <div key={link.label} className="relative group px-1 flex shrink-0">
+                                    <button className={`nav-link flex items-center gap-1 ${link.children.some(c => pathname === c.href) ? 'nav-link-active' : ''}`}>
+                                        {link.label}
+                                        <ChevronDown size={14} className="opacity-60 group-hover:rotate-180 transition-transform duration-200" />
+                                    </button>
+                                    <div className="absolute top-full left-0 w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-2 flex flex-col gap-1">
+                                            {link.children.map(child => (
+                                                <Link 
+                                                    key={child.href} 
+                                                    href={child.href}
+                                                    className={`p-3 rounded-lg hover:bg-slate-50 transition-colors ${pathname === child.href ? 'bg-slate-50 text-indigo-700' : 'text-slate-700'}`}
+                                                >
+                                                    <div className="font-semibold text-sm mb-0.5">{child.label}</div>
+                                                    <div className="text-xs text-slate-500">{child.description}</div>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        return (
+                            <Link
+                                key={link.href!}
+                                href={link.href!}
+                                className={`nav-link ${pathname === link.href ? 'nav-link-active' : ''}`}
+                                aria-current={pathname === link.href ? 'page' : undefined}
+                            >
+                                {link.label}
+                            </Link>
+                        )
+                    })}
                     <ThemeToggle />
                     {authSection}
                 </div>
@@ -196,19 +240,42 @@ export function Navbar() {
                 <div
                     id="mobile-menu"
                     ref={mobileMenuRef}
-                    className="md:hidden border-t border-slate-200 bg-white px-4 pb-4 pt-2"
+                    className="md:hidden border-t border-slate-200 bg-white px-4 pb-4 pt-4"
                 >
-                    {NAV_LINKS.map(({ href, label }) => (
-                        <Link
-                            key={href}
-                            href={href}
-                            className={`block nav-link my-0.5 ${pathname === href ? 'nav-link-active' : ''}`}
-                            aria-current={pathname === href ? 'page' : undefined}
-                            onClick={() => setMenuOpen(false)}
-                        >
-                            {label}
-                        </Link>
-                    ))}
+                    <div className="flex flex-col gap-2 mb-4">
+                    {NAV_LINKS.map((link) => {
+                        if (link.children) {
+                            return (
+                                <div key={link.label} className="mb-2">
+                                    <div className="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">{link.label}</div>
+                                    <div className="pl-4 border-l-2 border-slate-100 ml-3 flex flex-col gap-1">
+                                        {link.children.map(child => (
+                                            <Link
+                                                key={child.href}
+                                                href={child.href}
+                                                className={`block nav-link my-0 ${pathname === child.href ? 'nav-link-active' : ''}`}
+                                                onClick={() => setMenuOpen(false)}
+                                            >
+                                                {child.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        }
+                        return (
+                            <div key={link.href!} className="mb-2">
+                                <Link
+                                    href={link.href!}
+                                    className={`block nav-link ${pathname === link.href ? 'nav-link-active' : ''}`}
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                            </div>
+                        )
+                    })}
+                    </div>
                     <ThemeToggle compact />
                     {mobileAuthSection}
                 </div>
