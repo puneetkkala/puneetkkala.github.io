@@ -47,6 +47,24 @@ export const resourceData: ResourceCategory[] = [
                 title: "Rethinking Disability",
                 description: "PubMed Central literature on applying the social model to chronic diseases.",
                 url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4596173/"
+            },
+            {
+                id: "wiki-medical-model",
+                title: "Medical Model of Disability",
+                description: "Wikipedia's extensive entry on the history and criticisms of the medical model.",
+                url: "https://en.wikipedia.org/wiki/Medical_model_of_disability"
+            },
+            {
+                id: "wiki-social-model",
+                title: "Social Model of Disability",
+                description: "Wikipedia's foundational overview of the social model framework.",
+                url: "https://en.wikipedia.org/wiki/Social_model_of_disability"
+            },
+            {
+                id: "wiki-sense",
+                title: "Sense",
+                description: "Wikipedia detail on absolute human physical thresholds referenced in perceptual modeling.",
+                url: "https://en.wikipedia.org/wiki/Sense"
             }
         ]
     },
@@ -66,6 +84,18 @@ export const resourceData: ResourceCategory[] = [
                 title: "Understanding SC 1.1.1 (Non-text Content)",
                 description: "The official W3C explainer for treating non-text content like images and CAPTCHAs.",
                 url: "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content"
+            },
+            {
+                id: "how-to-meet-1-1-1",
+                title: "How to Meet SC 1.1.1 (Quick Reference)",
+                description: "The official W3C WAI quick reference checklist for non-text content.",
+                url: "https://www.w3.org/WAI/WCAG22/quickref/#non-text-content"
+            },
+            {
+                id: "understanding-wcag-21",
+                title: "Introduction to Understanding WCAG 2.1",
+                description: "W3C foundational document on how to interpret WCAG compliance models.",
+                url: "https://www.w3.org/WAI/WCAG21/Understanding/intro"
             },
             {
                 id: "aria-12",
@@ -128,6 +158,12 @@ export const resourceData: ResourceCategory[] = [
                 title: "WAVE Configuration Tool",
                 description: "A popular suite of evaluation tools by WebAIM.",
                 url: "https://wave.webaim.org/"
+            },
+            {
+                id: "webaim-alt-text",
+                title: "Alternative Text (WebAIM)",
+                description: "The canonical guide by WebAIM on how to write effective, semantic alt text.",
+                url: "https://webaim.org/techniques/alttext/"
             },
             {
                 id: "accessibility-scanner",
