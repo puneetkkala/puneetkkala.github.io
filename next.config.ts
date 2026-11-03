@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
       { source: '/blog/pour-principles.html', destination: '/blog/pour-principles', permanent: true },
 
       // Legal pages
+      { source: '/impressum', destination: '/legal/impressum', permanent: true },
+      { source: '/privacy', destination: '/legal/privacy', permanent: true },
       { source: '/legal/license.html', destination: '/legal/license', permanent: true },
       { source: '/legal/disclaimer.html', destination: '/legal/disclaimer', permanent: true },
       // /legal/sources.html was a MkDocs page that no longer exists → redirect to blog

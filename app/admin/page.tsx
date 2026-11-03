@@ -1,7 +1,7 @@
 import { getAllPosts } from '@/lib/mdx'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import { FileText, Video, Mail, Users } from 'lucide-react'
+import { FileText, Video, Mail, Users, Receipt } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Admin Dashboard' }
@@ -47,6 +47,8 @@ export default async function AdminDashboard() {
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {[
+                        { href: '/admin/orders', label: 'Consulting Orders & Pipeline', desc: 'Track incoming client requests, fulfillment statuses & invoices' },
+                        { href: '/admin/invoices', label: 'Invoice Generator & Billing', desc: 'Create German-compliant (§ 19 UStG) invoices & Revolut payment links' },
                         { href: '/admin/blog', label: 'Manage Blog Posts', desc: 'View and link to published articles' },
                         { href: '/admin/talks', label: 'Manage Talks', desc: 'View published and draft talks' },
                         { href: '/admin/contacts', label: 'Contact Inbox', desc: 'Read incoming contact messages' },

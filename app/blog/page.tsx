@@ -4,26 +4,31 @@ import type { Metadata } from 'next'
 import { createPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
-    title: 'Blog',
-    description:
-        'In-depth articles on digital accessibility, WCAG, mobile accessibility, and AI-driven inclusion by Puneet Kala.',
-    path: '/blog',
+  title: 'Articles & Frameworks — Puneet Kumar Kala',
+  description:
+    'Authoritative technical frameworks, engineering methodologies, and compliance deep-dives on digital accessibility, WCAG 2.2, Android UI systems, and software architecture.',
+  path: '/blog',
 })
 
 export default function BlogPage() {
-    const posts = getAllPosts()
+  const posts = getAllPosts()
 
-    return (
-        <div className="section">
-            <div className="container-lg">
-                <header className="mb-10">
-                    <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">Blog</h1>
-                    <p className="text-slate-600 text-lg">
-                        Research-backed articles on digital accessibility, WCAG, and inclusive design.
-                    </p>
-                </header>
-                <BlogList posts={posts} />
-            </div>
-        </div>
-    )
+  return (
+    <div className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <header className="mb-12">
+          <span className="tag-badge text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 border-blue-200 dark:border-blue-900 mb-3">
+            Technical Insights
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 mb-3">
+            Latest Insights &amp; Frameworks
+          </h1>
+          <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-3xl leading-relaxed">
+            Research-backed architectural analysis, statutory compliance guidance (EAA / BFSG), and modern software engineering practices.
+          </p>
+        </header>
+        <BlogList posts={posts} />
+      </div>
+    </div>
+  )
 }

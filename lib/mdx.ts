@@ -58,6 +58,9 @@ export function getPostBySlug(slug: string): Post | null {
             const rawFile = fs.readFileSync(filePath, 'utf-8')
             const { data, content } = matter(rawFile)
 
+            // Strip any leading # H1 heading from content to prevent duplicate headings with the page header
+            const cleanedContent = content.replace(/^#\s+[^\n]+\n*/, '').trim()
+
             return {
                 slug,
                 title: data.title ?? slug,
@@ -66,8 +69,8 @@ export function getPostBySlug(slug: string): Post | null {
                 author: data.author ?? 'Puneet Kala',
                 date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
                 tags: Array.isArray(data.tags) ? data.tags : [],
-                readTime: calculateReadTime(content),
-                content,
+                readTime: calculateReadTime(cleanedContent),
+                content: cleanedContent,
             }
         }
     }

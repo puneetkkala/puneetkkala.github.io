@@ -59,8 +59,8 @@ export default function SignupPage() {
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4" style={{ background: 'var(--color-navy)' }}>
                         <UserPlus size={22} className="text-white" aria-hidden="true" />
                     </div>
-                    <h1 className="text-2xl font-bold text-slate-900">Create your account</h1>
-                    <p className="text-slate-600 mt-1 text-sm">Join the Happy Hub community</p>
+                    <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">Create your account</h1>
+                    <p className="text-zinc-600 dark:text-zinc-400 mt-1 text-sm">Join the community</p>
                 </div>
 
                 <div className="card p-6 sm:p-8">

@@ -3,7 +3,7 @@ import { createPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Admin',
-  description: 'Happy Hub admin area.',
+  description: 'Admin portal — Puneet Kumar Kala.',
   path: '/admin',
   noindex: true,
 })

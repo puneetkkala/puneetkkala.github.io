@@ -3,7 +3,7 @@ import { createPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Sign Up',
-  description: 'Create a Happy Hub account.',
+  description: 'Create an account — Puneet Kumar Kala.',
   path: '/signup',
   noindex: true,
 })

@@ -5,105 +5,109 @@ import { ArrowRight, BookA } from 'lucide-react'
 import { createPageMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = createPageMetadata({
-    title: 'Accessibility Glossary',
-    description: 'A comprehensive dictionary of digital accessibility terms, WCAG definitions, and inclusive design concepts.',
-    path: '/glossary',
+  title: 'Accessibility Glossary — Technical Definitions',
+  description:
+    'A comprehensive dictionary of digital accessibility terms, WCAG definitions, and inclusive software engineering concepts.',
+  path: '/glossary',
 })
 
 export default function GlossaryPage() {
-    // Generate DefinedTermSet Schema.org JSON-LD
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'DefinedTermSet',
-        '@id': 'https://happyhub.in/glossary',
-        name: 'Digital Accessibility Glossary',
-        description: 'A glossary of terms related to digital accessibility, WCAG, and inclusive design.',
-        hasDefinedTerm: glossaryData.map((item) => ({
-            '@type': 'DefinedTerm',
-            name: item.term,
-            description: item.definition,
-            url: `https://happyhub.in/glossary#${item.id}`
-        }))
-    }
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    '@id': 'https://happyhub.in/glossary',
+    name: 'Digital Accessibility Glossary',
+    description: 'A glossary of terms related to digital accessibility, WCAG, and inclusive design.',
+    hasDefinedTerm: glossaryData.map((item) => ({
+      '@type': 'DefinedTerm',
+      name: item.term,
+      description: item.definition,
+      url: `https://happyhub.in/glossary#${item.id}`,
+    })),
+  }
 
-    // Sort terms alphabetically
-    const sortedGlossary = [...glossaryData].sort((a, b) => a.term.localeCompare(b.term))
+  const sortedGlossary = [...glossaryData].sort((a, b) => a.term.localeCompare(b.term))
+  const letters = Array.from(new Set(sortedGlossary.map((item) => item.term[0].toUpperCase()))).sort()
 
-    // Group terms by starting letter for the alphabet index navigation
-    const letters = Array.from(new Set(sortedGlossary.map((item) => item.term[0].toUpperCase()))).sort()
-
-    return (
-        <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-            <div className="section bg-slate-50 min-h-screen">
-                <div className="container-md">
-                    <header className="mb-12 text-center">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-100 text-indigo-700 mb-6">
-                            <BookA size={32} />
-                        </div>
-                        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-                            Accessibility Glossary
-                        </h1>
-                        <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                            A foundational dictionary of terms, acronyms, and concepts in digital accessibility and inclusive design.
-                        </p>
-                    </header>
-
-                    {/* Alphabet Jump Links */}
-                    <nav className="flex flex-wrap justify-center gap-2 mb-12" aria-label="Glossary Jump Links">
-                        {letters.map(letter => (
-                            <a
-                                key={letter}
-                                href={`#letter-${letter}`}
-                                className="w-10 h-10 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-700 font-semibold hover:border-indigo-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors shadow-sm"
-                            >
-                                {letter}
-                            </a>
-                        ))}
-                    </nav>
-
-                    <div className="space-y-12">
-                        {letters.map(letter => {
-                            const termsForLetter = sortedGlossary.filter(item => item.term[0].toUpperCase() === letter)
-                            return (
-                                <section key={letter} id={`letter-${letter}`} className="scroll-mt-24">
-                                    <h2 className="text-2xl font-bold text-slate-900 mb-6 pb-2 border-b-2 border-indigo-100">
-                                        {letter}
-                                    </h2>
-                                    <dl className="space-y-6">
-                                        {termsForLetter.map((item) => (
-                                            <div key={item.id} id={item.id} className="card p-6 bg-white scroll-mt-24 shadow-sm border border-slate-200/60 hover:shadow-md transition-shadow">
-                                                <dt className="text-xl font-bold text-slate-900 mb-2">
-                                                    {item.term}
-                                                </dt>
-                                                <dd className="text-slate-700 leading-relaxed">
-                                                    {item.definition}
-                                                    {item.relatedLinks && item.relatedLinks.length > 0 && (
-                                                        <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-3">
-                                                            {item.relatedLinks.map((link, idx) => (
-                                                                <Link 
-                                                                    key={idx} 
-                                                                    href={link.url}
-                                                                    className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-full transition-colors"
-                                                                >
-                                                                    Read more: {link.label} <ArrowRight size={14} />
-                                                                </Link>
-                                                            ))}
-                                                        </div>
-                                                    )}
-                                                </dd>
-                                            </div>
-                                        ))}
-                                    </dl>
-                                </section>
-                            )
-                        })}
-                    </div>
-                </div>
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <header className="mb-12 text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 mb-4 border border-blue-200 dark:border-blue-900">
+              <BookA size={24} aria-hidden="true" />
             </div>
-        </>
-    )
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-900 dark:text-zinc-50 mb-3 tracking-tight">
+              Accessibility Glossary
+            </h1>
+            <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+              Standardized vocabulary, legal terminology (EAA/BFSG), and technical definitions for digital accessibility and inclusive systems.
+            </p>
+          </header>
+
+          {/* Alphabet Jump Links */}
+          <nav className="flex flex-wrap justify-center gap-1.5 mb-12" aria-label="Glossary Jump Links">
+            {letters.map((letter) => (
+              <a
+                key={letter}
+                href={`#letter-${letter}`}
+                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold text-sm hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-500 dark:hover:text-blue-400 transition-colors shadow-xs focus-visible:ring-2 focus-visible:ring-blue-600"
+              >
+                {letter}
+              </a>
+            ))}
+          </nav>
+
+          <div className="space-y-12">
+            {letters.map((letter) => {
+              const termsForLetter = sortedGlossary.filter(
+                (item) => item.term[0].toUpperCase() === letter
+              )
+              return (
+                <section key={letter} id={`letter-${letter}`} className="scroll-mt-24">
+                  <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-4 pb-2 border-b border-zinc-200 dark:border-zinc-800">
+                    {letter}
+                  </h2>
+                  <dl className="space-y-4">
+                    {termsForLetter.map((item) => (
+                      <div
+                        key={item.id}
+                        id={item.id}
+                        className="card p-6 scroll-mt-24"
+                      >
+                        <dt className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-2">
+                          {item.term}
+                        </dt>
+                        <dd className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed">
+                          {item.definition}
+                          {item.relatedLinks && item.relatedLinks.length > 0 && (
+                            <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex flex-wrap gap-2">
+                              {item.relatedLinks.map((link, idx) => (
+                                <Link
+                                  key={idx}
+                                  href={link.url}
+                                  className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-950/40 px-2.5 py-1 rounded-md transition-colors"
+                                >
+                                  <span>{link.label}</span>
+                                  <ArrowRight size={12} aria-hidden="true" />
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </section>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }

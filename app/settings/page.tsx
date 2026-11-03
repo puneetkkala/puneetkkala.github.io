@@ -205,9 +205,9 @@ export default function SettingsPage() {
                     </div>
                 </section>
 
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
                     For any data request not covered above, contact us at{' '}
-                    <a href="mailto:puneet@happyhub.in" className="text-blue-600 hover:underline">puneet@happyhub.in</a>
+                    <a href="mailto:puneetkala.biz@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">puneetkala.biz@gmail.com</a>
                 </p>
             </div>
         </div>

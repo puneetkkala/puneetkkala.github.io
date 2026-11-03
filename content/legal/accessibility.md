@@ -1,66 +1,54 @@
 ---
 title: Accessibility Statement
-description: Accessibility commitment, standards conformance, known limitations, and feedback process for Happy Hub.
+description: Accessibility commitment, WCAG 2.2 AA standards conformance, and feedback process for Puneet Kumar Kala Advisory.
 ---
 
-# Accessibility Statement
+_Last updated: November 2026_
 
-_Last updated: March 5, 2026_
+**Puneet Kumar Kala** is committed to ensuring digital accessibility for all users, including people with disabilities, assistive technology users, and neurodivergent individuals.
 
-Happy Hub is committed to providing a website that is accessible to the widest possible audience, regardless of technology or ability.
-
-## Commitment
-
-I aim to ensure Happy Hub is perceivable, operable, understandable, and robust for all users, including people using assistive technologies such as screen readers, magnifiers, voice input, and keyboard-only navigation.
+---
 
 ## Conformance Target
 
-Happy Hub targets conformance with **Web Content Accessibility Guidelines (WCAG) 2.1 Level AA**.
+This website targets full conformance with the **Web Content Accessibility Guidelines (WCAG) 2.2 Level AA**, the **European Standard EN 301 549**, and the **German Barrierefreie-Informationstechnik-Verordnung (BITV 2.0)**.
 
-Accessibility is an ongoing effort. While many areas are designed and tested against this target, full conformance across all current and future content cannot be guaranteed at all times.
+---
 
-## Measures Taken
+## Technical Measures Implemented
 
-Accessibility measures currently include:
+To ensure an accessible and barrier-free experience, the following engineering practices are systematically integrated into this platform:
 
-- Semantic HTML and landmark structure.
-- Keyboard-accessible navigation and visible focus indicators.
-- Skip link for bypassing repeated content.
-- Accessible names/labels for interactive controls.
-- Color and contrast checks in core interface components.
-- Ongoing remediation of identified accessibility issues.
+- **Semantic HTML & Landmarks:** Proper use of semantic elements (`<header>`, `<nav>`, `<main>`, `<footer>`, `<article>`) to ensure seamless screen reader tree navigation.
+- **Strict Keyboard Accessibility:** Complete functionality accessible via keyboard navigation, with visible high-contrast focus rings (`:focus-visible`) and a dedicated "Skip to main content" link.
+- **Color & Contrast Compliance:** All text and interactive controls maintain strict contrast ratios exceeding the 4.5:1 minimum for body copy and 3:1 for large typography and UI boundaries under both Light and Dark themes.
+- **Assistive Technology Optimization:** Proper ARIA attributes, semantic form labeling, and programmatic state indicators for dynamic controls (e.g., navigation drawers, theme toggles, modal menus).
+- **Reduced Motion:** Respect for user motion preferences (`prefers-reduced-motion`) across animations and transitions.
 
-## Known Limitations
+---
 
-Despite best efforts, some content may not yet be fully accessible. Known or potential limitations may include:
+## Known Limitations & Continuous Remediation
 
-- Embedded third-party content (for example, externally hosted video players) that may have accessibility constraints outside direct control.
-- Older content that may require incremental accessibility improvements.
+While every effort is made to maintain complete accessibility across all pages:
+- **Third-Party Video Players:** Certain conference talk video embeds are hosted on third-party platforms (e.g. YouTube), which may have accessibility constraints beyond direct host control. Captions and transcripts are provided where available.
+- **Legacy Content:** Historical presentation slides may undergo ongoing remediation to meet current WCAG 2.2 AA criteria.
 
-Where issues are identified, remediation is prioritized based on user impact and feasibility.
+---
 
-## Feedback and Issue Reporting
+## Feedback & Accessibility Barrier Reporting
 
-If you encounter an accessibility barrier, please report it.
+We welcome your feedback on the accessibility of this platform. If you encounter any barrier, please let us know:
 
-When possible, include:
+- **E-Mail:** [puneetkala.biz@gmail.com](mailto:puneetkala.biz@gmail.com)
+- **Direct Form:** [Contact Page](/contact)
+- **Response Time:** We aim to review and respond to accessibility barrier reports within 1 to 2 business days.
 
-- The page URL.
-- The issue encountered.
-- The assistive technology and browser/device used.
+---
 
-Contact: [Contact page](/contact) or **puneet@happyhub.in**
+## Enforcement Procedure (Durchsetzungsverfahren)
 
-I will review reports and work to provide an accessible alternative and/or fix within a reasonable timeframe.
+If you do not receive a satisfactory response to your accessibility feedback within one month, you may contact the relevant arbitration board under German state or federal accessibility law:
 
-## Assessment Approach
-
-Accessibility is evaluated through a combination of:
-
-- Manual keyboard and interaction testing.
-- Assistive-technology checks.
-- Automated tooling.
-
-## Continuous Improvement
-
-Accessibility is treated as a continuous quality requirement. This statement may be updated as testing practices, standards, and site features evolve.
+**Schlichtungsstelle BGG**  
+Mauerstraße 53, 10117 Berlin  
+Website: [https://www.schlichtungsstelle-bgg.de](https://www.schlichtungsstelle-bgg.de)

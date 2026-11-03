@@ -8,11 +8,12 @@ import remarkGfm from 'remark-gfm'
 import { canonicalFor } from '@/lib/seo'
 
 const LEGAL_PAGES: Record<string, { title: string; file: string }> = {
+    impressum: { title: 'Impressum', file: 'impressum.md' },
     accessibility: { title: 'Accessibility Statement', file: 'accessibility.md' },
     disclaimer: { title: 'Disclaimer', file: 'disclaimer.md' },
-    privacy: { title: 'Privacy Policy', file: 'privacy.md' },
+    privacy: { title: 'Datenschutzerklärung (Privacy Policy)', file: 'privacy.md' },
     terms: { title: 'Terms & Conditions', file: 'terms.md' },
-    license: { title: 'License', file: 'license.md' },
+    license: { title: 'Intellectual Property & Content License', file: 'license.md' },
 }
 
 function getLegalContent(slug: string) {
@@ -22,7 +23,9 @@ function getLegalContent(slug: string) {
     if (!fs.existsSync(filePath)) return null
     const raw = fs.readFileSync(filePath, 'utf-8')
     const { content } = matter(raw)
-    return { title: meta.title, content }
+    // Strip any leading # H1 heading to ensure page template H1 is the only H1
+    const cleanedContent = content.replace(/^#\s+[^\n]+\n*/, '').trim()
+    return { title: meta.title, content: cleanedContent }
 }
 
 export async function generateStaticParams() {
@@ -56,9 +59,14 @@ export default async function LegalPage({
     if (!data) notFound()
 
     return (
-        <div className="section">
+        <div className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
             <div className="container-md">
-                <h1 className="text-3xl font-bold text-slate-900 mb-8">{data.title}</h1>
+                <header className="mb-8">
+                    <span className="tag-badge text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 border-blue-200 dark:border-blue-900 mb-3">
+                        Legal &amp; Compliance
+                    </span>
+                    <h1 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">{data.title}</h1>
+                </header>
                 <article className="prose-happy">
                     <MDXRemote
                         source={data.content}

@@ -109,11 +109,11 @@ export default async function BlogPostPage({
         },
         publisher: {
             '@type': 'Organization',
-            name: 'Happy Hub',
+            name: 'Puneet Kumar Kala — Advisory & Engineering',
             url: 'https://happyhub.in',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://happyhub.in/logo.png',
+                url: 'https://happyhub.in/brand-logo.png',
             },
         },
         isAccessibleForFree: true,
@@ -141,11 +141,11 @@ export default async function BlogPostPage({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
 
-            <div className="section">
+            <div className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
                 <div className="container-md">
                     {/* Back link */}
                     <Link href="/blog" className="btn-ghost mb-6 -ml-2 inline-flex">
-                        <ArrowLeft size={16} aria-hidden="true" /> Back to Blog
+                        <ArrowLeft size={16} aria-hidden="true" /> Back to Insights
                     </Link>
 
                     {/* Header */}
@@ -155,13 +155,13 @@ export default async function BlogPostPage({
                                 <span key={t} className="tag-badge">{t}</span>
                             ))}
                         </div>
-                        <h1 id="post-title" className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
+                        <h1 id="post-title" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-zinc-900 dark:text-zinc-50 leading-tight mb-4 tracking-tight">
                             {post.title}
                         </h1>
                         {post.subtitle && (
-                            <p className="text-xl text-slate-600 mb-4">{post.subtitle}</p>
+                            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-4">{post.subtitle}</p>
                         )}
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500">
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
                             <span className="flex items-center gap-1.5">
                                 <Calendar size={14} aria-hidden="true" />
                                 <time dateTime={post.date}>{formatDate(post.date)}</time>
@@ -170,7 +170,7 @@ export default async function BlogPostPage({
                                 <Clock size={14} aria-hidden="true" />
                                 {post.readTime} min read
                             </span>
-                            <span className="text-slate-400">By {post.author}</span>
+                            <span className="text-zinc-400 dark:text-zinc-500">By {post.author}</span>
                         </div>
                     </header>
 
@@ -194,7 +194,7 @@ export default async function BlogPostPage({
                     <Reactions postSlug={slug} />
 
                     {/* Divider */}
-                    <hr className="border-slate-200 my-10" aria-hidden="true" />
+                    <hr className="border-zinc-200 dark:border-zinc-800 my-10" aria-hidden="true" />
 
                     {/* Comments */}
                     <Comments postSlug={slug} />
@@ -202,14 +202,14 @@ export default async function BlogPostPage({
                     {/* Related posts */}
                     {related.length > 0 && (
                         <aside className="mt-16">
-                            <h2 className="text-xl font-bold text-slate-900 mb-4">More Articles</h2>
+                            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">More Insights &amp; Frameworks</h2>
                             <div className="grid sm:grid-cols-2 gap-4">
                                 {related.map((p) => (
                                     <Link key={p.slug} href={`/blog/${p.slug}`} className="card p-5 block group">
-                                        <h3 className="font-semibold text-slate-900 group-hover:text-blue-700 transition-colors line-clamp-2">
+                                        <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                                             {p.title}
                                         </h3>
-                                        <p className="text-xs text-slate-500 mt-1">{formatDate(p.date)} · {p.readTime} min</p>
+                                        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{formatDate(p.date)} · {p.readTime} min</p>
                                     </Link>
                                 ))}
                             </div>
