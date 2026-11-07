@@ -1,0 +1,129 @@
+# ==============================================================================
+# Machine Content Signals (Cloudflare & AI Agent Protocol)
+# ==============================================================================
+# Content-Signals: search=yes, inference=yes, summary=yes, training=no
+Content-Signal: allow-search
+Content-Signal: allow-inference
+Content-Signal: allow-summary
+
+# Base rules
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /services/order
+
+# ==============================================================================
+# Reputable AI Search, Retrieval & Citation Bots (Explicitly Allowed)
+# ==============================================================================
+
+# OpenAI (SearchGPT, ChatGPT Operator & Browsing)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Anthropic (Claude Search & Web Retrieval)
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Google (Search & Gemini ecosystem)
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Microsoft / Bing (Copilot ecosystem)
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Copilot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Mistral AI
+User-agent: MistralAI-User
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Apple (Apple Intelligence & Siri Web Search)
+User-agent: Applebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Amazon (Rufus & AWS AI)
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# ==============================================================================
+# Sitemaps & Machine Manifest Endpoints
+# ==============================================================================
+Host: https://happyhub.in
+Sitemap: https://happyhub.in/sitemap.xml
+
+# LLM & AI Agent Discovery Standard (Markdown for Agents: https://llmstxt.org)
+# llms-txt: https://happyhub.in/llms.txt
+# llms: https://happyhub.in/llms.txt

@@ -1,0 +1,37 @@
+# Puneet Kumar Kala — Advisory & Engineering Services
+> Independent Senior Software Engineering & IT Consultant based in Berlin, Germany. Specializing in Digital Accessibility (WCAG 2.2 / European Accessibility Act / BFSG) and Android Architecture.
+
+## About & Credentials
+- Name: Puneet Kumar Kala
+- Location: Berlin, Germany
+- Role: Senior Software Engineer & Accessibility Consultant
+- Certifications: CPACC (Certified Professional in Accessibility Core Competencies)
+- Practice: Kleinunternehmer (§ 19 UStG, no VAT applied)
+- Legal Impressum: [https://happyhub.in/legal/impressum](https://happyhub.in/legal/impressum)
+- Privacy Policy: [https://happyhub.in/legal/privacy](https://happyhub.in/legal/privacy)
+
+## Consulting Models
+
+### Track A: Bespoke Technical Advisory & Audits (Quotation-Based)
+Tailored scoping for engineering teams and enterprises with multi-week deliverables.
+- Scope:
+  - Digital Accessibility & EAA/BFSG Readiness: Comprehensive WCAG 2.2 AA audits, screen reader/TalkBack UX evaluation, design system audits, and European compliance roadmaps.
+  - Android Architecture & Code Audits: Compose performance profiling, modularity analysis, build speed optimization, and codebase health reviews.
+  - Custom Technical Content Reviews: Fact-checking and WCAG audits for technical publications (from €200).
+  - Custom Engineering Interview Loops & Hiring Rubrics.
+- Workflow: 4-Stage Advisory Process (Discovery -> Proposal -> Kickoff with 50% advance -> Delivery/Walkthrough -> Final settlement).
+- Primary Action: Complimentary 30-Minute Discovery Session via Cal.com.
+- Link: [https://happyhub.in/services](https://happyhub.in/services)
+
+### Track B: Fixed-Scope Engineering Packages (Flat-Rate & Upfront)
+Standardized, fast-turnaround deliverables with transparent pricing.
+- Offerings:
+  - Technical Interview (Up to 60m + scorecard): €180
+  - Senior Engineering Interview (Up to 75m + architecture evaluation): €230
+  - Technical Assessment Review (Take-home code review + feedback): €150
+  - Interview Panel Support (1 live session + debrief): €250
+  - Technical Article (Up to 1,000 words + 1 revision): €350
+  - In-Depth Technical Deep Dive (Up to 1,800 words + code snippets): €550
+  - Architectural Guide / Tutorial (Up to 3,000 words + sample project): €900
+- Workflow: Direct Intake Submission -> Upfront Invoice Settlement (Revolut/SEPA) -> Swift Delivery.
+- Order Page: [https://happyhub.in/services/order](https://happyhub.in/services/order)

@@ -161,6 +161,7 @@ export default function RootLayout({
             __html: JSON.stringify(professionalServiceSchema),
           }}
         />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Agent Context" />
       </head>
       <body>
         <a href="#main-content" className="skip-link">
