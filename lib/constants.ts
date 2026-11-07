@@ -9,6 +9,11 @@ export const BUSINESS_TITLE = "Software Engineering Consulting & IT Consulting";
 export const BUSINESS_ADDRESS = "Schleizer Str. 80, 13055 Berlin, Germany";
 export const TAX_NUMBER = "32/371/02182";
 
+// Cloudflare Turnstile Site Key
+export const TURNSTILE_SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ||
+  "0x4AAAAAAF27KpuZ_V2otUQU";
+
 // Bank Transfer Coordinates (Pulled securely from environment, with fallbacks)
 export const BANK_ACCOUNT_HOLDER =
   process.env.BANK_ACCOUNT_HOLDER ||

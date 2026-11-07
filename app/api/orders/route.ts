@@ -1,8 +1,79 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { verifyTurnstileToken } from '@/lib/turnstile'
+
+// Rate Limiting Guard: Max 3 requests per 60s per IP
+const RATE_LIMIT_WINDOW_MS = 60 * 1000
+const MAX_REQUESTS_PER_WINDOW = 3
+const ipRateLimitMap = new Map<string, { count: number; windowStart: number }>()
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+
+  // Clean stale entries periodically
+  if (ipRateLimitMap.size > 1000) {
+    for (const [key, val] of ipRateLimitMap.entries()) {
+      if (now - val.windowStart > RATE_LIMIT_WINDOW_MS) {
+        ipRateLimitMap.delete(key)
+      }
+    }
+  }
+
+  const client = ipRateLimitMap.get(ip)
+  if (!client || now - client.windowStart > RATE_LIMIT_WINDOW_MS) {
+    ipRateLimitMap.set(ip, { count: 1, windowStart: now })
+    return false
+  }
+
+  if (client.count >= MAX_REQUESTS_PER_WINDOW) {
+    return true
+  }
+
+  client.count += 1
+  return false
+}
+
+/**
+ * Validates realistic name:
+ * - Length 2..70
+ * - Valid unicode name characters
+ * - Must contain at least one vowel
+ * - Rejects 5+ consecutive consonants (keyboard-mash bot protection)
+ */
+function isValidRealisticName(name: string): boolean {
+  const trimmed = name.trim()
+  if (trimmed.length < 2 || trimmed.length > 70) return false
+  const validChars = /^[a-zA-Z0-9\u00C0-\u024F\u1E00-\u1EFF\s.'&()-]+$/
+  if (!validChars.test(trimmed)) return false
+  const hasVowel = /[aeiouy\u00C0-\u00FF]/i
+  if (!hasVowel.test(trimmed)) return false
+  // Reject 5+ consecutive consonants (keyboard-mash bot protection), permitting English 'ngths'
+  const consonantMatch = trimmed.match(/[bcdfghjklmnpqrstvwxz]{5,}/i)
+  if (consonantMatch && !/ngths/i.test(consonantMatch[0])) return false
+  return true
+}
+
+const ALLOWED_TIMELINES = [
+  'Urgent (Within 48 hours)',
+  'Standard (Within 5-7 business days)',
+  'Flexible / Next 2-3 weeks',
+]
 
 export async function POST(request: Request) {
   try {
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      request.headers.get('x-real-ip') ||
+      '127.0.0.1'
+
+    // Rate Limiting Guard
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Too many order requests from this IP. Please wait before submitting again.' },
+        { status: 429 }
+      )
+    }
+
     const body = await request.json()
     const {
       client_name,
@@ -15,50 +86,100 @@ export async function POST(request: Request) {
       amount,
       target_date,
       scope_notes,
+      business_fax_verification, // Honeypot field
       terms_accepted,
     } = body
 
-    // Validation
+    // 1. Honeypot check: If filled, immediately return fake success and abort
+    if (business_fax_verification) {
+      console.warn('[HONEYPOT_TRIGGERED] Suppressed bot order submission.')
+      return NextResponse.json(
+        {
+          success: true,
+          orderId: `ORD-${Date.now().toString(36).toUpperCase()}`,
+          message:
+            'Thank you! Your order request has been received. Your official invoice and Revolut payment link will arrive within 24 hours.',
+        },
+        { status: 201 }
+      )
+    }
+
+    // 2. Cloudflare Turnstile Verification
+    const turnstileToken =
+      body.turnstile_token || body.cf_turnstile_token || body['cf-turnstile-response']
+    const turnstileCheck = await verifyTurnstileToken(turnstileToken, ip)
+    if (!turnstileCheck.success) {
+      return NextResponse.json(
+        { error: 'Security verification failed. Please complete the captcha verification.' },
+        { status: 403 }
+      )
+    }
+
+    // 3. Client / Company Name Validation
     const name = (company_name || client_name || '').trim()
     const contactName = (client_name || company_name || '').trim()
-    const address = (billing_address || '').trim()
-    const userEmail = (email || '').trim().toLowerCase()
 
     if (!name) {
       return NextResponse.json(
-        { error: 'Client / Company Name is required' },
+        { error: 'Client / Company Name is required.' },
         { status: 400 }
       )
     }
 
+    if (!isValidRealisticName(contactName)) {
+      return NextResponse.json(
+        { error: 'Please provide a realistic client name (minimum 2 letters, vowels required, no consonant-only gibberish).' },
+        { status: 400 }
+      )
+    }
+
+    // 3. Billing Address Validation (Minimum length of 10 characters)
+    const address = (billing_address || '').trim()
     if (!address) {
       return NextResponse.json(
-        { error: 'Billing Address (Street, City, Postal Code, Country) is required' },
+        { error: 'Billing Address (Street, City, Postal Code, Country) is required.' },
         { status: 400 }
       )
     }
 
+    if (address.length < 10) {
+      return NextResponse.json(
+        { error: 'Billing Address must be at least 10 characters (please provide complete street, postal code & city).' },
+        { status: 400 }
+      )
+    }
+
+    // 4. Email Validation
+    const userEmail = (email || '').trim().toLowerCase()
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!userEmail || !emailRegex.test(userEmail)) {
       return NextResponse.json(
-        { error: 'A valid business email address is required' },
+        { error: 'A valid business email address is required.' },
         { status: 400 }
       )
     }
 
+    // 5. Selected Package Validation
     if (!selectedPackage?.trim()) {
       return NextResponse.json(
-        { error: 'Please select a Track B fixed-price package' },
+        { error: 'Please select a Track B fixed-price package.' },
         { status: 400 }
       )
     }
 
+    // 6. Terms Acceptance Validation
     if (!terms_accepted) {
       return NextResponse.json(
-        { error: 'You must agree to the professional engagement terms' },
+        { error: 'You must agree to the professional engagement terms.' },
         { status: 400 }
       )
     }
+
+    // 7. Target Timeline Sanitization
+    const validatedTimeline =
+      target_date && ALLOWED_TIMELINES.includes(target_date.trim())
+        ? target_date.trim()
+        : 'Standard (Within 5-7 business days)'
 
     // Extract numeric amount
     let numericAmount: number | null = null
@@ -70,7 +191,7 @@ export async function POST(request: Request) {
     }
 
     const consolidatedNotes = [
-      target_date ? `Target Delivery / Date: ${target_date.trim()}` : null,
+      `Target Delivery: ${validatedTimeline}`,
       tax_id ? `EU VAT / Tax ID: ${tax_id.trim()}` : null,
       scope_notes ? `Project Details & Links:\n${scope_notes.trim()}` : null,
     ]
@@ -122,7 +243,7 @@ export async function POST(request: Request) {
           email: userEmail,
           package: selectedPackage.trim(),
           package_fee: package_fee || (numericAmount ? `€${numericAmount}` : null),
-          target_date: target_date?.trim() || null,
+          target_date: validatedTimeline,
           scope_notes: consolidatedNotes || null,
           terms_accepted: true,
           status: 'pending',
@@ -144,7 +265,7 @@ export async function POST(request: Request) {
             `Client: ${contactName}`,
             `Company: ${name}`,
             `Billing Address: ${address}`,
-            `Target Delivery / Timeline: ${target_date || 'Standard SLA'}`,
+            `Target Delivery / Timeline: ${validatedTimeline}`,
             `Tax/VAT ID: ${tax_id || 'N/A'}`,
             `Details & Links:`,
             scope_notes || 'None provided',

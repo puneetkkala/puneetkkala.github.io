@@ -146,3 +146,78 @@ export async function PATCH(request: Request) {
     )
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    // Verify admin role
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    if (profile?.role !== 'admin') {
+      return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 })
+    }
+
+    let adminSupabase
+    try {
+      adminSupabase = createAdminClient()
+    } catch {
+      adminSupabase = supabase
+    }
+
+    const { searchParams } = new URL(request.url)
+    const queryId = searchParams.get('id')
+    let ids: string[] = []
+
+    if (queryId) {
+      ids = [queryId]
+    } else {
+      const body = await request.json().catch(() => ({}))
+      if (Array.isArray(body.ids)) {
+        ids = body.ids.filter((i: any) => typeof i === 'string' && i.length > 0)
+      } else if (body.id && typeof body.id === 'string') {
+        ids = [body.id]
+      }
+    }
+
+    if (ids.length === 0) {
+      return NextResponse.json({ error: 'At least one valid Order ID is required' }, { status: 400 })
+    }
+
+    // 1. Delete matching rows from `orders`
+    const { error: deleteOrdersError } = await adminSupabase
+      .from('orders')
+      .delete()
+      .in('id', ids)
+
+    // 2. Also delete from fallback `service_orders` if present
+    await adminSupabase
+      .from('service_orders')
+      .delete()
+      .in('id', ids)
+
+    if (deleteOrdersError) {
+      console.error('Delete orders error:', deleteOrdersError)
+      return NextResponse.json({ error: deleteOrdersError.message }, { status: 500 })
+    }
+
+    return NextResponse.json({ success: true, deletedCount: ids.length, deletedIds: ids })
+  } catch (error) {
+    console.error('Delete admin order error:', error)
+    return NextResponse.json(
+      { error: 'An unexpected error occurred while deleting order(s).' },
+      { status: 500 }
+    )
+  }
+}

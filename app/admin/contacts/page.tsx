@@ -1,52 +1,57 @@
 import { createClient } from '@/lib/supabase/server'
-import Link from 'next/link'
-import { Mail, MailOpen } from 'lucide-react'
+import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
+import { ContactsDashboard } from './ContactsDashboard'
 
-export const metadata: Metadata = { title: 'Contact Inbox' }
+export const metadata: Metadata = {
+  title: 'Contact Inbox | Admin',
+  description: 'Manage incoming advisory inquiries and purge spam messages',
+}
+
+export const dynamic = 'force-dynamic'
 
 export default async function AdminContactsPage() {
-    const supabase = await createClient()
-    const { data: messages } = await supabase
-        .from('contact_messages')
-        .select('*')
-        .order('created_at', { ascending: false })
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
-    return (
-        <div className="section">
-            <div className="container-lg">
-                <h1 className="text-2xl font-bold text-slate-900 mb-8">Contact Inbox</h1>
+  if (!user) {
+    redirect('/login?redirectTo=/admin/contacts')
+  }
 
-                <div className="space-y-4">
-                    {messages?.length === 0 && (
-                        <p className="text-slate-400 text-center py-16">No messages yet</p>
-                    )}
-                    {messages?.map((msg) => (
-                        <div key={msg.id} className={`card p-5 ${!msg.is_read ? 'border-blue-200 bg-blue-50/30' : ''}`}>
-                            <div className="flex items-start justify-between gap-4">
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        {msg.is_read
-                                            ? <MailOpen size={16} className="text-slate-400" aria-label="Read" />
-                                            : <Mail size={16} className="text-blue-600" aria-label="Unread" />
-                                        }
-                                        <span className="font-semibold text-slate-900">{msg.name}</span>
-                                        <span className="text-slate-500 text-sm">— {msg.email}</span>
-                                        {!msg.is_read && (
-                                            <span className="text-xs bg-blue-600 text-white px-1.5 py-0.5 rounded-full">New</span>
-                                        )}
-                                    </div>
-                                    {msg.subject && <p className="text-sm font-medium text-slate-700 mb-1">{msg.subject}</p>}
-                                    <p className="text-slate-600 text-sm whitespace-pre-wrap">{msg.message}</p>
-                                    <p className="text-xs text-slate-400 mt-2">
-                                        {new Date(msg.created_at).toLocaleString('en-GB')}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    )
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if (profile?.role !== 'admin') {
+    redirect('/')
+  }
+
+  const { data: messages } = await supabase
+    .from('contact_messages')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  return (
+    <div className="section">
+      <div className="container-lg">
+        <header className="mb-8">
+          <span className="tag-badge text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 border-blue-200 dark:border-blue-900 mb-2">
+            Inbound Communications
+          </span>
+          <h1 className="text-3xl font-extrabold text-zinc-900 dark:text-zinc-50">
+            Contact Inbox &amp; Inquiries
+          </h1>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-1">
+            Review incoming project inquiries, manage responses, and purge bot spam.
+          </p>
+        </header>
+
+        <ContactsDashboard initialMessages={messages || []} />
+      </div>
+    </div>
+  )
 }

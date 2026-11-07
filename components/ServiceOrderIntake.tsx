@@ -1,6 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { TurnstileWidget } from '@/components/TurnstileWidget'
+import type { TurnstileInstance } from '@marsidev/react-turnstile'
 import {
   CheckCircle,
   FileCheck,
@@ -99,6 +101,8 @@ export function ServiceOrderIntake({
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [captchaToken, setCaptchaToken] = useState<string>('')
+  const turnstileRef = useRef<TurnstileInstance>(undefined)
 
   useEffect(() => {
     if (initialPackageId) {
@@ -148,6 +152,7 @@ export function ServiceOrderIntake({
           package_fee: selectedPkg.fee,
           target_date: form.targetDate.trim() || undefined,
           scope_notes: form.scopeNotes.trim() || undefined,
+          turnstile_token: captchaToken,
           terms_accepted: true,
         }),
       })
@@ -159,8 +164,11 @@ export function ServiceOrderIntake({
       }
 
       setStatus('success')
+      setCaptchaToken('')
     } catch (err: unknown) {
       setStatus('error')
+      turnstileRef.current?.reset()
+      setCaptchaToken('')
       setErrorMessage(
         err instanceof Error
           ? err.message
@@ -388,6 +396,16 @@ export function ServiceOrderIntake({
             </span>
           </label>
           {errors.termsAccepted && <p className="form-error mt-1">{errors.termsAccepted}</p>}
+        </div>
+
+        {/* Cloudflare Turnstile Challenge */}
+        <div className="pt-2">
+          <TurnstileWidget
+            ref={turnstileRef}
+            action="order"
+            onSuccess={(token) => setCaptchaToken(token)}
+            onExpire={() => setCaptchaToken('')}
+          />
         </div>
 
         {/* Submit */}

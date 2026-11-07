@@ -1,39 +1,143 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Send, CheckCircle, Calendar, ArrowUpRight, Mail } from 'lucide-react'
 import { BUSINESS_EMAIL, CAL_COM_URL } from '@/lib/constants'
+import { TurnstileWidget } from '@/components/TurnstileWidget'
+import type { TurnstileInstance } from '@marsidev/react-turnstile'
+
+function isValidRealisticName(name: string): boolean {
+  const trimmed = name.trim()
+  if (trimmed.length < 2 || trimmed.length > 60) return false
+  const validChars = /^[a-zA-Z0-9\u00C0-\u024F\u1E00-\u1EFF\s.'&()-]+$/
+  if (!validChars.test(trimmed)) return false
+  const hasVowel = /[aeiouy\u00C0-\u00FF]/i
+  if (!hasVowel.test(trimmed)) return false
+  // Reject 5+ consecutive consonants (keyboard-mash bot protection), permitting English 'ngths'
+  const consonantMatch = trimmed.match(/[bcdfghjklmnpqrstvwxz]{5,}/i)
+  if (consonantMatch && !/ngths/i.test(consonantMatch[0])) return false
+  return true
+}
+
+function isSpamMessage(message: string): boolean {
+  const trimmed = message.trim()
+  if (trimmed.length < 20) return true
+
+  const urlMatches = trimmed.match(/https?:\/\/[^\s]+/gi) || []
+  if (urlMatches.length > 2) return true
+
+  if (/\[url[=\]]|\[link[=\]]/i.test(trimmed)) return true
+
+  const spamKeywords = [
+    /hnyjxf\.com/i,
+    /powerdesigninc\.us/i,
+    /<script[\s>]/i,
+    /href\s*=/i,
+    /casino/i,
+    /viagra/i,
+  ]
+  return spamKeywords.some((pattern) => pattern.test(trimmed))
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [errors, setErrors] = useState<Partial<typeof form>>({})
+  const [errorMessage, setErrorMessage] = useState('')
+  const [cooldown, setCooldown] = useState(0)
+  const [captchaToken, setCaptchaToken] = useState<string>('')
+  const turnstileRef = useRef<TurnstileInstance>(undefined)
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    organization_fax_verification: '', // Honeypot field
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  // Throttling countdown timer
+  useEffect(() => {
+    if (cooldown <= 0) return
+    const timer = setInterval(() => {
+      setCooldown((prev) => (prev > 0 ? prev - 1 : 0))
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [cooldown])
 
   function validate() {
-    const e: Partial<typeof form> = {}
-    if (!form.name.trim()) e.name = 'Name is required'
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Valid email required'
-    if (!form.message.trim()) e.message = 'Message is required'
+    const e: Record<string, string> = {}
+    const trimmedName = form.name.trim()
+    const trimmedMessage = form.message.trim()
+
+    // 1. Name validation
+    if (!trimmedName) {
+      e.name = 'Full name is required'
+    } else if (trimmedName.length < 2 || trimmedName.length > 60) {
+      e.name = 'Name must be between 2 and 60 characters'
+    } else if (!isValidRealisticName(trimmedName)) {
+      e.name = 'Please provide a realistic name (must contain vowels, no excessive consonant clusters)'
+    }
+
+    // 2. Email validation
+    if (!form.email.trim()) {
+      e.email = 'Business email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      e.email = 'Please enter a valid business email address'
+    }
+
+    // 3. Message validation
+    if (!trimmedMessage) {
+      e.message = 'Inquiry details are required'
+    } else if (trimmedMessage.length < 20) {
+      e.message = 'Inquiry details must be at least 20 characters long'
+    } else if (isSpamMessage(trimmedMessage)) {
+      e.message = 'Message blocked: detected potential spam pattern or excessive links'
+    }
+
     setErrors(e)
     return Object.keys(e).length === 0
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    if (cooldown > 0) return
     if (!validate()) return
+
     setStatus('sending')
+    setErrorMessage('')
+    setCooldown(5) // 5-second client-side throttle
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          turnstile_token: captchaToken,
+        }),
       })
-      if (!res.ok) throw new Error()
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data.error || 'An error occurred while sending your message.')
+      }
       setStatus('success')
-      setForm({ name: '', email: '', subject: '', message: '' })
-    } catch {
+      setForm({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        organization_fax_verification: '',
+      })
+      setCaptchaToken('')
+    } catch (err: unknown) {
       setStatus('error')
+      turnstileRef.current?.reset()
+      setCaptchaToken('')
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : `An error occurred while sending your message. Please reach out directly to ${BUSINESS_EMAIL}.`
+      )
     }
   }
 
@@ -94,6 +198,26 @@ export function ContactForm() {
 
       <div className="card p-6 sm:p-8">
         <form onSubmit={handleSubmit} noValidate aria-label="Contact form">
+          {/* ── Honeypot Anti-Bot Field (Hidden off-screen from real users & screen readers) ── */}
+          <div
+            aria-hidden="true"
+            tabIndex={-1}
+            className="opacity-0 absolute -z-10 w-0 h-0 pointer-events-none overflow-hidden"
+          >
+            <label htmlFor="organization_fax_verification">Do not fill this verification field</label>
+            <input
+              id="organization_fax_verification"
+              type="text"
+              name="organization_fax_verification"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.organization_fax_verification}
+              onChange={(e) =>
+                setForm({ ...form, organization_fax_verification: e.target.value })
+              }
+            />
+          </div>
+
           <div className="grid sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label htmlFor="name" className="form-label">
@@ -175,18 +299,30 @@ export function ContactForm() {
 
           {status === 'error' && (
             <p className="text-red-500 text-sm mb-4" role="alert">
-              An error occurred while sending your message. Please reach out directly to {BUSINESS_EMAIL}.
+              {errorMessage || `An error occurred while sending your message. Please reach out directly to ${BUSINESS_EMAIL}.`}
             </p>
           )}
 
+          {/* Cloudflare Turnstile Challenge */}
+          <div className="mb-4">
+            <TurnstileWidget
+              ref={turnstileRef}
+              action="contact"
+              onSuccess={(token) => setCaptchaToken(token)}
+              onExpire={() => setCaptchaToken('')}
+            />
+          </div>
+
           <button
             type="submit"
-            disabled={status === 'sending'}
-            className="btn-primary w-full justify-center"
+            disabled={status === 'sending' || cooldown > 0}
+            className="btn-primary w-full justify-center disabled:opacity-50 cursor-pointer"
             aria-busy={status === 'sending'}
           >
             {status === 'sending' ? (
               'Submitting inquiry…'
+            ) : cooldown > 0 ? (
+              <span>Please wait ({cooldown}s)…</span>
             ) : (
               <>
                 <Send size={16} aria-hidden="true" />

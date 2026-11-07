@@ -1,8 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { TurnstileWidget } from '@/components/TurnstileWidget'
+import type { TurnstileInstance } from '@marsidev/react-turnstile'
 import {
   CheckCircle,
   FileCheck,
@@ -128,6 +130,32 @@ export const TRACK_B_FIXED_PACKAGES: FixedPackage[] = [
   },
 ]
 
+export const TARGET_TIMELINE_OPTIONS = [
+  'Standard (Within 5-7 business days)',
+  'Urgent (Within 48 hours)',
+  'Flexible / Next 2-3 weeks',
+] as const
+
+/**
+ * Validates that a client name is realistic:
+ * - Length between 2 and 70 characters
+ * - Valid unicode name characters (letters, accents, spaces, hyphens, periods, apostrophes, ampersands)
+ * - Contains at least one vowel
+ * - Rejects 5+ consecutive consonants (keyboard mash bot protection)
+ */
+export function isValidRealisticName(name: string): boolean {
+  const trimmed = name.trim()
+  if (trimmed.length < 2 || trimmed.length > 70) return false
+  const validChars = /^[a-zA-Z0-9\u00C0-\u024F\u1E00-\u1EFF\s.'&()-]+$/
+  if (!validChars.test(trimmed)) return false
+  const hasVowel = /[aeiouy\u00C0-\u00FF]/i
+  if (!hasVowel.test(trimmed)) return false
+  // Reject 5+ consecutive consonants (keyboard-mash bot protection), permitting English 'ngths'
+  const consonantMatch = trimmed.match(/[bcdfghjklmnpqrstvwxz]{5,}/i)
+  if (consonantMatch && !/ngths/i.test(consonantMatch[0])) return false
+  return true
+}
+
 export function OrderPageClient() {
   const searchParams = useSearchParams()
   const rawPkgParam = searchParams.get('package') || ''
@@ -156,8 +184,9 @@ export function OrderPageClient() {
     companyName: '',
     billingAddress: '',
     email: '',
-    targetDate: '',
+    targetDate: 'Standard (Within 5-7 business days)',
     scopeNotes: '',
+    business_fax_verification: '', // Honeypot field for bot suppression
     termsAccepted: false,
   })
 
@@ -165,6 +194,35 @@ export function OrderPageClient() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const [orderResult, setOrderResult] = useState<{ orderId: string; message: string } | null>(null)
+  const [cooldownSeconds, setCooldownSeconds] = useState<number>(0)
+  const [captchaToken, setCaptchaToken] = useState<string>('')
+  const turnstileRef = useRef<TurnstileInstance>(undefined)
+
+  // Rate Limiting: Check previous submission timestamp in localStorage on mount
+  useEffect(() => {
+    const lastSub = typeof window !== 'undefined' ? localStorage.getItem('last_order_submission_time') : null
+    if (lastSub) {
+      const diff = Date.now() - parseInt(lastSub, 10)
+      if (diff < 60000) {
+        setCooldownSeconds(Math.ceil((60000 - diff) / 1000))
+      }
+    }
+  }, [])
+
+  // Cooldown countdown timer
+  useEffect(() => {
+    if (cooldownSeconds <= 0) return
+    const timer = setInterval(() => {
+      setCooldownSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [cooldownSeconds])
 
   const selectedPkg =
     TRACK_B_FIXED_PACKAGES.find((p) => p.id === selectedPackageId) ||
@@ -173,21 +231,45 @@ export function OrderPageClient() {
   function validate() {
     const errs: Record<string, string> = {}
 
-    if (!form.clientName.trim() && !form.companyName.trim()) {
-      errs.clientName = 'Client / Company Name is required'
+    // Throttle check
+    const lastSub = typeof window !== 'undefined' ? localStorage.getItem('last_order_submission_time') : null
+    if (lastSub) {
+      const diff = Date.now() - parseInt(lastSub, 10)
+      if (diff < 60000) {
+        const remaining = Math.ceil((60000 - diff) / 1000)
+        setErrorMessage(`Please wait ${remaining} seconds before submitting another order request.`)
+        setStatus('error')
+        return false
+      }
     }
 
+    // 1. Client Name realistic validation
+    if (!form.clientName.trim() && !form.companyName.trim()) {
+      errs.clientName = 'Client / Company Name is required'
+    } else if (form.clientName.trim() && !isValidRealisticName(form.clientName)) {
+      errs.clientName =
+        'Please enter a realistic name (minimum 2 letters, vowels required, no consonant gibberish)'
+    } else if (!form.clientName.trim() && form.companyName.trim().length < 2) {
+      errs.clientName = 'Please enter a valid company name (minimum 2 characters)'
+    }
+
+    // 2. Billing Address minimum length validation (min 10 chars)
     if (!form.billingAddress.trim()) {
       errs.billingAddress =
         'Billing Address (Street, City, Postal Code, Country) is required for formal invoicing'
+    } else if (form.billingAddress.trim().length < 10) {
+      errs.billingAddress =
+        'Billing address must be at least 10 characters (please provide complete street, postal code & city)'
     }
 
+    // 3. Email validation
     if (!form.email.trim()) {
       errs.email = 'Contact business email is required'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
       errs.email = 'Please enter a valid business email address'
     }
 
+    // 4. Terms acceptance
     if (!form.termsAccepted) {
       errs.termsAccepted =
         'You must confirm the commercial engagement terms to submit this order request'
@@ -218,6 +300,8 @@ export function OrderPageClient() {
           amount: selectedPkg.amount,
           target_date: form.targetDate.trim() || undefined,
           scope_notes: form.scopeNotes.trim() || undefined,
+          business_fax_verification: form.business_fax_verification, // Honeypot field
+          turnstile_token: captchaToken, // Cloudflare Turnstile token
           terms_accepted: true,
         }),
       })
@@ -228,13 +312,22 @@ export function OrderPageClient() {
         throw new Error(data.error || 'Failed to submit order request.')
       }
 
+      // Record submission timestamp for client-side throttling
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('last_order_submission_time', Date.now().toString())
+      }
+      setCooldownSeconds(60)
+
       setOrderResult({
         orderId: data.orderId || `ORD-${Date.now().toString(36).toUpperCase()}`,
         message: data.message,
       })
       setStatus('success')
+      setCaptchaToken('')
     } catch (err: unknown) {
       setStatus('error')
+      turnstileRef.current?.reset()
+      setCaptchaToken('')
       setErrorMessage(
         err instanceof Error
           ? err.message
@@ -514,7 +607,25 @@ export function OrderPageClient() {
               </div>
             </div>
 
-            {/* 3. Target Delivery Date & Project Details / Links */}
+            {/* ── Honeypot Anti-Bot Field (Hidden off-screen from real users & screen readers) ── */}
+            <div
+              aria-hidden="true"
+              tabIndex={-1}
+              className="opacity-0 absolute -z-10 w-0 h-0 pointer-events-none overflow-hidden"
+            >
+              <label htmlFor="business_fax_verification">Do not fill this verification field</label>
+              <input
+                id="business_fax_verification"
+                type="text"
+                name="business_fax_verification"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.business_fax_verification}
+                onChange={(e) => setForm({ ...form, business_fax_verification: e.target.value })}
+              />
+            </div>
+
+            {/* 3. Target Timeline Dropdown & Project Details / Links */}
             <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 space-y-4">
               <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 block mb-1">
                 Project Scope &amp; Timing
@@ -522,16 +633,20 @@ export function OrderPageClient() {
 
               <div>
                 <label htmlFor="target-date" className="form-label">
-                  Target Delivery Date / Timeframe <span className="text-xs text-zinc-400 font-normal">(Optional)</span>
+                  Target Timeline <span className="text-red-500">*</span>
                 </label>
-                <input
+                <select
                   id="target-date"
-                  type="text"
-                  placeholder="e.g. Next Tuesday 15:00 CET, or First draft needed within 10 days"
                   value={form.targetDate}
                   onChange={(e) => setForm({ ...form, targetDate: e.target.value })}
-                  className="form-input text-sm"
-                />
+                  className="form-input text-sm font-medium"
+                >
+                  {TARGET_TIMELINE_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>
@@ -565,6 +680,16 @@ export function OrderPageClient() {
               {errors.termsAccepted && <p className="form-error mt-1">{errors.termsAccepted}</p>}
             </div>
 
+            {/* Cloudflare Turnstile Challenge */}
+            <div className="pt-2">
+              <TurnstileWidget
+                ref={turnstileRef}
+                action="order"
+                onSuccess={(token) => setCaptchaToken(token)}
+                onExpire={() => setCaptchaToken('')}
+              />
+            </div>
+
             {/* Submit Button (Exact required wording: "Submit Order Request") */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
               <div className="text-xs text-zinc-500 flex items-center gap-1.5">
@@ -574,11 +699,13 @@ export function OrderPageClient() {
 
               <button
                 type="submit"
-                disabled={status === 'submitting'}
+                disabled={status === 'submitting' || cooldownSeconds > 0}
                 className="btn-primary text-sm px-6 py-3 justify-center shadow-sm disabled:opacity-50 cursor-pointer"
               >
                 {status === 'submitting' ? (
                   <span>Submitting Order Request…</span>
+                ) : cooldownSeconds > 0 ? (
+                  <span>Please wait {cooldownSeconds}s</span>
                 ) : (
                   <>
                     <Send size={15} aria-hidden="true" />

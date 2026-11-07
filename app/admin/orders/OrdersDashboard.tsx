@@ -3,21 +3,18 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
-  FileText,
   Clock,
   CheckCircle,
   AlertCircle,
   TrendingUp,
   Receipt,
-  ExternalLink,
   RefreshCw,
   Search,
   Filter,
   Building,
   Mail,
-  ArrowRight,
-  ShieldCheck,
   Check,
+  Trash2,
 } from 'lucide-react'
 
 export interface OrderItem {
@@ -91,6 +88,8 @@ export function OrdersDashboard() {
   const [searchTerm, setSearchTerm] = useState('')
   const [updatingId, setUpdatingId] = useState<string | null>(null)
   const [notification, setNotification] = useState<string | null>(null)
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [isDeleting, setIsDeleting] = useState(false)
 
   async function fetchOrders() {
     setLoading(true)
@@ -136,6 +135,79 @@ export function OrdersDashboard() {
       alert('Failed to update status: ' + (err instanceof Error ? err.message : 'Error'))
     } finally {
       setUpdatingId(null)
+    }
+  }
+
+  async function handleDeleteOrder(order: OrderItem) {
+    const confirmMessage = `Are you sure you want to permanently delete this order?\n\nClient: ${order.client_name}\nPackage: ${order.package_or_scope}\nID: ${order.id}\n\nThis cannot be undone.`
+    if (!window.confirm(confirmMessage)) return
+
+    setIsDeleting(true)
+    try {
+      const res = await fetch('/api/admin/orders', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: order.id }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to delete order')
+      }
+
+      setOrders((prev) => prev.filter((o) => o.id !== order.id))
+      setSelectedIds((prev) => prev.filter((id) => id !== order.id))
+      setNotification(`Order ${order.id.slice(0, 8)} successfully deleted.`)
+      setTimeout(() => setNotification(null), 3500)
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : 'Error deleting order')
+    } finally {
+      setIsDeleting(false)
+    }
+  }
+
+  async function handleBulkDelete() {
+    if (selectedIds.length === 0) return
+    const confirmMessage = `Are you sure you want to permanently delete ${selectedIds.length} selected orders?\n\nThis action cannot be undone.`
+    if (!window.confirm(confirmMessage)) return
+
+    setIsDeleting(true)
+    try {
+      const res = await fetch('/api/admin/orders', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: selectedIds }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to delete selected orders')
+      }
+
+      const deletedSet = new Set(selectedIds)
+      setOrders((prev) => prev.filter((o) => !deletedSet.has(o.id)))
+      setNotification(`${selectedIds.length} orders permanently deleted.`)
+      setSelectedIds([])
+      setTimeout(() => setNotification(null), 3500)
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : 'Error deleting selected orders')
+    } finally {
+      setIsDeleting(false)
+    }
+  }
+
+  function handleToggleSelect(orderId: string) {
+    setSelectedIds((prev) =>
+      prev.includes(orderId) ? prev.filter((id) => id !== orderId) : [...prev, orderId]
+    )
+  }
+
+  function handleToggleSelectAll(filtered: OrderItem[]) {
+    const allFilteredIds = filtered.map((o) => o.id)
+    const isAllSelected = allFilteredIds.length > 0 && allFilteredIds.every((id) => selectedIds.includes(id))
+
+    if (isAllSelected) {
+      setSelectedIds((prev) => prev.filter((id) => !allFilteredIds.includes(id)))
+    } else {
+      setSelectedIds((prev) => Array.from(new Set([...prev, ...allFilteredIds])))
     }
   }
 
@@ -320,6 +392,34 @@ export function OrdersDashboard() {
         </div>
       </div>
 
+      {/* Bulk Action Banner */}
+      {selectedIds.length > 0 && (
+        <div className="mb-4 p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm animate-in fade-in">
+          <div className="flex items-center gap-2 text-red-800 dark:text-red-200 font-semibold">
+            <Trash2 size={16} aria-hidden="true" />
+            <span>{selectedIds.length} order{selectedIds.length > 1 ? 's' : ''} selected</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setSelectedIds([])}
+              className="px-3 py-1.5 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium transition-colors cursor-pointer"
+            >
+              Clear Selection
+            </button>
+            <button
+              type="button"
+              disabled={isDeleting}
+              onClick={handleBulkDelete}
+              className="px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold flex items-center gap-1.5 shadow-sm transition-colors disabled:opacity-50 cursor-pointer"
+            >
+              <Trash2 size={14} aria-hidden="true" />
+              <span>{isDeleting ? 'Deleting...' : `Delete Selected (${selectedIds.length})`}</span>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Orders Table */}
       <div className="card border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-white dark:bg-zinc-900 shadow-sm">
         {loading ? (
@@ -349,6 +449,18 @@ export function OrdersDashboard() {
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
                 <tr className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300">
+                  <th scope="col" className="py-3 px-3 w-10 text-center">
+                    <input
+                      type="checkbox"
+                      aria-label="Select all orders"
+                      checked={
+                        filteredOrders.length > 0 &&
+                        filteredOrders.every((o) => selectedIds.includes(o.id))
+                      }
+                      onChange={() => handleToggleSelectAll(filteredOrders)}
+                      className="rounded border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                    />
+                  </th>
                   <th scope="col" className="py-3 px-4 font-semibold">
                     Date &amp; ID
                   </th>
@@ -391,11 +503,26 @@ export function OrdersDashboard() {
                     order.package_or_scope
                   )}&amount=${order.total_amount_eur || ''}&orderId=${order.id}`
 
+                  const isSelected = selectedIds.includes(order.id)
+
                   return (
                     <tr
                       key={order.id}
-                      className="hover:bg-zinc-50/60 dark:hover:bg-zinc-800/40 transition-colors"
+                      className={`hover:bg-zinc-50/60 dark:hover:bg-zinc-800/40 transition-colors ${
+                        isSelected ? 'bg-blue-50/40 dark:bg-blue-950/20' : ''
+                      }`}
                     >
+                      {/* Selection Checkbox */}
+                      <td className="py-3.5 px-3 align-top text-center">
+                        <input
+                          type="checkbox"
+                          aria-label={`Select order ${order.id}`}
+                          checked={isSelected}
+                          onChange={() => handleToggleSelect(order.id)}
+                          className="rounded border-zinc-300 dark:border-zinc-700 text-blue-600 focus:ring-blue-500 cursor-pointer mt-1"
+                        />
+                      </td>
+
                       {/* Date & ID */}
                       <td className="py-3.5 px-4 align-top whitespace-nowrap">
                         <div className="font-medium text-zinc-900 dark:text-zinc-100">
@@ -486,13 +613,25 @@ export function OrdersDashboard() {
 
                       {/* Actions */}
                       <td className="py-3.5 px-4 align-top text-right whitespace-nowrap">
-                        <Link
-                          href={invoiceLink}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 transition-colors shadow-2xs"
-                        >
-                          <Receipt size={13} aria-hidden="true" />
-                          <span>Generate Invoice</span>
-                        </Link>
+                        <div className="inline-flex items-center gap-1.5">
+                          <Link
+                            href={invoiceLink}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-900 transition-colors shadow-2xs"
+                          >
+                            <Receipt size={13} aria-hidden="true" />
+                            <span>Invoice</span>
+                          </Link>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteOrder(order)}
+                            disabled={isDeleting}
+                            title="Permanently delete order"
+                            aria-label={`Permanently delete order for ${order.client_name}`}
+                            className="p-1.5 rounded-lg text-zinc-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/60 transition-colors cursor-pointer disabled:opacity-50"
+                          >
+                            <Trash2 size={15} aria-hidden="true" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   )
