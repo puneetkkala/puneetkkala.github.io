@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Script from 'next/script'
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { CookieConsent, getConsent, type ConsentValue } from './CookieConsent'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
@@ -19,6 +20,9 @@ export function Analytics() {
         <>
             {/* Cookie consent banner */}
             <CookieConsent onConsentChange={setConsent} />
+
+            {/* Vercel Web Analytics — privacy-friendly, no cookies required */}
+            <VercelAnalytics />
 
             {/* Google Analytics — only loads after explicit consent */}
             {loadGA && (
